@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsNewsProject.Models.ORM.Context;
+using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,29 @@ namespace SportsNewsProject.Controllers
                 EMail = q.EMail
             }).ToList();
             return View(users);
+        }
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(UserVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = new User();
+                user.Name = model.Name;
+                user.SurName = model.SurName;
+                user.EMail = model.EMail;
+                user.NickName = model.NickName;
+                user.AddDate = model.AddDate;
+                user.IsDeleted = model.IsDeleted;
+
+                _newscontext.Users.Add(user);
+                _newscontext.SaveChanges();
+            }
+            
+            return View();
         }
     }
 }

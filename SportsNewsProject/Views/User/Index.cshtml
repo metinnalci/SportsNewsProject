@@ -5,7 +5,8 @@
 }
 @model List<SportsNewsProject.Models.VM.UserVM>
 
-<div class=" table-responsive"><div class="col-lg-12 col-md-12">
+<div class=" table-responsive">
+    <div class="col-lg-12 col-md-12">
     <div class="card">
         <div class="card-header card-header-warning">
             <h4 class="card-title">Users</h4>
@@ -20,21 +21,18 @@
                 <th>EMail</th>
                 <th>Nickname</th>
                 <th>Addate</th>
-
-
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.ID</td>
-                            <td>@item.Name</td>
-                            <td>@item.SurName</td>
-                            <td>@item.EMail</td>
-                            <td>@item.NickName</td>
-                            <td>@item.AddDate</td>
-
-                        </tr>
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@item.SurName</td>
+                        <td>@item.EMail</td>
+                        <td>@item.NickName</td>
+                        <td>@item.AddDate</td>
+                    </tr>
                     }
 
                 </tbody>

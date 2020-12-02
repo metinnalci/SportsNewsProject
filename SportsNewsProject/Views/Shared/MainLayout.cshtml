@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <ul class="nav">
+                <ul class="nav" id="accordionSidebar">
                     <li class="nav-item active  ">
                         <a class="nav-link" href="/">
                             <i class="material-icons">dashboard</i>
@@ -38,22 +38,67 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="/user">
+                        <a class="nav-link collapsed" href="/user" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
                             <i class="material-icons">person</i>
                             <p>User Profiles</p>
                         </a>
+                        <div id="collapseUser" class="collapse container" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+                            <div class="bg-light py-2 collapse-inner rounded ">
+                                <h6 class="collapse-header" style="color: green;">User Action</h6>
+                                <a class="collapse-item" href="/user">
+                                    <i class="material-icons">view_list</i>
+                                    User List
+                                </a>
+                            </div>
+                            <div class="bg-light py-2 collapse-inner rounded ">
+                                <a class="collapse-item" href="/user/add">
+                                    <i class="material-icons">library_add</i>
+                                    Add User
+                                </a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="/category">
-                            <i class="material-icons">content_paste</i>
+                        <a class="nav-link collapsed" href="/category" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="true" aria-controls="collapseCategory">
+                            <i class="material-icons">sort</i>
                             <p>Categories</p>
                         </a>
+                        <div id="collapseCategory" class="collapse container" aria-labelledby="headingCategory" data-parent="#accordionSidebar">
+                            <div class="bg-light py-2 collapse-inner rounded ">
+                                <h6 class="collapse-header" style="color: green;">Category Action</h6>
+                                <a class="collapse-item" href="/category">
+                                    <i class="material-icons">view_list</i>
+                                    Category List
+                                </a>
+                            </div>
+                            <div class="bg-light py-2 collapse-inner rounded ">
+                                <a class="collapse-item" href="#">
+                                    <i class="material-icons">library_add</i>
+                                    Add Category
+                                </a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="./user.html">
-                            <i class="material-icons">notifications</i>
-                            <p>News</p>
+                        <a class="nav-link collapsed" href="/news" data-toggle="collapse" data-target="#collapseNews" aria-expanded="true" aria-controls="collapseNews">
+                            <i class="material-icons">menu_book</i>
+                            <p>Articles</p>
                         </a>
+                        <div id="collapseNews" class="collapse container" aria-labelledby="headingNews" data-parent="#accordionSidebar">
+                            <div class="bg-light py-2 collapse-inner rounded ">
+                                <h6 class="collapse-header" style="color:green;">Article Action</h6>
+                                <a class="collapse-item" href="/news">
+                                    <i class="material-icons">view_list</i>
+                                    Article List
+                                </a>
+                            </div>
+                            <div class="bg-light py-2 collapse-inner rounded ">
+                                <a class="collapse-item" href="#">
+                                    <i class="material-icons">library_add</i>
+                                    Add Article
+                                </a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/comment">
