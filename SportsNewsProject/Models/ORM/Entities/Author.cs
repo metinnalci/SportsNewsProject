@@ -11,7 +11,6 @@ namespace SportsNewsProject.Models.ORM.Entities
         public string SurName{ get; set; }
         public string EMail { get; set; }
         public string Phone { get; set; }
-        public List<AuthorCategory> AuthorCategories { get; set; }
         public List<News> News { get; set; }
     }
 }
