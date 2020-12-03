@@ -6,7 +6,7 @@
 @model SportsNewsProject.Models.VM.UserVM
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
                 <h4 class="card-title">Add User</h4>
@@ -14,48 +14,9 @@
             </div>
             <div class="card-body">
                 <form action="/User/Add" method="post">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                @Html.LabelFor(q => q.Name, new { @class="bmd-label-floating"})
-                                @Html.TextBoxFor(q => q.Name, new { @class="form-control"})
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                @Html.LabelFor(q => q.SurName, new { @class = "bmd-label-floating" })
-                                @Html.TextBoxFor(q => q.SurName, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
-                                @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type="email"})
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(q => q.NickName, new { @class = "bmd-label-floating" })
-                                @Html.TextBoxFor(q => q.NickName, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
-                                @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type="datetime" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                @Html.LabelFor(q => q.IsDeleted, new { @class = "bmd-label-floating" })
-                                @Html.CheckBoxFor(q => q.IsDeleted, new { @class = "form-control" })
-                            </div>
-                        </div>
-                    </div>
+
+                    @await Html.PartialAsync("Partial/UserForm") 
+
                     <button type="submit" class="btn btn-primary pull-right">Add Profile</button>
                     <div class="clearfix"></div>
                 </form>

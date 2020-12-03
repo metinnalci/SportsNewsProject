@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model SportsNewsProject.Models.VM.UserVM
+
+<style>
+    .field-validation-error{
+        color:red;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.SurName, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.SurName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.EMail, new { @class = "form-control" ,@type = "email"})
+            @Html.ValidationMessageFor(q => q.EMail)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.NickName, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.NickName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(q => q.NickName)
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Password, new { @class = "bmd-label-floating" })
+            @Html.PasswordFor(q => q.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(q => q.AddDate)
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.ConfirmPassword, new { @class = "bmd-label-floating" })
+            @Html.PasswordFor(q => q.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(q => q.ConfirmPassword)
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime"})
+            @Html.ValidationMessageFor(q => q.AddDate)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+        <div class="form-group">
+            @Html.LabelFor(q => q.IsDeleted, new { @class = "bmd-label-floating" })
+            @Html.CheckBoxFor(q => q.IsDeleted, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
