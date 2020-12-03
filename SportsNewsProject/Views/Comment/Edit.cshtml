@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@model SportsNewsProject.Models.VM.CommentVM
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Edit Comment</h4>
+                <p class="card-category">Edit a comment</p>
+            </div>
+            <div class="card-body">
+                <form action="/Comment/Edit/" method="post">
+
+                    @await Html.PartialAsync("Partial/CommentForm")
+                    @Html.HiddenFor(q => q.ID)
+
+                    <button type="submit" class="btn btn-primary pull-right">Edit Comment</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

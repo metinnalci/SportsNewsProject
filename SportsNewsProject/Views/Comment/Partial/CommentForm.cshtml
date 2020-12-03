@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model SportsNewsProject.Models.VM.CommentVM
+
+<style>
+    .field-validation-error{
+        color:red;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.NewsID, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.NewsID, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.UserID, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.UserID, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Content, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Content, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime" })
+            @Html.ValidationMessageFor(q => q.AddDate)
+        </div>
+    </div>
+</div>

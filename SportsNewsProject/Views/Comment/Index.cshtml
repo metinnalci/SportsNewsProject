@@ -33,28 +33,35 @@
                                 <th>
                                     Adddate
                                 </th>
+                                <th>
+                                    Action
+                                </th>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr>
-                                            <td>
-                                                @item.ID
-                                            </td>
-                                            <td>
-                                                @item.UserID
-                                            </td>
-                                            <td>
-                                                @item.NewsID
-                                            </td>
-                                            <td class="text-primary">
-                                                @item.Content
-                                            </td>
-                                            <td>
-                                                @item.AddDate
-                                            </td>
-                                        </tr>
+                                    <tr id="@item.ID">
+                                        <td>
+                                            @item.ID
+                                        </td>
+                                        <td>
+                                            @item.UserID
+                                        </td>
+                                        <td>
+                                            @item.NewsID
+                                        </td>
+                                        <td class="text-primary">
+                                            @item.Content
+                                        </td>
+                                        <td>
+                                            @item.AddDate
+                                        </td>
+                                        <td>
+                                            <a href="/Comment/Edit/@item.ID"><button class="btn btn">Edit</button></a>
+                                            <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -65,3 +72,24 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).on("click", ".delete", function () {
+
+        let id = $(this).attr("id");
+
+        $.ajax({
+            url: "/Comment/Delete",
+            type: "POST",           
+            data: { id: id },
+            success: function (msg) {
+                alert(msg);
+                $("#" + id).fadeOut();
+            },
+            error: function (err) {
+                alert("Comment Deleting Failed!")
+            }
+        })
+    })
+</script>

@@ -98,5 +98,6 @@ namespace SportsNewsProject.Controllers
             return Json("Category Successfully Deleted!");
         }
 
+
     }
 }
