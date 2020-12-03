@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model SportsNewsProject.Models.VM.CategoryVM
+
+<style>
+    .field-validation-error{
+        color:red;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Description, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.UpperCategoryId, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.UpperCategoryId, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Adddate, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Adddate, new { @class = "form-control", @type = "datetime" })
+            @Html.ValidationMessageFor(q => q.Adddate)
+        </div>
+    </div>
+</div>
+    
+<div class="row">
+    <div class="col-md-1">
+        <div class="form-group">
+            @Html.LabelFor(q => q.IsDeleted, new { @class = "bmd-label-floating" })
+            @Html.CheckBoxFor(q => q.IsDeleted, new { @class = "form-control" })
+        </div>
+    </div>
+</div>

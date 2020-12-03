@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsNewsProject.Models.ORM.Context;
+using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
 using System;
 using System.Collections.Generic;
@@ -28,5 +29,74 @@ namespace SportsNewsProject.Controllers
             }).ToList();
             return View(categories);
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(CategoryVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                Category category = new Category();
+                category.CategoryName = model.Name;
+                category.Description = model.Description;
+                category.UpperCategoryID = model.UpperCategoryId;
+                category.AddDate = model.Adddate;
+                category.IsDeleted = model.IsDeleted;
+                _newscontext.Categories.Add(category);
+                _newscontext.SaveChanges();
+            }
+            return View();
+        }
+
+        public IActionResult Edit(int id)
+        {
+            CategoryVM model = _newscontext.Categories.Select(q => new CategoryVM()
+            {
+                ID = q.ID,
+                Name = q.CategoryName,
+                Description = q.Description,
+                UpperCategoryId = q.UpperCategoryID,
+                Adddate = q.AddDate,
+                IsDeleted = q.IsDeleted,
+
+            }).FirstOrDefault(x => x.ID == id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CategoryVM model)
+        {
+            Category category = _newscontext.Categories.FirstOrDefault(x => x.ID == model.ID);
+
+            if (ModelState.IsValid)
+            {
+                category.CategoryName = model.Name;
+                category.Description = model.Description;
+                category.AddDate = model.Adddate;
+                category.IsDeleted = model.IsDeleted;
+                category.UpperCategoryID = model.UpperCategoryId;
+
+                _newscontext.SaveChanges();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            Category category = _newscontext.Categories.FirstOrDefault(x => x.ID == id);
+
+            category.IsDeleted = true;
+
+            _newscontext.SaveChanges();
+
+            return Json("Category Successfully Deleted!");
+        }
+
     }
 }

@@ -54,7 +54,7 @@ namespace SportsNewsProject.Controllers
                 _newscontext.SaveChanges();
             }
 
-            return View(); ;
+            return View();
         }
 
         public IActionResult Edit(int id)
