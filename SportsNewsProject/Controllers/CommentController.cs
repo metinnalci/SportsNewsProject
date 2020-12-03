@@ -19,15 +19,18 @@ namespace SportsNewsProject.Controllers
         }
         public IActionResult Index()
         {
-            List<CommentVM> comments = _newscontext.Comments.Include(q => q.News).Include(q => q.User).Select(q => new CommentVM()
+            List<CommentVM> comments = _newscontext.Comments.Where(q => q.IsDeleted == false).Include(q => q.News).Include(q => q.User).Select(q => new CommentVM()
             {
                 ID = q.ID,
                 UserID = q.UserId,
                 NewsID = q.NewsId,
                 Content = q.Content,
                 AddDate = q.AddDate
+
             }).ToList();
             return View(comments);
         }
+
+
     }
 }
