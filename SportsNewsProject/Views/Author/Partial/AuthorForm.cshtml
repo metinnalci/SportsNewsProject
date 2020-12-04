@@ -41,13 +41,20 @@
             @Html.TextBoxFor(q => q.Phone, new { @class = "form-control", @type = "tel", @pattern = "[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" })
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime"})
+            @Html.ValidationMessageFor(q => q.AddDate)
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
             <label class="bmd-label-floating">Categories:</label>
             <br>
-            @foreach (var item in ViewBag.Categories)
+            @foreach (var item in Model.Categories)
             {
                 <input type="checkbox" name="categoryid" value="@item.ID">
                 <label>@item.CategoryName</label><br>

@@ -34,8 +34,10 @@ namespace SportsNewsProject.Controllers
 
         public IActionResult Add()
         {
-            ViewBag.Categories = _newscontext.Categories.ToList();
-            return View();
+            //ViewBag.Categories = _newscontext.Categories.ToList();
+            AuthorVM model = new AuthorVM();
+            model.Categories = _newscontext.Categories.ToList();
+            return View(model);
         }
 
         [HttpPost]
@@ -49,13 +51,15 @@ namespace SportsNewsProject.Controllers
                 author.SurName = model.Surname;
                 author.EMail = model.EMail;
                 author.Phone = model.Phone;
+                author.AddDate = model.AddDate;
 
                 _newscontext.Authors.Add(author);
                 _newscontext.SaveChanges();
 
                 int authorid = author.ID;
 
-                ViewBag.Categories = _newscontext.Categories.ToList();
+                //ViewBag.Categories = _newscontext.Categories.ToList();
+                model.Categories = _newscontext.Categories.ToList();
 
                 for (int i = 0; i < categoryid.Length; i++)
                 {
@@ -70,7 +74,7 @@ namespace SportsNewsProject.Controllers
 
             }
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
