@@ -25,5 +25,8 @@ namespace SportsNewsProject.Models.VM
         public string Phone { get; set; }
         public DateTime AddDate { get; set; }
         public List<Category> Categories { get; set; }
+
+        public List<int> AuthorCategories { get; set; }
+
     }
 }
