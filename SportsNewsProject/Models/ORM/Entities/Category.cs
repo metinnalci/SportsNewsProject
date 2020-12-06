@@ -12,5 +12,7 @@ namespace SportsNewsProject.Models.ORM.Entities
         public Nullable<int> UpperCategoryID { get; set; }
         public List<AuthorCategory> AuthorCategories { get; set; }
         public List<News> News { get; set; }
+
+       
     }
 }

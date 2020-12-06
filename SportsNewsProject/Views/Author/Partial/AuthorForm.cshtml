@@ -13,6 +13,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
+
             @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
             @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(q => q.Name)
@@ -44,7 +45,7 @@
     <div class="col-md-3">
         <div class="form-group">
             @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime"})
+            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime" })
             @Html.ValidationMessageFor(q => q.AddDate)
         </div>
     </div>
@@ -57,7 +58,7 @@
             @foreach (var item in Model.Categories)
             {
                 <input type="checkbox" name="categoryid" value="@item.ID">
-                <label>@item.CategoryName</label><br>
+                    <label>@item.CategoryName</label><br>
             }
         </div>
     </div>
