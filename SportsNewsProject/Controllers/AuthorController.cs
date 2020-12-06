@@ -80,55 +80,33 @@ namespace SportsNewsProject.Controllers
 
         public IActionResult Edit(int id)
         {
-            AuthorVM model = _newscontext.Authors.Select(q => new AuthorVM()
+            Author author = _newscontext.Authors.FirstOrDefault(x => x.ID == id);
+
+            AuthorVM model = new AuthorVM();
+            model.Name = author.Name;
+            model.Surname = author.SurName;
+            model.EMail = author.EMail;
+            model.Phone = author.Phone;
+            model.AddDate = author.AddDate;
+            model.Categories = _newscontext.Categories.ToList();
+            model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
+
+            foreach (var item in model.categoryid)
             {
-                ID = q.ID,
-                Name = q.Name,
-                Surname = q.SurName,
-                EMail = q.EMail,
-                Phone = q.Phone,
-                AddDate = q.AddDate,
-                Categories = _newscontext.Categories.ToList(),
-                AuthorCategories = _newscontext.AuthorCategories.Where(x => x.AuthorID == id).Select(q => q.CategoryID).ToList()
-
-        }).FirstOrDefault(x => x.ID == id);
-
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(AuthorVM model, int[] categoryid)
-        {
-            Author author = _newscontext.Authors.FirstOrDefault(x => x.ID == model.ID);
-
-            if (ModelState.IsValid)
-            {
-                author.Name = model.Name;
-                author.SurName = model.Surname;
-                author.EMail = model.EMail;
-                author.Phone = model.Phone;
-                author.AddDate = model.AddDate;
-
-                _newscontext.SaveChanges();
-
-                int autherid = author.ID;
-                model.Categories = _newscontext.Categories.ToList();
-                model.AuthorCategories = _newscontext.AuthorCategories.Where(x => x.AuthorID == autherid).Select(q => q.CategoryID).ToList();
-
-                for (int i = 0; i < categoryid.Length; i++)
+                foreach (var item2 in model.Categories)
                 {
-                    AuthorCategory authorCategory = new AuthorCategory();
-
-                    authorCategory.CategoryID = categoryid[i];
-                    authorCategory.AuthorID = autherid;
-
-                    _newscontext.AuthorCategories.Add(authorCategory);
-                    _newscontext.SaveChanges();
+                    if (item == item2.ID)
+                    {
+                        model.IsChecked = true;
+                    }
                 }
+
             }
+
             return View(model);
         }
+
+
 
         [HttpPost]
         public IActionResult Delete(int id)
@@ -144,3 +122,4 @@ namespace SportsNewsProject.Controllers
 
     }
 }
+
