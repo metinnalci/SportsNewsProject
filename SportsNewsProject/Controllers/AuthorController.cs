@@ -37,7 +37,15 @@ namespace SportsNewsProject.Controllers
         {
             //ViewBag.Categories = _newscontext.Categories.ToList();
             AuthorVM model = new AuthorVM();
-            model.Categories = _newscontext.Categories.ToList();
+            model.categoryCheck = _newscontext.Categories.Select(q => new CategoryCheckVM()
+            {
+
+                categoryid = q.ID,
+                IsChecked = false,
+                Name = q.CategoryName
+
+            }).ToArray();
+
             return View(model);
         }
 
@@ -78,6 +86,7 @@ namespace SportsNewsProject.Controllers
         public IActionResult Edit(int id)
         {
             Author author = _newscontext.Authors.FirstOrDefault(x => x.ID == id);
+            List<CategoryCheckVM> categoryChecks = new List<CategoryCheckVM>();
 
             AuthorVM model = new AuthorVM();
             model.Name = author.Name;
@@ -86,21 +95,43 @@ namespace SportsNewsProject.Controllers
             model.Phone = author.Phone;
             model.AddDate = author.AddDate;
             model.Categories = _newscontext.Categories.ToList();
-            model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
+            //model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
+            int[] categoryids = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
 
-            foreach (var item in model.categoryid)
+            foreach (var item in model.Categories)
             {
-                foreach (var item2 in model.Categories)
+                CategoryCheckVM categoryCheck = new CategoryCheckVM();
+                categoryCheck.categoryid = item.ID;
+
+
+                foreach (var item2 in categoryids)
                 {
-                    if (item == item2.ID)
+                    if(item2 == categoryCheck.categoryid)
                     {
-                        model.IsChecked = true;
+                        categoryCheck.IsChecked = true;
+                        break;
                     }
+                    else
+                    {
+                        categoryCheck.IsChecked = false;
+                    }
+
                 }
 
+                categoryCheck.Name = item.CategoryName;
+
+                categoryChecks.Add(categoryCheck);
             }
 
+            model.categoryCheck = categoryChecks.ToArray();
+
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AuthorVM model)
+        {
+            return View();
         }
 
 

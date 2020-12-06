@@ -54,10 +54,10 @@
         <div class="form-group">
             <label class="bmd-label-floating">Categories:</label>
             <br>
-            @foreach (var item in Model.Categories)
+            @foreach (var item in Model.categoryCheck)
             {
-                <input type="checkbox" name="categoryid" value="@item.ID" checked ="@Model.IsChecked">
-                <label>@item.CategoryName</label><br>
+                <input type="checkbox" name="categoryid" value="@item.categoryid" checked ="@item.IsChecked">
+                <label>@item.Name</label><br>
             }
         </div>
     </div>
