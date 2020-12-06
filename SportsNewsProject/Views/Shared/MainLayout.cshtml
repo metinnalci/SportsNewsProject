@@ -13,15 +13,15 @@
     <!-- Material Kit CSS -->
     <link href="/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
     <!--   Core JS Files   -->
-    <script src="~/assets/js/core/jquery.min.js"></script>
+    <script src="/assets/js/core/jquery.min.js"></script>
     @*<script src="/assets/js/core/jquery.min.js"></script>*@
-    <script src="~/assets/js/core/popper.min.js"></script>
+    <script src="/assets/js/core/popper.min.js"></script>
     @*<script src="/assets/js/core/popper.min.js"></script>*@
-    <script src="~/assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="/assets/js/core/bootstrap-material-design.min.js"></script>
     @*<script src="/assets/js/core/bootstrap-material-design.min.js"></script>*@
-    <script src="~/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     @*<script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>*@
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
@@ -102,11 +102,12 @@
                                 </a>
                             </div>
                             <div class="bg-light py-2 collapse-inner rounded ">
-                                <a class="collapse-item" href="#">
+                                <a class="collapse-item" href="/news/add">
                                     <i class="material-icons">library_add</i>
                                     Add Article
                                 </a>
                             </div>
+                        </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link collapsed" href="/author" data-toggle="collapse" data-target="#collapseAuthor" aria-expanded="true" aria-controls="collapseAuthor">
@@ -127,6 +128,7 @@
                                     Add Author
                                 </a>
                             </div>
+                        </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/comment">

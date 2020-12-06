@@ -6,6 +6,50 @@
 @model SportsNewsProject.Models.VM.HomeVM
 
 <div class="row">
+    <div class="col-md-3">
+        <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">person</i>
+                </div>
+                <p class="card-category">Total</p>
+                <h3 class="card-title">
+                    @ViewBag.TotalUser
+                    <small>Users</small>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">local_library</i>
+                </div>
+                <p class="card-category">Total</p>
+                <h3 class="card-title">
+                    @ViewBag.TotalAuthor
+                    <small>Authors</small>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats">
+            <div class="card-header card-header-primary card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">menu_book</i>
+                </div>
+                <p class="card-category">Total Articles</p>
+                <h3 class="card-title">
+                    @ViewBag.TotalArticle
+                    <small>Published</small>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-6 col-md-12">
         <div class="card">
             <div class="card-header card-header-warning">
@@ -38,13 +82,13 @@
     </div>
     <div class="col-lg-6 col-md-12">
         <div class="card">
-            <div class="card-header card-header-warning">
+            <div class="card-header card-header-info">
                 <h4 class="card-title">Authors</h4>
                 <p class="card-category">All authors of this page</p>
             </div>
             <div class="card-body table-responsive">
                 <table class="table table-hover">
-                    <thead class="text-warning">
+                    <thead class="text-info">
                     <th>ID</th>
                     <th>Name</th>
                     <th>Surname</th>
@@ -73,13 +117,13 @@
 <div class="row">
     <div class="col-lg-6 col-md-12">
         <div class="card">
-            <div class="card-header card-header-warning">
+            <div class="card-header card-header-primary">
                 <h4 class="card-title">News</h4>
                 <p class="card-category">All news of this page</p>
             </div>
             <div class="card-body table-responsive">
                 <table class="table table-hover">
-                    <thead class="text-warning">
+                    <thead class="text-primary">
                     <th>ID</th>
                     <th>Title</th>
                     <th>Subtitle</th>
@@ -90,13 +134,45 @@
                     <tbody>
                         @foreach (var item in Model.News)
                         {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Title</td>
+                                <td>@item.SubTitle</td>
+                                <td>@item.Content</td>
+                                <td>@item.AuthorCategory.Author.Name</td>
+                                <td>@item.AuthorCategory.Category.CategoryName</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-warning">
+                <h4 class="card-title">Users</h4>
+                <p class="card-category">All users of this page</p>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-warning">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>EMail</th>
+                    <th>Nickname</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Users)
+                        {
                         <tr>
                             <td>@item.ID</td>
-                            <td>@item.Title</td>
-                            <td>@item.SubTitle</td>
-                            <td>@item.Content</td>
-                            <td>@item.AuthorCategory.Author.Name</td>
-                            <td>@item.AuthorCategory.Category.CategoryName</td>
+                            <td>@item.Name</td>
+                            <td>@item.SurName</td>
+                            <td>@item.EMail</td>
+                            <td>@item.NickName</td>
                         </tr>
                         }
 
@@ -105,6 +181,5 @@
             </div>
         </div>
     </div>
-
 </div>
 

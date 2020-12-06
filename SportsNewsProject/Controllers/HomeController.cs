@@ -21,8 +21,13 @@ namespace SportsNewsProject.Controllers
         {
             HomeVM charts = new HomeVM();
             charts.Categories = _newscontext.Categories.ToList();
-            charts.Authors = _newscontext.Authors.ToList();
-            charts.News = _newscontext.News.Include(q => q.AuthorCategory.Category).Include(q => q.AuthorCategory.Author).ToList();
+            charts.Authors = _newscontext.Authors.Where(q => q.IsDeleted == false).Take(5).ToList();
+            charts.News = _newscontext.News.Include(q => q.AuthorCategory.Category).Include(q => q.AuthorCategory.Author).Where(q => q.IsDeleted == false).Take(5).ToList();
+            charts.Users = _newscontext.Users.Where(q => q.IsDeleted == false).Take(5).ToList();
+
+            ViewBag.TotalUser = _newscontext.Users.Count();
+            ViewBag.TotalAuthor = _newscontext.Authors.Count();
+            ViewBag.TotalArticle = _newscontext.News.Count();
             return View(charts);
         }
     }

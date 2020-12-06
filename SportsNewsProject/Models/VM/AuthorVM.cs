@@ -26,7 +26,9 @@ namespace SportsNewsProject.Models.VM
         public DateTime AddDate { get; set; }
         public List<Category> Categories { get; set; }
 
-        public List<int> AuthorCategories { get; set; }
+        public int[] categoryid { get; set; }
+
+        public bool IsChecked { get; set; }
 
     }
 }

@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model SportsNewsProject.Models.VM.NewsVM
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Title, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Title, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.SubTitle, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.SubTitle, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.AuthorCategoryID, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.AuthorCategoryID, new { @class = "form-control" })
+        </div>
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Content, new { @class = "bmd-label-floating" })
+            <br>
+            @Html.TextAreaFor(q => q.Content, new { @id = "editor" })
+
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .then(editor => {
+                        console.log(editor);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+
+        </div>
+    </div>
+</div>
