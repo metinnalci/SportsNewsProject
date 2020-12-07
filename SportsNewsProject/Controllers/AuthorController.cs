@@ -149,17 +149,42 @@ namespace SportsNewsProject.Controllers
                 model.Categories = _newscontext.Categories.ToList();
                 int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
 
-                foreach (var item in categoryid)
+                foreach (var item in model.Categories)
                 {
-                    AuthorCategory authorCategory = new AuthorCategory();
+                    CategoryCheckVM categoryCheck = new CategoryCheckVM();
+
+                    categoryCheck.categoryid = item.ID;
+
                     foreach (var item2 in selectedCategories)
                     {
-                        if(item != item2)
+                        if(item2 == categoryCheck.categoryid)
                         {
-                            authorCategory.CategoryID = item;
+                            categoryCheck.IsChecked = true;
+                            break;
+                        }
+                        else
+                        {
+                            categoryCheck.IsChecked = false;
                         }
                     }
-                    authorCategory.AuthorID = authorid;
+
+                    categoryCheck.Name = item.CategoryName;
+                    categoryChecks.Add(categoryCheck);
+                }
+
+                model.categoryCheck = categoryChecks.ToArray();
+
+
+
+                foreach (var item in categoryid)
+                {
+                    if (!selectedCategories.Contains(item))
+                    {
+                        AuthorCategory authorCategory = new AuthorCategory();
+                        authorCategory.CategoryID = item;
+                        authorCategory.AuthorID = authorid;
+                        _newscontext.AuthorCategories.Add(authorCategory);
+                    }
                 }
                 _newscontext.SaveChanges();
             }
