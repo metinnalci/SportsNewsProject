@@ -61,13 +61,12 @@ namespace SportsNewsProject.Controllers
                 author.EMail = model.EMail;
                 author.Phone = model.Phone;
                 author.AddDate = model.AddDate;
-
+                
                 _newscontext.Authors.Add(author);
                 _newscontext.SaveChanges();
 
                 int authorid = author.ID;
 
-                //ViewBag.Categories = _newscontext.Categories.ToList();
                 model.Categories = _newscontext.Categories.ToList();
 
                 for (int i = 0; i < categoryid.Length; i++)
@@ -79,8 +78,6 @@ namespace SportsNewsProject.Controllers
 
                 }
                 _newscontext.SaveChanges();
-
-
             }
 
             return View(model);
