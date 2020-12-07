@@ -99,7 +99,7 @@ namespace SportsNewsProject.Controllers
             model.AddDate = author.AddDate;
             model.Categories = _newscontext.Categories.ToList();
             //model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
-            int[] categoryids = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
+            int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
 
             foreach (var item in model.Categories)
             {
@@ -107,7 +107,7 @@ namespace SportsNewsProject.Controllers
                 categoryCheck.categoryid = item.ID;
 
 
-                foreach (var item2 in categoryids)
+                foreach (var item2 in selectedCategories)
                 {
                     if(item2 == categoryCheck.categoryid)
                     {
@@ -132,9 +132,42 @@ namespace SportsNewsProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(AuthorVM model)
+        public IActionResult Edit(AuthorVM model, int[] categoryid)
         {
-            return View();
+            Author author = _newscontext.Authors.FirstOrDefault(x => x.ID == model.ID);
+            List<CategoryCheckVM> categoryChecks = new List<CategoryCheckVM>();
+
+            if (ModelState.IsValid)
+            {
+                author.Name = model.Name;
+                author.SurName = model.Surname;
+                author.EMail = model.EMail;
+                author.Phone = model.Phone;
+                author.AddDate = model.AddDate;
+
+                _newscontext.SaveChanges();
+
+                int authorid = author.ID;
+
+                model.Categories = _newscontext.Categories.ToList();
+                int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
+
+                foreach (var item in categoryid)
+                {
+                    AuthorCategory authorCategory = new AuthorCategory();
+                    foreach (var item2 in selectedCategories)
+                    {
+                        if(item != item2)
+                        {
+                            authorCategory.CategoryID = item;
+                        }
+                    }
+                    authorCategory.AuthorID = authorid;
+                }
+                _newscontext.SaveChanges();
+            }
+
+            return View(model);
         }
 
 
