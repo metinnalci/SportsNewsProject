@@ -21,23 +21,31 @@
                     <th>EMail</th>
                     <th>Phone</th>
                     <th>Addate</th>
+                    <th>Categories</th>
                     <th>Action</th>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr id="@item.ID">
-                                <td>@item.ID</td>
-                                <td>@item.Name</td>
-                                <td>@item.Surname</td>
-                                <td>@item.EMail</td>
-                                <td>@item.Phone</td>
-                                <td>@item.AddDate</td>
-                                <td>
-                                    <a href="/Author/Edit/@item.ID"><button class="btn btn-outline-success">Edit</button></a>
-                                    <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
-                                </td>
-                            </tr>
+                        <tr id="@item.ID">
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.Surname</td>
+                            <td>@item.EMail</td>
+                            <td>@item.Phone</td>
+                            <td>@item.AddDate</td>
+                            <td>
+                                @foreach (var item2 in item.Categories)
+                                {
+                                <span>@item2.CategoryName ,</span><br>
+                                }
+                            </td>
+
+                            <td>
+                                <a href="/Author/Edit/@item.ID"><button class="btn btn-outline-success">Edit</button></a>
+                                <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
+                            </td>
+                        </tr>
                         }
 
                     </tbody>

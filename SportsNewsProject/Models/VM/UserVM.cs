@@ -30,7 +30,6 @@ namespace SportsNewsProject.Models.VM
 
         [DataType(DataType.DateTime)]
         public DateTime AddDate { get; set; }
-        public bool IsDeleted { get; set; }
 
     }
 }

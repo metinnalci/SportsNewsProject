@@ -48,7 +48,6 @@ namespace SportsNewsProject.Controllers
                 user.NickName = model.NickName;
                 user.Password = model.Password;
                 user.AddDate = model.AddDate;
-                user.IsDeleted = model.IsDeleted;
 
                 _newscontext.Users.Add(user);
                 _newscontext.SaveChanges();
@@ -69,7 +68,6 @@ namespace SportsNewsProject.Controllers
                 NickName = q.NickName,
                 Password = q .Password,
                 AddDate = q.AddDate,
-                IsDeleted = q.IsDeleted
 
             }).FirstOrDefault(x => x.ID == id);
             
@@ -90,7 +88,6 @@ namespace SportsNewsProject.Controllers
                 user.NickName = model.NickName;
                 user.Password = model.Password;
                 user.AddDate = model.AddDate;
-                user.IsDeleted = model.IsDeleted;
 
                 _newscontext.SaveChanges();
             }

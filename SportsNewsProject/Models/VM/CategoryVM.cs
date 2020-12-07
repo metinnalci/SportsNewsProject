@@ -10,14 +10,14 @@ namespace SportsNewsProject.Models.VM
     public class CategoryVM
     {
         public int ID { get; set; }
+
         [Required(ErrorMessage = "Please fill required areas!")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "Please fill required areas!")]
         public string Description { get; set; }
         public int? UpperCategoryId { get; set; }
-        [DataType(DataType.DateTime)]
         public DateTime Adddate { get; set; }
-        public bool IsDeleted { get; set; }
         
 
     }

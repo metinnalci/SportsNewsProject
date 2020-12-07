@@ -45,7 +45,6 @@ namespace SportsNewsProject.Controllers
                 category.Description = model.Description;
                 category.UpperCategoryID = model.UpperCategoryId;
                 category.AddDate = model.Adddate;
-                category.IsDeleted = model.IsDeleted;
                 _newscontext.Categories.Add(category);
                 _newscontext.SaveChanges();
             }
@@ -61,7 +60,6 @@ namespace SportsNewsProject.Controllers
                 Description = q.Description,
                 UpperCategoryId = q.UpperCategoryID,
                 Adddate = q.AddDate,
-                IsDeleted = q.IsDeleted,
 
             }).FirstOrDefault(x => x.ID == id);
 
@@ -78,7 +76,6 @@ namespace SportsNewsProject.Controllers
                 category.CategoryName = model.Name;
                 category.Description = model.Description;
                 category.AddDate = model.Adddate;
-                category.IsDeleted = model.IsDeleted;
                 category.UpperCategoryID = model.UpperCategoryId;
 
                 _newscontext.SaveChanges();
