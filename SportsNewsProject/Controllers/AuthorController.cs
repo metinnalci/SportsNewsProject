@@ -52,6 +52,8 @@ namespace SportsNewsProject.Controllers
         [HttpPost]
         public IActionResult Add(AuthorVM model, int[] categoryid)
         {
+            List<CategoryCheckVM> categoryCheckVMs = new List<CategoryCheckVM>();
+
             if (ModelState.IsValid)
             {
                 Author author = new Author();
@@ -68,6 +70,31 @@ namespace SportsNewsProject.Controllers
                 int authorid = author.ID;
 
                 model.Categories = _newscontext.Categories.ToList();
+                int[] selectedcategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
+
+                foreach (var item in model.Categories)
+                {
+                    CategoryCheckVM categoryCheck = new CategoryCheckVM();
+                    categoryCheck.categoryid = item.ID;
+
+                    foreach (var item2 in selectedcategories)
+                    {
+                        if(item2 == categoryCheck.categoryid)
+                        {
+                            categoryCheck.IsChecked = true;
+                            break;
+                        }
+                        else
+                        {
+                            categoryCheck.IsChecked = false;
+                        }
+                    }
+
+                    categoryCheck.Name = item.CategoryName;
+                    categoryCheckVMs.Add(categoryCheck);
+                }
+
+                model.categoryCheck = categoryCheckVMs.ToArray();
 
                 for (int i = 0; i < categoryid.Length; i++)
                 {
