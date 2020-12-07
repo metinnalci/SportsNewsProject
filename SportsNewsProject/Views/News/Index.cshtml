@@ -18,28 +18,31 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Title
-                                </th>
-                                <th>
-                                    SubTitle
-                                </th>
-                                <th>
-                                    Content
-                                </th>
-                                <th>
-                                    AuthorCategoryID
-                                </th>
-                                
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Title
+                                    </th>
+                                    <th>
+                                        SubTitle
+                                    </th>
+                                    <th>
+                                        Content
+                                    </th>
+                                    <th>
+                                        AuthorCategoryID
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
                                 </thead>
+                               
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr>
+                                        <tr id="@item.ID">
                                             <td>
                                                 @item.ID
                                             </td>
@@ -55,6 +58,10 @@
                                             <td>
                                                 @item.AuthorCategoryID
                                             </td>
+                                            <td>
+                                                <a href="/News/Edit/@item.ID"><button class="btn btn-outline-success" id="@item.ID">Edit</button></a>
+                                                <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -66,5 +73,27 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).on("click", ".delete", function () {
+
+        let id = $(this).attr("id")
+
+        $.ajax({
+
+            url: "/News/Delete",
+            type:"POST",
+            data: { id: id },
+            success: function (msg) {
+                alert(msg);
+                $("#" + id).fadeOut();
+            },
+            error: function (err) {
+                alert("Article Deleting Failed!");
+            }
+        })
+    })
+</script>
 
 

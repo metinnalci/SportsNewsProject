@@ -53,6 +53,47 @@ namespace SportsNewsProject.Controllers
             return View();
         }
 
-        
+        public IActionResult Edit(int id)
+        {
+            News article = _newscontext.News.FirstOrDefault(q => q.ID == id);
+            NewsVM model = new NewsVM();
+
+            model.Content = article.Content;
+            model.AuthorCategoryID = article.AuthorCategoryId;
+            model.Title = article.Title;
+            model.SubTitle = article.SubTitle;
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(NewsVM model)
+        {
+            News editarticle = _newscontext.News.FirstOrDefault(q => q.ID == model.ID);
+
+            if (ModelState.IsValid)
+            {
+
+                editarticle.AuthorCategoryId = model.AuthorCategoryID;
+                editarticle.Content = model.Content;
+                editarticle.Title = model.Title;
+                editarticle.SubTitle = model.SubTitle;
+
+                _newscontext.SaveChanges();
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            News deletednews = _newscontext.News.FirstOrDefault(x => x.ID == id);
+            deletednews.IsDeleted = true;
+            _newscontext.SaveChanges();
+
+            return Json("Article Successfully Deleted!");
+        }
     }
 }
