@@ -65,7 +65,7 @@ namespace SportsNewsProject.Controllers
                 author.EMail = model.EMail;
                 author.Phone = model.Phone;
                 author.AddDate = model.AddDate;
-                
+
                 _newscontext.Authors.Add(author);
                 _newscontext.SaveChanges();
 
@@ -81,7 +81,7 @@ namespace SportsNewsProject.Controllers
 
                     foreach (var item2 in selectedcategories)
                     {
-                        if(item2 == categoryCheck.categoryid)
+                        if (item2 == categoryCheck.categoryid)
                         {
                             categoryCheck.IsChecked = true;
                             break;
@@ -135,7 +135,7 @@ namespace SportsNewsProject.Controllers
 
                 foreach (var item2 in selectedCategories)
                 {
-                    if(item2 == categoryCheck.categoryid)
+                    if (item2 == categoryCheck.categoryid)
                     {
                         categoryCheck.IsChecked = true;
                         break;
@@ -186,7 +186,7 @@ namespace SportsNewsProject.Controllers
 
                     foreach (var item2 in selectedCategories)
                     {
-                        if(item2 == categoryCheck.categoryid)
+                        if (item2 == categoryCheck.categoryid)
                         {
                             categoryCheck.IsChecked = true;
                             break;
@@ -234,6 +234,17 @@ namespace SportsNewsProject.Controllers
             return Json("Author Deleted Successfully!");
         }
 
+        public IActionResult Detail(int id)
+        {
+            {
+                Author author = _newscontext.Authors.Include(q => q.AuthorCategories).ThenInclude(q => q.Category).FirstOrDefault(x => x.ID == id);
+
+
+                return Json(author);
+            }
+
+
+        }
 
     }
 }
