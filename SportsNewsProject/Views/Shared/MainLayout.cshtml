@@ -422,6 +422,30 @@
 
         });
     </script>
+    <script>
+
+        let url = '@Context.Request.Path';
+
+        $('.nav').children().each(function () {
+            let href = $(this).children('a').attr('href');
+
+            console.log(href);
+            console.log(url);
+
+            if (url == href) {
+
+                $(this).addClass('active');
+                $(this).children('a').css('background-color', '#4CAF50').css('color','#FFFFFF');
+            }
+            else {
+                $(this).removeClass('active');
+                $(this).children('a').css('background-color', 'none');
+
+            }
+
+        });
+
+    </script>
 </body>
 
 </html>
