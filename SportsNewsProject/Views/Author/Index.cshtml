@@ -20,32 +20,23 @@
                     <th>Surname</th>
                     <th>EMail</th>
                     <th>Phone</th>
-                    <th>Addate</th>
-                    <th>Categories</th>
                     <th>Action</th>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr id="@item.ID">
-                            <td>@item.ID</td>
-                            <td>@item.Name</td>
-                            <td>@item.Surname</td>
-                            <td>@item.EMail</td>
-                            <td>@item.Phone</td>
-                            <td>@item.AddDate</td>
-                            <td>
-                                @foreach (var item2 in item.Categories)
-                                {
-                                <span>@item2.CategoryName ,</span><br>
-                                }
-                            </td>
-
-                            <td>
-                                <a href="/Author/Edit/@item.ID"><button class="btn btn-outline-success">Edit</button></a>
-                                <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
-                            </td>
-                        </tr>
+                            <tr id="@item.ID">
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.EMail</td>
+                                <td>@item.Phone</td>
+                                <td>
+                                    <a href="/Author/Edit/@item.ID"><button class="btn btn-outline-success">Edit</button></a>
+                                    <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
+                                    <button class="btn btn-outline-primary detay" id="@item.ID">Detail</button>
+                                </td>
+                            </tr>
                         }
 
                     </tbody>
@@ -55,7 +46,79 @@
     </div>
 </div>
 
+<div class="modal fade" id="detailmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Author Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <span>Name:</span>
+                    <span id="name"></span>
+                </div>
+                <div>
+                    <span>Surname:</span>
+                    <span id="surname"></span>
+                </div>
+                <div>
+                    <span>EMail:</span>
+                    <span id="email"></span>
+                </div>
+                <div>
+                    <span>Phone:</span>
+                    <span id="phone"></span>
+                </div>
+                <div>
+                    <span>AddDate:</span>
+                    <span id="adddate"></span>
+                </div>
+                <div>
+                    <span>Categories:</span>
+                    <ul id="categories">
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+
+
+    $(document).on("click", ".detay", function () {
+        let id = $(this).attr("id");
+        fetch("/Author/Detail/" + id)
+            .then((res) => res.json())
+            .then((result) => {
+                $("#name").html(result.name);
+                $("#surname").html(result.surName);
+                $("#email").html(result.eMail);
+                $("#phone").html(result.phone);
+                $("#adddate").html(result.addDate);
+
+                $("#categories li").remove();
+
+                for (var i = 0; i < result.authorCategories.length; i++) {
+
+
+                    $("#categories").append(`
+                      <li>`+ result.authorCategories[i].category.categoryName + `</li>
+
+                     `);
+                }
+
+                $("#detailmodal").modal();
+            })
+    })
 
     $(document).on("click", ".delete", function () {
 
