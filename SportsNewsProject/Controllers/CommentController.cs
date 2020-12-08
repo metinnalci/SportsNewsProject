@@ -40,7 +40,6 @@ namespace SportsNewsProject.Controllers
                 UserID = q.UserId,
                 NewsID = q.NewsId,
                 Content = q.Content,
-                AddDate = q.AddDate
             }).FirstOrDefault(q => q.ID == id);
 
             return View(model);
@@ -53,7 +52,6 @@ namespace SportsNewsProject.Controllers
 
             if (ModelState.IsValid)
             {
-                comments.AddDate = model.AddDate;
                 comments.Content = model.Content;
                 comments.NewsId = model.NewsID;
                 comments.UserId = model.UserID;

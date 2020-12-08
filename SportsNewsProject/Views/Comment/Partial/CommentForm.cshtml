@@ -5,8 +5,8 @@
 @model SportsNewsProject.Models.VM.CommentVM
 
 <style>
-    .field-validation-error{
-        color:red;
+    .field-validation-error {
+        color: red;
     }
 </style>
 
@@ -23,18 +23,24 @@
             @Html.TextBoxFor(q => q.UserID, new { @class = "form-control" })
         </div>
     </div>
-    <div class="col-md-3">
+</div>
+<div class="row">
+    <div class="col-md-12">
         <div class="form-group">
             @Html.LabelFor(q => q.Content, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.Content, new { @class = "form-control" })
+            @Html.TextBoxFor(q => q.Content, new { @id = "editor1" })
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#editor1'))
+                    .then(editor => {
+                        console.log(editor);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+        </div>
+    </div>
 
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime" })
-            @Html.ValidationMessageFor(q => q.AddDate)
-        </div>
-    </div>
 </div>
+
