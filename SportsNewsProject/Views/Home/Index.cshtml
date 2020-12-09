@@ -59,15 +59,17 @@
             <div class="card-body table-responsive">
                 <table class="table table-hover">
                     <thead class="text-warning">
-                    <th>ID</th>
-                    <th>Category Name</th>
-                    <th>Description</th>
-                    <th>Upper Category</th>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Category Name</th>
+                            <th>Description</th>
+                            <th>Upper Category</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Categories)
                         {
-                            <tr>
+                            <tr class="text-center">
                                 <td>@item.ID</td>
                                 <td>@item.CategoryName</td>
                                 <td>@item.Description</td>
@@ -89,22 +91,24 @@
             <div class="card-body table-responsive">
                 <table class="table table-hover">
                     <thead class="text-info">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>EMail</th>
-                    <th>Phone</th>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>EMail</th>
+                            <th>Phone</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Authors)
                         {
-                        <tr>
-                            <td>@item.ID</td>
-                            <td>@item.Name</td>
-                            <td>@item.SurName</td>
-                            <td>@item.EMail</td>
-                            <td>@item.Phone</td>
-                        </tr>
+                            <tr class="text-center">
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.SurName</td>
+                                <td>@item.EMail</td>
+                                <td>@item.Phone</td>
+                            </tr>
                         }
 
                     </tbody>
@@ -124,25 +128,26 @@
             <div class="card-body table-responsive">
                 <table class="table table-hover">
                     <thead class="text-primary">
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Subtitle</th>
-                    <th>Content</th>
-                    @*<th>Author</th>
-                    <th>Category</th>*@
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Subtitle</th>
+                            <th>Content</th>
+                            @*<th>Author</th>
+                              <th>Category</th>*@
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.News)
                         {
-                        <tr>
-                            <td>@item.ID</td>
-                            <td>@item.Title</td>
-                            <td>@item.SubTitle</td>
-                            <td>@Html.Raw(item.Content)</td>
-                            @*<td>@item.Author.Name</td>
-                            <td>@item.Category.CategoryName</td>*@
-
-                        </tr>
+                            <tr class="text-center">
+                                <td>@item.ID</td>
+                                <td>@item.Title</td>
+                                <td>@item.SubTitle</td>
+                                <td>@Html.Raw(item.Content)</td>
+                                @*<td>@item.Author.Name</td>
+                                    <td>@item.Category.CategoryName</td>*@
+                            </tr>
                         }
 
                     </tbody>
@@ -159,22 +164,24 @@
             <div class="card-body table-responsive">
                 <table class="table table-hover">
                     <thead class="text-warning">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>EMail</th>
-                    <th>Nickname</th>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>EMail</th>
+                            <th>Nickname</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Users)
                         {
-                        <tr>
-                            <td>@item.ID</td>
-                            <td>@item.Name</td>
-                            <td>@item.SurName</td>
-                            <td>@item.EMail</td>
-                            <td>@item.NickName</td>
-                        </tr>
+                            <tr class="text-center">
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.SurName</td>
+                                <td>@item.EMail</td>
+                                <td>@item.NickName</td>
+                            </tr>
                         }
 
                     </tbody>

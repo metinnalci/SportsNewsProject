@@ -23,12 +23,13 @@ namespace SportsNewsProject.Controllers
             List<CommentVM> comments = _newscontext.Comments.Where(q => q.IsDeleted == false).Include(q => q.News).Include(q => q.User).Select(q => new CommentVM()
             {
                 ID = q.ID,
-                UserID = q.UserId,
-                NewsID = q.NewsId,
+                Username = q.User.NickName,
+                NewsTitle = q.News.Title,
                 Content = q.Content,
                 AddDate = q.AddDate
 
             }).ToList();
+
             return View(comments);
         }
 
@@ -37,24 +38,25 @@ namespace SportsNewsProject.Controllers
             CommentVM model = _newscontext.Comments.Select(q => new CommentVM()
             {
                 ID = q.ID,
-                UserID = q.UserId,
-                NewsID = q.NewsId,
+                Users = _newscontext.Users.ToList(),
+                News = _newscontext.News.ToList(),
                 Content = q.Content,
+
             }).FirstOrDefault(q => q.ID == id);
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(CommentVM model)
+        public IActionResult Edit(CommentVM model,int userid,int newsid)
         {
             Comment comments = _newscontext.Comments.FirstOrDefault(q => q.ID == model.ID);
 
             if (ModelState.IsValid)
             {
                 comments.Content = model.Content;
-                comments.NewsId = model.NewsID;
-                comments.UserId = model.UserID;
+                comments.NewsId = newsid;
+                comments.UserId = userid;
             }
 
             _newscontext.SaveChanges();

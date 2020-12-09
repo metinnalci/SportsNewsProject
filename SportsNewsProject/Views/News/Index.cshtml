@@ -18,26 +18,26 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                <th>
+                                <th class="text-center">
                                     ID
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     Title
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     SubTitle
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     Content
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     Author
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     Category
                                 </th>
-                                <th>
-                                    Action
+                                <th class="text-center">
+                                    Detail/Edit/Delete
                                 </th>
                                 </thead>
 
@@ -45,7 +45,7 @@
                                     @foreach (var item in Model)
                                     {
 
-                                    <tr id="@item.ID">
+                                    <tr class="text-center" id="@item.ID">
                                         <td>
                                             @item.ID
                                         </td>
@@ -64,9 +64,9 @@
                                         <td>
                                             @item.CategoryName
                                         </td>
-                                        <td>
-                                            <a href="/News/Edit/@item.ID"><button class="btn btn-outline-success" id="@item.ID">Edit</button></a>
-                                            <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
+                                        <td class="td-actions">
+                                            <a href="/News/Edit/@item.ID"><button class="btn btn-outline-success" rel="tooltip" id="@item.ID"><i class="material-icons">edit</i></button></a>
+                                            <button class="btn btn-outline-danger delete" rel="tooltip" id="@item.ID">  <i class="material-icons">close</i></button>
                                         </td>
                                     </tr>
                                     }

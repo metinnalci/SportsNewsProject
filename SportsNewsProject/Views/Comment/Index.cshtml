@@ -11,57 +11,46 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Simple Table</h4>
-                        <p class="card-category"> Here is a subtitle for this table</p>
+                        <h4 class="card-title ">Comments</h4>
+                        <p class="card-category"> All comments of this page </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    User ID
-                                </th>
-                                <th>
-                                    News ID
-                                </th>
-                                <th>
-                                    Content
-                                </th>
-                                <th>
-                                    Adddate
-                                </th>
-                                <th>
-                                    Action
-                                </th>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>User ID</th>
+                                        <th>News ID</th>
+                                        <th>Content</th>
+                                        <th>Adddate</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
 
-                                    <tr id="@item.ID">
-                                        <td>
-                                            @item.ID
-                                        </td>
-                                        <td>
-                                            @item.UserID
-                                        </td>
-                                        <td>
-                                            @item.NewsID
-                                        </td>
-                                        <td class="text-primary">
-                                            @item.Content
-                                        </td>
-                                        <td>
-                                            @item.AddDate
-                                        </td>
-                                        <td>
-                                            <a href="/Comment/Edit/@item.ID"><button class="btn btn">Edit</button></a>
-                                            <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
-                                        </td>
-                                    </tr>
+                                        <tr class="text-center" id="@item.ID">
+
+                                            <td>@item.ID</td>
+                                            <td>@item.Username</td>
+                                            <td>@item.NewsTitle</td>
+                                            <td>@Html.Raw(item.Content)</td>
+                                            <td>@item.AddDate</td>
+                                            <td class="td-actions">
+                                                <a href="/Comment/Edit/@item.ID">
+                                                    <button class="btn btn-outline-success">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </a>
+                                                <button class="btn btn-outline-danger delete" id="@item.ID">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -81,7 +70,7 @@
 
         $.ajax({
             url: "/Comment/Delete",
-            type: "POST",           
+            type: "POST",
             data: { id: id },
             success: function (msg) {
                 alert(msg);
