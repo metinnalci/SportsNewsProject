@@ -18,30 +18,20 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-warning">
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Description
-                                </th>
-                                <th>
-                                    UpperCategoryId
-                                </th>
-                                <th>
-                                    Adddate
-                                </th>
-                                <th>
-                                    Action
-                                </th>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th> Name</th>
+                                        <th>Description</th>
+                                        <th>UpperCategoryId</th>
+                                        <th>Adddate</th>
+                                        <th> Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr id="@item.ID">
+                                        <tr class="text-center" id="@item.ID">
                                             <td>
                                                 @item.ID
                                             </td>
@@ -57,9 +47,15 @@
                                             <td>
                                                 @item.Adddate
                                             </td>
-                                            <td>
-                                                <a href="/Category/Edit/@item.ID"><button class="btn btn-outline-success">Edit</button></a>
-                                                <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button> 
+                                            <td class="td-actions">
+                                                <a href="/Category/Edit/@item.ID">
+                                                    <button class="btn btn-outline-success">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </a>
+                                                <button class="btn btn-outline-danger delete" id="@item.ID">
+                                                    <i class="material-icons">close</i>
+                                                </button>
                                             </td>
                                         </tr>
                                     }
@@ -68,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -80,14 +76,14 @@
         let id = $(this).attr("id")
 
         $.ajax({
-            url : "/Category/Delete",
-            type : "POST",
-            data : { id: id },
-            success : function (msg) {
+            url: "/Category/Delete",
+            type: "POST",
+            data: { id: id },
+            success: function (msg) {
                 alert(msg);
                 $("#" + id).fadeOut();
             },
-            error : function (err) {
+            error: function (err) {
                 alert("Category Deleting Failed!");
             }
         })
