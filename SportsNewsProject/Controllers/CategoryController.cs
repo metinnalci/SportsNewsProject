@@ -48,7 +48,7 @@ namespace SportsNewsProject.Controllers
                 _newscontext.Categories.Add(category);
                 _newscontext.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Index", "Category");
         }
 
         public IActionResult Edit(int id)
@@ -80,7 +80,7 @@ namespace SportsNewsProject.Controllers
 
                 _newscontext.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Index", "Category");
         }
 
         [HttpPost]
