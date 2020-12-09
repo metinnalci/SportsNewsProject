@@ -30,9 +30,12 @@
                                 <th>
                                     Content
                                 </th>
-                                @*<th>
-                                    AuthorCategoryID
-                                </th>*@
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Category
+                                </th>
                                 <th>
                                     Action
                                 </th>
@@ -42,27 +45,30 @@
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr id="@item.ID">
-                                            <td>
-                                                @item.ID
-                                            </td>
-                                            <td>
-                                                @item.Title
-                                            </td>
-                                            <td>
-                                                @item.SubTitle
-                                            </td>
-                                            <td>
-                                                @Html.Raw(item.Content)
-                                            </td>
-                                            @*<td>
-                                                @item.AuthorCategoryID
-                                            </td>*@
-                                            <td>
-                                                <a href="/News/Edit/@item.ID"><button class="btn btn-outline-success" id="@item.ID">Edit</button></a>
-                                                <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
-                                            </td>
-                                        </tr>
+                                    <tr id="@item.ID">
+                                        <td>
+                                            @item.ID
+                                        </td>
+                                        <td>
+                                            @item.Title
+                                        </td>
+                                        <td>
+                                            @item.SubTitle
+                                        </td>
+                                        <td>
+                                            @Html.Raw(item.Content)
+                                        </td>
+                                        <td>
+                                            @item.AuthorName
+                                        </td>
+                                        <td>
+                                            @item.CategoryName
+                                        </td>
+                                        <td>
+                                            <a href="/News/Edit/@item.ID"><button class="btn btn-outline-success" id="@item.ID">Edit</button></a>
+                                            <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

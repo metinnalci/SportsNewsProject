@@ -20,9 +20,9 @@ namespace SportsNewsProject.Controllers
         public IActionResult Index()
         {
             HomeVM charts = new HomeVM();
-            charts.Categories = _newscontext.Categories.ToList();
+            charts.Categories = _newscontext.Categories.Take(5).ToList();
             charts.Authors = _newscontext.Authors.Where(q => q.IsDeleted == false).Take(5).ToList();
-            //charts.News = _newscontext.News.Include(q => q.AuthorCategory.Category).Include(q => q.AuthorCategory.Author).Where(q => q.IsDeleted == false).Take(5).ToList();
+            charts.News = _newscontext.News.Where(q => q.IsDeleted == false).Take(5).ToList();
             charts.Users = _newscontext.Users.Where(q => q.IsDeleted == false).Take(5).ToList();
 
             ViewBag.TotalUser = _newscontext.Users.Count();

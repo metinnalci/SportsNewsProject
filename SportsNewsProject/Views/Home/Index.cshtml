@@ -134,13 +134,15 @@
                     <tbody>
                         @foreach (var item in Model.News)
                         {
-                            <tr>
-                                <td>@item.ID</td>
-                                <td>@item.Title</td>
-                                <td>@item.SubTitle</td>
-                                <td>@item.Content</td>
-                             
-                            </tr>
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.Title</td>
+                            <td>@item.SubTitle</td>
+                            <td>@Html.Raw(item.Content)</td>
+                            @*<td>@item.Author.Name</td>
+                            <td>@item.Category.CategoryName</td>*@
+
+                        </tr>
                         }
 
                     </tbody>

@@ -12,8 +12,9 @@ namespace SportsNewsProject.Models.VM
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string Content { get; set; }
-        public int AuthorCategoryID { get; set; }
         public DateTime AddDate { get; set; }
+        public string CategoryName { get; set; }
+        public string AuthorName { get; set; }
         public List<Category> Categories { get; set; }
         public List<Author> Authors { get; set; }
 
