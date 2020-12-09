@@ -109,7 +109,7 @@ namespace SportsNewsProject.Controllers
                 _newscontext.SaveChanges();
             }
 
-            return View(model);
+            return RedirectToAction("Index", "Author");
         }
 
         public IActionResult Edit(int id)
@@ -218,7 +218,7 @@ namespace SportsNewsProject.Controllers
                 _newscontext.SaveChanges();
             }
 
-            return View(model);
+            return RedirectToAction("Index", "Author");
         }
 
 

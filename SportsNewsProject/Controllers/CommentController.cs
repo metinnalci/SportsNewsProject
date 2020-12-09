@@ -58,7 +58,7 @@ namespace SportsNewsProject.Controllers
             }
 
             _newscontext.SaveChanges();
-            return View();
+            return RedirectToAction("Index", "Comment");
         }
         
         [HttpPost]

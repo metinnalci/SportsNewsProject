@@ -53,7 +53,7 @@ namespace SportsNewsProject.Controllers
                 _newscontext.SaveChanges();
             }
 
-            return View();
+            return RedirectToAction("Index", "User");
         }
 
         public IActionResult Edit(int id)
@@ -92,7 +92,7 @@ namespace SportsNewsProject.Controllers
                 _newscontext.SaveChanges();
             }
 
-            return View();
+            return RedirectToAction("Index", "User");
         }
 
         [HttpPost]
