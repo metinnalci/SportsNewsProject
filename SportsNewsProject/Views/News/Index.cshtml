@@ -18,26 +18,26 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Title
-                                    </th>
-                                    <th>
-                                        SubTitle
-                                    </th>
-                                    <th>
-                                        Content
-                                    </th>
-                                    <th>
-                                        AuthorCategoryID
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    SubTitle
+                                </th>
+                                <th>
+                                    Content
+                                </th>
+                                @*<th>
+                                    AuthorCategoryID
+                                </th>*@
+                                <th>
+                                    Action
+                                </th>
                                 </thead>
-                               
+
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
@@ -52,12 +52,12 @@
                                             <td>
                                                 @item.SubTitle
                                             </td>
-                                            <td class="text-primary">
-                                                @item.Content
-                                            </td>
                                             <td>
-                                                @item.AuthorCategoryID
+                                                @Html.Raw(item.Content)
                                             </td>
+                                            @*<td>
+                                                @item.AuthorCategoryID
+                                            </td>*@
                                             <td>
                                                 <a href="/News/Edit/@item.ID"><button class="btn btn-outline-success" id="@item.ID">Edit</button></a>
                                                 <button class="btn btn-outline-danger delete" id="@item.ID">Delete</button>
@@ -83,7 +83,7 @@
         $.ajax({
 
             url: "/News/Delete",
-            type:"POST",
+            type: "POST",
             data: { id: id },
             success: function (msg) {
                 alert(msg);

@@ -4,26 +4,59 @@
 @model SportsNewsProject.Models.VM.NewsVM
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
             @Html.LabelFor(q => q.Title, new { @class = "bmd-label-floating" })
             @Html.TextBoxFor(q => q.Title, new { @class = "form-control" })
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
             @Html.LabelFor(q => q.SubTitle, new { @class = "bmd-label-floating" })
             @Html.TextBoxFor(q => q.SubTitle, new { @class = "form-control" })
         </div>
     </div>
-    <div class="col-md-4">
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @*@Html.LabelFor(q => q.Categories, new { @class = "bmd-label-floating" })*@
+            <label for="Categories">Categories</label>
+            <select class="form-control selectpicker" data-style="btn btn-link" name="categoryid" id="Categories">
+
+                @foreach (var item in Model.Categories)
+                {
+                    <option value="@item.ID">@item.CategoryName</option>
+                }
+
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @*@Html.LabelFor(q => q.Categories, new { @class = "bmd-label-floating" })*@
+            <label for="Authors">Authors</label>
+            <select class="form-control selectpicker" data-style="btn btn-link" name="authorid" id="Authors">
+
+                @foreach (var item in Model.Authors)
+                {
+                    <option value="@item.ID">@item.Name</option>
+                }
+
+            </select>
+        </div>
+    </div>
+
+</div>
+
+@*<div class="col-md-4">
         <div class="form-group">
             @Html.LabelFor(q => q.AuthorCategoryID, new { @class = "bmd-label-floating" })
             @Html.TextBoxFor(q => q.AuthorCategoryID, new { @class = "form-control" })
         </div>
-    </div>
-    
-</div>
+    </div>*@
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">

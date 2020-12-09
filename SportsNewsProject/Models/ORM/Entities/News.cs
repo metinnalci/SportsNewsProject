@@ -14,9 +14,13 @@ namespace SportsNewsProject.Models.ORM.Entities
         public List<Pictures> PictureList { get; set; }
         public List<Comment> CommentList { get; set; }
 
-        public int AuthorCategoryId { get; set; }
-        [ForeignKey("AuthorCategoryId")]
-        public AuthorCategory AuthorCategory { get; set; }
+        public int? CategoryID { get; set; }
+        [ForeignKey("CategoryID")]
+        public Category Category { get; set; }
+
+        public int? AuthorID { get; set; }
+        [ForeignKey("AuthorID")]
+        public Author Author { get; set; }
 
     }
 }

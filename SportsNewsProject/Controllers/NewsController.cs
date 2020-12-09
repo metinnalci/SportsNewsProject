@@ -26,7 +26,7 @@ namespace SportsNewsProject.Controllers
                 Title = q.Title,
                 SubTitle = q.SubTitle,
                 Content = q.Content,
-                AuthorCategoryID = q.AuthorCategoryId
+
 
             }).ToList();
 
@@ -35,55 +35,59 @@ namespace SportsNewsProject.Controllers
 
         public IActionResult Add()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Add(NewsVM model)
-        {
-            News article = new News();
-            article.Title = model.Title;
-            article.SubTitle = model.SubTitle;
-            article.AuthorCategoryId = model.AuthorCategoryID;
-            article.Content = model.Content;
-
-            _newscontext.News.Add(article);
-            _newscontext.SaveChanges();
-
-            return View();
-        }
-
-        public IActionResult Edit(int id)
-        {
-            News article = _newscontext.News.FirstOrDefault(q => q.ID == id);
             NewsVM model = new NewsVM();
-
-            model.Content = article.Content;
-            model.AuthorCategoryID = article.AuthorCategoryId;
-            model.Title = article.Title;
-            model.SubTitle = article.SubTitle;
-
-
+            model.Categories = _newscontext.Categories.ToList();
+            model.Authors = _newscontext.Authors.ToList();
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(NewsVM model)
+        public IActionResult Add(NewsVM model, int authorid, int categoryid)
         {
-            News editarticle = _newscontext.News.FirstOrDefault(q => q.ID == model.ID);
+            News article = new News();
+            article.Title = model.Title;
+            article.SubTitle = model.SubTitle;
+            article.Content = model.Content;
+            article.AuthorID = authorid;
+            article.CategoryID = categoryid;
 
-            if (ModelState.IsValid)
-            {
+            _newscontext.News.Add(article);
+            _newscontext.SaveChanges();
 
-                editarticle.AuthorCategoryId = model.AuthorCategoryID;
-                editarticle.Content = model.Content;
-                editarticle.Title = model.Title;
-                editarticle.SubTitle = model.SubTitle;
-
-                _newscontext.SaveChanges();
-            }
-            return View();
+            return RedirectToAction("Index","News");
         }
+
+        //public IActionResult Edit(int id)
+        //{
+        //    News article = _newscontext.News.FirstOrDefault(q => q.ID == id);
+        //    NewsVM model = new NewsVM();
+
+        //    model.Content = article.Content;
+        //    model.AuthorCategoryID = article.AuthorCategoryId;
+        //    model.Title = article.Title;
+        //    model.SubTitle = article.SubTitle;
+
+
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(NewsVM model)
+        //{
+        //    News editarticle = _newscontext.News.FirstOrDefault(q => q.ID == model.ID);
+
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        editarticle.AuthorCategoryId = model.AuthorCategoryID;
+        //        editarticle.Content = model.Content;
+        //        editarticle.Title = model.Title;
+        //        editarticle.SubTitle = model.SubTitle;
+
+        //        _newscontext.SaveChanges();
+        //    }
+        //    return View();
+        //}
 
 
         [HttpPost]

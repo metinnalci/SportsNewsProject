@@ -128,8 +128,8 @@
                     <th>Title</th>
                     <th>Subtitle</th>
                     <th>Content</th>
-                    <th>Author</th>
-                    <th>Category</th>
+                    @*<th>Author</th>
+                    <th>Category</th>*@
                     </thead>
                     <tbody>
                         @foreach (var item in Model.News)
@@ -139,8 +139,7 @@
                                 <td>@item.Title</td>
                                 <td>@item.SubTitle</td>
                                 <td>@item.Content</td>
-                                <td>@item.AuthorCategory.Author.Name</td>
-                                <td>@item.AuthorCategory.Category.CategoryName</td>
+                             
                             </tr>
                         }
 
