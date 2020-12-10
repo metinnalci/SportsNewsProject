@@ -45,9 +45,15 @@
                                                         <i class="material-icons">edit</i>
                                                     </button>
                                                 </a>
-                                                <button class="btn btn-outline-danger delete" id="@item.ID">
-                                                    <i class="material-icons">close</i>
-                                                </button>
+                                                <span id="confirmDeleteSpan_@item.ID" style="display:none">
+                                                    <span>Are you sure you want to delete?</span>
+                                                    <button type="submit" class="btn btn-outline-success delete" id="@item.ID">Yes</button>
+                                                    <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',false)">No</a>
+                                                </span>
+
+                                                <span id="deleteSpan_@item.ID">
+                                                    <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',true)"><i class="material-icons">close</i></a>
+                                                </span>
                                             </td>
 
                                         </tr>

@@ -142,24 +142,7 @@
             })
     })
 
-
-    function confirmDelete(Id, isTrue) {
-        var deleteSpan = 'deleteSpan_' + Id;
-        var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
-
-        if (isTrue)
-        {
-            $('#' + deleteSpan).hide();
-            $('#' + confirmDeleteSpan).show();
-        }
-        else
-        {
-            $('#' + deleteSpan).show();
-            $('#' + confirmDeleteSpan).hide();
-        }
-    }
-
-    $(document).on("click", ".delete", function () {
+$(document).on("click", ".delete", function () {
 
         let id = $(this).attr("id");
 
