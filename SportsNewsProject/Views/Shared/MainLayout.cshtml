@@ -245,6 +245,19 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="/assets/demo/demo.js"></script>
     <script>
+        function confirmDelete(Id, isTrue) {
+            var deleteSpan = 'deleteSpan_' + Id;
+            var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
+
+            if (isTrue) {
+                $('#' + deleteSpan).hide();
+                $('#' + confirmDeleteSpan).show();
+            }
+            else {
+                $('#' + deleteSpan).show();
+                $('#' + confirmDeleteSpan).hide();
+            }
+        }
         $(document).ready(function () {
             $().ready(function () {
                 $sidebar = $('.sidebar');
