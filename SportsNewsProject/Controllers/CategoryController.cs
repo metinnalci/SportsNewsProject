@@ -19,7 +19,7 @@ namespace SportsNewsProject.Controllers
         }
         public IActionResult Index()
         {
-            List<CategoryVM> categories = _newscontext.Categories.Select(q => new CategoryVM()
+            List<CategoryVM> categories = _newscontext.Categories.Where(q => q.IsDeleted == false).Select(q => new CategoryVM()
             {
                 ID = q.ID,
                 Name = q.CategoryName,

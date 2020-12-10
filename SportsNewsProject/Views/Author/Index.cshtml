@@ -45,10 +45,19 @@
                                         </button>
                                     </a>
 
-                                    <button class="btn btn-outline-danger delete" id="@item.ID">
+                                    @*<button class="btn btn-outline-danger delete" id="@item.ID">
                                         <i class="material-icons">close</i>
-                                    </button>
+                                    </button>*@
 
+                                <span id="confirmDeleteSpan_@item.ID" style="display:none">
+                                    <span>Are you sure you want to delete?</span>
+                                    <button type="submit" class="btn btn-outline-success delete" id="@item.ID">Yes</button>
+                                    <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',false)">No</a>
+                                </span>
+
+                                <span id="deleteSpan_@item.ID">
+                                    <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',true)"><i class="material-icons">close</i></a>
+                                </span>
                                 </td>
                             </tr>
                         }
@@ -132,6 +141,23 @@
                 $("#detailmodal").modal();
             })
     })
+
+
+    function confirmDelete(Id, isTrue) {
+        var deleteSpan = 'deleteSpan_' + Id;
+        var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
+
+        if (isTrue)
+        {
+            $('#' + deleteSpan).hide();
+            $('#' + confirmDeleteSpan).show();
+        }
+        else
+        {
+            $('#' + deleteSpan).show();
+            $('#' + confirmDeleteSpan).hide();
+        }
+    }
 
     $(document).on("click", ".delete", function () {
 

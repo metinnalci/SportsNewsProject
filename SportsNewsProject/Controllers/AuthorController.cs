@@ -20,7 +20,7 @@ namespace SportsNewsProject.Controllers
         }
         public IActionResult Index()
         {
-            List<AuthorVM> model = _newscontext.Authors.Include(q => q.AuthorCategories).Select(q => new AuthorVM()
+            List<AuthorVM> model = _newscontext.Authors.Where(q => q.IsDeleted == false).Include(q => q.AuthorCategories).Select(q => new AuthorVM()
             {
                 ID = q.ID,
                 Name = q.Name,
@@ -238,11 +238,9 @@ namespace SportsNewsProject.Controllers
         {
             {
                 Author author = _newscontext.Authors.Include(q => q.AuthorCategories).ThenInclude(q => q.Category).FirstOrDefault(x => x.ID == id);
-
-
+                
                 return Json(author);
             }
-
 
         }
 
