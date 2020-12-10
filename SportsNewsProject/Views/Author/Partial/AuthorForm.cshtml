@@ -3,62 +3,72 @@
 *@
 
 @model SportsNewsProject.Models.VM.AuthorVM
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+    </style>
 
-<style>
-    .field-validation-error {
-        color: red;
-    }
-</style>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+                @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(q => q.Name)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(q => q.Surname, new { @class = "bmd-label-floating" })
+                @Html.TextBoxFor(q => q.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(q => q.Surname)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
+                @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type = "email" })
+                @Html.ValidationMessageFor(q => q.EMail)
+            </div>
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(q => q.Name)
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(q => q.Phone, new { @class = "bmd-label-floating" })
+                @Html.TextBoxFor(q => q.Phone, new { @class = "form-control", @type = "tel", @pattern = "[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
+                @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @id = "datepicker" })
+                @Html.ValidationMessageFor(q => q.AddDate)
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(q => q.Surname, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.Surname, new { @class = "form-control" })
-            @Html.ValidationMessageFor(q => q.Surname)
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="bmd-label-floating">Categories:</label>
+                <br>
+                @foreach (var item in Model.categoryCheck)
+                {
+                    <input type="checkbox" name="categoryid" value="@item.categoryid" checked="@item.IsChecked">
+                    <label>@item.Name</label><br>
+                }
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type = "email" })
-            @Html.ValidationMessageFor(q => q.EMail)
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.LabelFor(q => q.Phone, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.Phone, new { @class = "form-control", @type = "tel", @pattern = "[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" })
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.LabelFor(q => q.AddDate, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.AddDate, new { @class = "form-control", @type = "datetime"})
-            @Html.ValidationMessageFor(q => q.AddDate)
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-3">
-        <div class="form-group">
-            <label class="bmd-label-floating">Categories:</label>
-            <br>
-            @foreach (var item in Model.categoryCheck)
-            {
-                <input type="checkbox" name="categoryid" value="@item.categoryid" checked ="@item.IsChecked">
-                <label>@item.Name</label><br>
-            }
-        </div>
-    </div>
-</div>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                
+            });
+        });
+    </script>
