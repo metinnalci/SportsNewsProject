@@ -100,6 +100,10 @@
                     <span id="adddate"></span>
                 </div>
                 <div>
+                    <span>BirthDate:</span>
+                    <span id="birthdate"></span>
+                </div>
+                <div>
                     <span>Categories:</span>
                     <ul id="categories">
                     </ul>
@@ -126,6 +130,7 @@
                 $("#email").html(result.eMail);
                 $("#phone").html(result.phone);
                 $("#adddate").html(result.addDate);
+                $("#birthdate").html(result.birthDate);
 
                 $("#categories li").remove();
 
@@ -142,7 +147,7 @@
             })
     })
 
-$(document).on("click", ".delete", function () {
+    $(document).on("click", ".delete", function () {
 
         let id = $(this).attr("id");
 

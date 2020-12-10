@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SportsNewsProject.Models.ORM.Context;
@@ -9,9 +10,10 @@ using SportsNewsProject.Models.ORM.Context;
 namespace SportsNewsProject.Migrations
 {
     [DbContext(typeof(SportsNewsContext))]
-    partial class SportsNewsContextModelSnapshot : ModelSnapshot
+    [Migration("20201210154626_AuthorTableBirthdateColumnAdded")]
+    partial class AuthorTableBirthdateColumnAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,9 +205,6 @@ namespace SportsNewsProject.Migrations
                         .UseIdentityByDefaultColumn();
 
                     b.Property<DateTime>("AddDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EMail")

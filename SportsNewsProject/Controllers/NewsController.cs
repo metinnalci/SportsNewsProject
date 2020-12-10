@@ -101,6 +101,12 @@ namespace SportsNewsProject.Controllers
 
                 _newscontext.SaveChanges();
             }
+            else
+            {
+                model.Categories = _newscontext.Categories.ToList();
+                model.Authors = _newscontext.Authors.ToList();
+                return View(model);
+            }
 
 
             return RedirectToAction("Index", "News");

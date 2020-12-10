@@ -44,6 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(q => q.Content, new { @class = "bmd-label-floating" })
             @Html.TextBoxFor(q => q.Content, new { @id = "editor1" })
+            @Html.ValidationMessageFor(q => q.Content)
             <script>
                 ClassicEditor
                     .create(document.querySelector('#editor1'))

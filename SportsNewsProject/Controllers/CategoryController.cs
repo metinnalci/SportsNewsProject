@@ -44,7 +44,6 @@ namespace SportsNewsProject.Controllers
                 category.CategoryName = model.Name;
                 category.Description = model.Description;
                 category.UpperCategoryID = model.UpperCategoryId;
-                category.AddDate = model.Adddate;
                 _newscontext.Categories.Add(category);
                 _newscontext.SaveChanges();
             }
@@ -59,7 +58,6 @@ namespace SportsNewsProject.Controllers
                 Name = q.CategoryName,
                 Description = q.Description,
                 UpperCategoryId = q.UpperCategoryID,
-                Adddate = q.AddDate,
 
             }).FirstOrDefault(x => x.ID == id);
 
@@ -75,7 +73,6 @@ namespace SportsNewsProject.Controllers
             {
                 category.CategoryName = model.Name;
                 category.Description = model.Description;
-                category.AddDate = model.Adddate;
                 category.UpperCategoryID = model.UpperCategoryId;
 
                 _newscontext.SaveChanges();

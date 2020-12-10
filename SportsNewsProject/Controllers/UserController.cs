@@ -25,7 +25,7 @@ namespace SportsNewsProject.Controllers
                 Name = q.Name,
                 SurName = q.SurName,
                 NickName = q.NickName,
-                AddDate = q.AddDate,
+                BirthDate = q.BirthDate,
                 EMail = q.EMail
 
             }).ToList();
@@ -47,10 +47,14 @@ namespace SportsNewsProject.Controllers
                 user.EMail = model.EMail;
                 user.NickName = model.NickName;
                 user.Password = model.Password;
-                user.AddDate = model.AddDate;
+                user.BirthDate = model.BirthDate;
 
                 _newscontext.Users.Add(user);
                 _newscontext.SaveChanges();
+            }
+            else
+            {
+                return View();
             }
 
             return RedirectToAction("Index", "User");
@@ -67,7 +71,7 @@ namespace SportsNewsProject.Controllers
                 EMail = q.EMail,
                 NickName = q.NickName,
                 Password = q .Password,
-                AddDate = q.AddDate,
+                BirthDate = q.BirthDate,
 
             }).FirstOrDefault(x => x.ID == id);
             
@@ -87,9 +91,13 @@ namespace SportsNewsProject.Controllers
                 user.EMail = model.EMail;
                 user.NickName = model.NickName;
                 user.Password = model.Password;
-                user.AddDate = model.AddDate;
+                user.BirthDate = model.BirthDate;
 
                 _newscontext.SaveChanges();
+            }
+            else
+            {
+                return View(model);
             }
 
             return RedirectToAction("Index", "User");

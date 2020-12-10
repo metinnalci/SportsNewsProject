@@ -23,7 +23,9 @@ namespace SportsNewsProject.Models.VM
 
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-        public DateTime AddDate { get; set; }
+
+        [Required(ErrorMessage = "Please fill the required area!")]
+        public DateTime BirthDate { get; set; }
         public List<Category> Categories { get; set; }
 
         public CategoryCheckVM[] categoryCheck { get; set; }

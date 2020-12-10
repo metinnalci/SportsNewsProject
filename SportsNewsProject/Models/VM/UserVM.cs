@@ -28,8 +28,9 @@ namespace SportsNewsProject.Models.VM
         [Compare("Password",ErrorMessage = ("Please enter the same password!"))]
         public string ConfirmPassword { get; set; }
 
-        [DataType(DataType.DateTime)]
-        public DateTime AddDate { get; set; }
+        
+        [DataType(DataType.Date, ErrorMessage = "Please enter a correct format/ Enter your birthdate!")]
+        public DateTime BirthDate { get; set; }
 
     }
 }

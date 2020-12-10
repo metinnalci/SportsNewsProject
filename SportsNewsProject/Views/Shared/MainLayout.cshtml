@@ -244,6 +244,8 @@
     <script src="/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="/assets/demo/demo.js"></script>
+
+    <!-- Delete Operation scripts -->
     <script>
         function confirmDelete(Id, isTrue) {
             var deleteSpan = 'deleteSpan_' + Id;
@@ -258,6 +260,8 @@
                 $('#' + confirmDeleteSpan).hide();
             }
         }
+
+
         $(document).ready(function () {
             $().ready(function () {
                 $sidebar = $('.sidebar');
@@ -435,6 +439,9 @@
 
         });
     </script>
+
+
+    <!-- Highlight active link -->
     <script>
 
         let url = '@Context.Request.Path';

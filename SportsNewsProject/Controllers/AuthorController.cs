@@ -27,7 +27,7 @@ namespace SportsNewsProject.Controllers
                 Surname = q.SurName,
                 EMail = q.EMail,
                 Phone = q.Phone,
-                AddDate = q.AddDate,
+                BirthDate = q.BirthDate,
                 Categories = q.AuthorCategories.Select(q => q.Category).ToList()
 
             }).ToList();
@@ -54,7 +54,7 @@ namespace SportsNewsProject.Controllers
         [HttpPost]
         public IActionResult Add(AuthorVM model, int[] categoryid)
         {
-            List<CategoryCheckVM> categoryCheckVMs = new List<CategoryCheckVM>();
+            //List<CategoryCheckVM> categoryCheckVMs = new List<CategoryCheckVM>();
 
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace SportsNewsProject.Controllers
                 author.SurName = model.Surname;
                 author.EMail = model.EMail;
                 author.Phone = model.Phone;
-                author.AddDate = model.AddDate;
+                author.BirthDate = model.BirthDate;
 
                 _newscontext.Authors.Add(author);
                 _newscontext.SaveChanges();
@@ -72,31 +72,32 @@ namespace SportsNewsProject.Controllers
                 int authorid = author.ID;
 
                 model.Categories = _newscontext.Categories.ToList();
-                int[] selectedcategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
+                
+                //int[] selectedcategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
 
-                foreach (var item in model.Categories)
-                {
-                    CategoryCheckVM categoryCheck = new CategoryCheckVM();
-                    categoryCheck.categoryid = item.ID;
+                //foreach (var item in model.Categories)
+                //{
+                //    CategoryCheckVM categoryCheck = new CategoryCheckVM();
+                //    categoryCheck.categoryid = item.ID;
 
-                    foreach (var item2 in selectedcategories)
-                    {
-                        if (item2 == categoryCheck.categoryid)
-                        {
-                            categoryCheck.IsChecked = true;
-                            break;
-                        }
-                        else
-                        {
-                            categoryCheck.IsChecked = false;
-                        }
-                    }
+                //    foreach (var item2 in selectedcategories)
+                //    {
+                //        if (item2 == categoryCheck.categoryid)
+                //        {
+                //            categoryCheck.IsChecked = true;
+                //            break;
+                //        }
+                //        else
+                //        {
+                //            categoryCheck.IsChecked = false;
+                //        }
+                //    }
 
-                    categoryCheck.Name = item.CategoryName;
-                    categoryCheckVMs.Add(categoryCheck);
-                }
+                //    categoryCheck.Name = item.CategoryName;
+                //    categoryCheckVMs.Add(categoryCheck);
+                //}
 
-                model.categoryCheck = categoryCheckVMs.ToArray();
+                //model.categoryCheck = categoryCheckVMs.ToArray();
 
                 for (int i = 0; i < categoryid.Length; i++)
                 {
@@ -107,6 +108,19 @@ namespace SportsNewsProject.Controllers
 
                 }
                 _newscontext.SaveChanges();
+            }
+            else
+            {
+                model.categoryCheck = _newscontext.Categories.Select(q => new CategoryCheckVM()
+                {
+
+                    categoryid = q.ID,
+                    IsChecked = false,
+                    Name = q.CategoryName
+
+                }).ToArray();
+
+                return View(model);
             }
 
             return RedirectToAction("Index", "Author");
@@ -122,7 +136,7 @@ namespace SportsNewsProject.Controllers
             model.Surname = author.SurName;
             model.EMail = author.EMail;
             model.Phone = author.Phone;
-            model.AddDate = author.AddDate;
+            model.BirthDate = author.BirthDate;
             model.Categories = _newscontext.Categories.ToList();
             //model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
             int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
@@ -169,7 +183,7 @@ namespace SportsNewsProject.Controllers
                 author.SurName = model.Surname;
                 author.EMail = model.EMail;
                 author.Phone = model.Phone;
-                author.AddDate = model.AddDate;
+                author.BirthDate = model.BirthDate;
 
                 _newscontext.SaveChanges();
 
@@ -217,6 +231,11 @@ namespace SportsNewsProject.Controllers
                 }
                 _newscontext.SaveChanges();
             }
+            // Sorun var!
+            //else
+            //{
+            //    return View(model);
+            //}
 
             return RedirectToAction("Index", "Author");
         }
