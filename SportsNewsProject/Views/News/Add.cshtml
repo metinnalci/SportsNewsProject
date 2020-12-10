@@ -14,7 +14,7 @@
                 <p class="card-category">Create an article</p>
             </div>
             <div class="card-body">
-                <form action="/News/Add" method="post">
+                <form action="/News/Add" method="post" enctype="multipart/form-data">
 
                     @await Html.PartialAsync("Partial/NewsForm")
 
