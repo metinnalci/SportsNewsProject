@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
@@ -55,6 +56,7 @@ namespace SportsNewsProject.Controllers
             {
                 foreach (var item in model.articleimages)
                 {
+
                     var guid = Guid.NewGuid().ToString();
 
                     var path = Path.Combine(
@@ -70,7 +72,6 @@ namespace SportsNewsProject.Controllers
                 }
 
             }
-
 
             model.MainImagePath = paths;
 
@@ -116,13 +117,14 @@ namespace SportsNewsProject.Controllers
             model.Categories = _newscontext.Categories.ToList();
             model.Authors = _newscontext.Authors.ToList();
             //model.MainImagePath = _newscontext.Pictures.Where(q => q.NewsId == id).Select(q => q.ImagePath).ToList();
+            
 
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(NewsVM model, int authorid, int categoryid)
+        public IActionResult Edit(NewsVM model, int authorid, int categoryid,List<IFormFile> articleimages)
         {
             News editarticle = _newscontext.News.FirstOrDefault(q => q.ID == model.ID);
 
@@ -130,16 +132,16 @@ namespace SportsNewsProject.Controllers
 
             //string imgpath = "";
 
-            //if(model.articleimages != null)
+            //if (articleimages != null)
             //{
-            //    foreach (var item in model.articleimages)
+            //    foreach (var item in articleimages)
             //    {
             //        var guid = Guid.NewGuid().ToString();
 
             //        var path = Path.Combine(
             //            Directory.GetCurrentDirectory(),
             //            "wwwroot/assets/articleimg", guid + ".jpg");
-            //        using(var stream = new FileStream(path, FileMode.Create))
+            //        using (var stream = new FileStream(path, FileMode.Create))
             //        {
             //            item.CopyTo(stream);
             //        }
@@ -153,7 +155,7 @@ namespace SportsNewsProject.Controllers
             //    }
             //}
 
-            
+
 
             if (ModelState.IsValid)
             {
@@ -166,7 +168,7 @@ namespace SportsNewsProject.Controllers
 
                 _newscontext.SaveChanges();
 
-                //int articleid = editarticle.ID;
+                int articleid = editarticle.ID;
 
                 //foreach (var item in paths)
                 //{
