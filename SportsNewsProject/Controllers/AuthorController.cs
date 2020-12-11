@@ -263,6 +263,24 @@ namespace SportsNewsProject.Controllers
 
         }
 
+        public IActionResult Search(string SearchString)
+        {
+            //@ViewData["id"] = SearchString;
+            AuthorVM model = new AuthorVM();
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                Author author = _newscontext.Authors.Where(q => q.Name.Contains(SearchString)).FirstOrDefault();
+                model.ID = author.ID;
+                model.Name = author.Name;
+                model.Surname = author.SurName;
+                model.EMail = author.EMail;
+                model.Phone = author.Phone;
+            }
+
+            return View(model);
+
+        }
+
     }
 }
 

@@ -114,5 +114,26 @@ namespace SportsNewsProject.Controllers
 
             return Json("User Successfully Deleted!");
         }
+
+        public IActionResult Search(string name)
+        {
+            @ViewData["search"] = name;
+            UserVM model = _newscontext.Users.Select(q => new UserVM()
+            {
+
+                ID = q.ID,
+                Name = q.Name,
+                SurName = q.SurName,
+                EMail = q.EMail,
+                NickName = q.NickName,
+                Password = q.Password,
+                BirthDate = q.BirthDate,
+
+            }).FirstOrDefault(x => x.Name == name);
+
+
+            return View(model);
+
+        }
     }
 }
