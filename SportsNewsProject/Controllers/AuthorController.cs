@@ -231,11 +231,49 @@ namespace SportsNewsProject.Controllers
                 }
                 _newscontext.SaveChanges();
             }
-            // Sorun var!
-            //else
-            //{
-            //    return View(model);
-            //}
+
+            //Sorun var!!
+            else
+            {
+                model.Name = author.Name;
+                model.Surname = author.SurName;
+                model.EMail = author.EMail;
+                model.Phone = author.Phone;
+                model.BirthDate = author.BirthDate;
+                model.Categories = _newscontext.Categories.ToList();
+                //model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
+                int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == model.ID).Select(q => q.CategoryID).ToArray();
+
+                foreach (var item in model.Categories)
+                {
+                    CategoryCheckVM categoryCheck = new CategoryCheckVM();
+                    categoryCheck.categoryid = item.ID;
+
+
+                    foreach (var item2 in selectedCategories)
+                    {
+                        if (item2 == categoryCheck.categoryid)
+                        {
+                            categoryCheck.IsChecked = true;
+                            break;
+                        }
+                        else
+                        {
+                            categoryCheck.IsChecked = false;
+                        }
+
+                    }
+
+                    categoryCheck.Name = item.CategoryName;
+
+                    categoryChecks.Add(categoryCheck);
+                }
+
+                model.categoryCheck = categoryChecks.ToArray();
+
+                return View(model);
+            }
+           
 
             return RedirectToAction("Index", "Author");
         }
