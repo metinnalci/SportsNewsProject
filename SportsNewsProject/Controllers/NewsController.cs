@@ -122,46 +122,43 @@ namespace SportsNewsProject.Controllers
             model.SubTitle = article.SubTitle;
             model.Categories = _newscontext.Categories.ToList();
             model.Authors = _newscontext.Authors.ToList();
-            //model.MainImagePath = _newscontext.Pictures.Where(q => q.NewsId == id).Select(q => q.ImagePath).ToList();
-            
+
 
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(NewsVM model, int authorid, int categoryid,List<IFormFile> articleimages)
+        // Sorun var!
+        public IActionResult Edit(NewsVM model, int authorid, int categoryid)
         {
             News editarticle = _newscontext.News.FirstOrDefault(q => q.ID == model.ID);
 
-            //List<string> paths = new List<string>();
+            List<string> paths = new List<string>();
 
-            //string imgpath = "";
+            string imgpath = "";
 
-            //if (articleimages != null)
-            //{
-            //    foreach (var item in articleimages)
-            //    {
-            //        var guid = Guid.NewGuid().ToString();
+            if (model.articleimages != null)
+            {
+                foreach (var item in model.articleimages)
+                {
+                    var guid = Guid.NewGuid().ToString();
 
-            //        var path = Path.Combine(
-            //            Directory.GetCurrentDirectory(),
-            //            "wwwroot/assets/articleimg", guid + ".jpg");
-            //        using (var stream = new FileStream(path, FileMode.Create))
-            //        {
-            //            item.CopyTo(stream);
-            //        }
+                    var path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot/assets/articleimg", guid + ".jpg");
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
 
-            //        imgpath = guid + ".jpg";
+                    imgpath = guid + ".jpg";
 
-            //        if (!model.MainImagePath.Contains(imgpath))
-            //        {
-            //            paths.Add(imgpath);
-            //        }
-            //    }
-            //}
+                    paths.Add(imgpath);
+                }
+            }
 
-
+            model.MainImagePath = paths;
 
             if (ModelState.IsValid)
             {
@@ -176,15 +173,15 @@ namespace SportsNewsProject.Controllers
 
                 int articleid = editarticle.ID;
 
-                //foreach (var item in paths)
-                //{
-                //    Pictures images = new Pictures();
-                //    images.ImagePath = item;
-                //    images.NewsId = articleid;
-                //    _newscontext.Pictures.Add(images);
-                //}
+                foreach (var item in model.MainImagePath)
+                {
+                    Pictures images = new Pictures();
+                    images.ImagePath = item;
+                    images.NewsId = articleid;
+                    _newscontext.Pictures.Add(images);
+                }
 
-                //_newscontext.SaveChanges();
+                _newscontext.SaveChanges();
             }
             return RedirectToAction("Index", "News");
         }
@@ -198,6 +195,13 @@ namespace SportsNewsProject.Controllers
             _newscontext.SaveChanges();
 
             return Json("Article Successfully Deleted!");
+        }
+
+        public IActionResult Detail(int id)
+        {
+            News detail = _newscontext.News.Include(q => q.PictureList).FirstOrDefault(x => x.ID == id);
+
+            return Json(detail);
         }
     }
 }

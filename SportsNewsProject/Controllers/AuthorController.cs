@@ -72,7 +72,7 @@ namespace SportsNewsProject.Controllers
                 int authorid = author.ID;
 
                 model.Categories = _newscontext.Categories.ToList();
-                
+
                 //int[] selectedcategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
 
                 //foreach (var item in model.Categories)
@@ -255,11 +255,11 @@ namespace SportsNewsProject.Controllers
 
         public IActionResult Detail(int id)
         {
-            {
-                Author author = _newscontext.Authors.Include(q => q.AuthorCategories).ThenInclude(q => q.Category).FirstOrDefault(x => x.ID == id);
-                
-                return Json(author);
-            }
+
+            Author author = _newscontext.Authors.Include(q => q.AuthorCategories).ThenInclude(q => q.Category).FirstOrDefault(x => x.ID == id);
+
+            return Json(author);
+
 
         }
 

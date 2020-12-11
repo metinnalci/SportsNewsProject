@@ -14,7 +14,7 @@
                 <p class="card-category">Edit an article</p>
             </div>
             <div class="card-body">
-                <form action="/News/Edit/" method="post">
+                <form action="/News/Edit/" method="post" enctype="multipart/form-data">
 
                     @await Html.PartialAsync("Partial/NewsForm")
                     @Html.HiddenFor(q => q.ID)
