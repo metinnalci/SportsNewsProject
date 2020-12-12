@@ -123,8 +123,6 @@ namespace SportsNewsProject.Controllers
             model.Categories = _newscontext.Categories.ToList();
             model.Authors = _newscontext.Authors.ToList();
 
-
-
             return View(model);
         }
 
@@ -182,6 +180,16 @@ namespace SportsNewsProject.Controllers
                 }
 
                 _newscontext.SaveChanges();
+            }
+            else
+            {
+                model.Content = editarticle.Content;
+                model.Title = editarticle.Title;
+                model.SubTitle = editarticle.SubTitle;
+                model.Categories = _newscontext.Categories.ToList();
+                model.Authors = _newscontext.Authors.ToList();
+
+                return View(model);
             }
             return RedirectToAction("Index", "News");
         }

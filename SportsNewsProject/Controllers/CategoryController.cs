@@ -47,6 +47,10 @@ namespace SportsNewsProject.Controllers
                 _newscontext.Categories.Add(category);
                 _newscontext.SaveChanges();
             }
+            else
+            {
+                return View();
+            }
             return RedirectToAction("Index", "Category");
         }
 
@@ -76,6 +80,15 @@ namespace SportsNewsProject.Controllers
                 category.UpperCategoryID = model.UpperCategoryId;
 
                 _newscontext.SaveChanges();
+            }
+            else
+            {
+                model.ID = category.ID;
+                model.Name = category.CategoryName;
+                model.Description = category.Description;
+                model.UpperCategoryId = category.UpperCategoryID;
+
+                return View(model);
             }
             return RedirectToAction("Index", "Category");
         }

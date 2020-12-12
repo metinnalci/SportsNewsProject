@@ -58,6 +58,15 @@ namespace SportsNewsProject.Controllers
                 comments.NewsId = newsid;
                 comments.UserId = userid;
             }
+            else
+            {
+                model.ID = comments.ID;
+                model.News = _newscontext.News.ToList();
+                model.Users = _newscontext.Users.ToList();
+                model.Content = comments.Content;
+
+                return View(model);
+            }
 
             _newscontext.SaveChanges();
             return RedirectToAction("Index", "Comment");
