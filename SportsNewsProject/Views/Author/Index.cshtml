@@ -6,173 +6,191 @@
 @model List<SportsNewsProject.Models.VM.AuthorVM>
 
 
-@using (Html.BeginForm("Search", "Author", FormMethod.Get))
-{
-    @Html.TextBox("SearchString",new { @class = "form-control" , @placeholder = "Please Enter User Name..." })
-<button type="submit" class="btn btn-white btn-round btn-just-icon">
-    <i class="material-icons">search</i>
-    </button>
-    }
+<form class="navbar-form">
+    <div class="input-group no-border">
+        <input type="text" id="search_input" class="form-control" placeholder="Search Authors Using Names...">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+        </button>
+    </div>
+</form>
 
-    <div class=" table-responsive">
-        <div class="col-lg-12 col-md-12">
-            <div class="card">
-                <div class="card-header card-header-info">
-                    <h4 class="card-title">Authors</h4>
-                    <p class="card-category">All authors of this page</p>
-                </div>
-                <div class="card-body table-responsive">
-                    <table class="table table-hover">
-                        <thead class="text-info">
-                            <tr class="text-center">
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Surname</th>
-                                <th>EMail</th>
-                                <th>Phone</th>
-                                <th>Detail/Edit/Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr id="@item.ID" class="text-center">
-                                    <td>@item.ID</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Surname</td>
-                                    <td>@item.EMail</td>
-                                    <td>@item.Phone</td>
-                                    <td class="td-actions">
+<div class=" table-responsive">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title">Authors</h4>
+                <p class="card-category">All authors of this page</p>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-info">
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>EMail</th>
+                            <th>Phone</th>
+                            <th>Detail/Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table_body">
+                        @foreach (var item in Model)
+                        {
+                            <tr id="@item.ID" class="text-center">
+                                <td>@item.ID</td>
+                                <td class="name">@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.EMail</td>
+                                <td>@item.Phone</td>
+                                <td class="td-actions">
 
-                                        <button class="btn btn-outline-primary detay" id="@item.ID">
-                                            <i class="material-icons">description</i>
+                                    <button class="btn btn-outline-primary detay" id="@item.ID">
+                                        <i class="material-icons">description</i>
+                                    </button>
+
+                                    <a href="/Author/Edit/@item.ID">
+                                        <button class="btn btn-outline-success">
+                                            <i class="material-icons">edit</i>
                                         </button>
+                                    </a>
 
-                                        <a href="/Author/Edit/@item.ID">
-                                            <button class="btn btn-outline-success">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                        </a>
+                                    @*<button class="btn btn-outline-danger delete" id="@item.ID">
+                                            <i class="material-icons">close</i>
+                                        </button>*@
 
-                                        @*<button class="btn btn-outline-danger delete" id="@item.ID">
-                                                <i class="material-icons">close</i>
-                                            </button>*@
+                                    <span id="confirmDeleteSpan_@item.ID" style="display:none">
+                                        <span>Are you sure you want to delete?</span>
+                                        <button type="submit" class="btn btn-outline-success delete" id="@item.ID">Yes</button>
+                                        <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',false)">No</a>
+                                    </span>
 
-                                        <span id="confirmDeleteSpan_@item.ID" style="display:none">
-                                            <span>Are you sure you want to delete?</span>
-                                            <button type="submit" class="btn btn-outline-success delete" id="@item.ID">Yes</button>
-                                            <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',false)">No</a>
-                                        </span>
+                                    <span id="deleteSpan_@item.ID">
+                                        <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',true)"><i class="material-icons">close</i></a>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
 
-                                        <span id="deleteSpan_@item.ID">
-                                            <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',true)"><i class="material-icons">close</i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="detailmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Author Detail</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="modal fade" id="detailmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Author Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <span>Name:</span>
+                    <span id="name"></span>
                 </div>
-                <div class="modal-body">
-                    <div>
-                        <span>Name:</span>
-                        <span id="name"></span>
-                    </div>
-                    <div>
-                        <span>Surname:</span>
-                        <span id="surname"></span>
-                    </div>
-                    <div>
-                        <span>EMail:</span>
-                        <span id="email"></span>
-                    </div>
-                    <div>
-                        <span>Phone:</span>
-                        <span id="phone"></span>
-                    </div>
-                    <div>
-                        <span>AddDate:</span>
-                        <span id="adddate"></span>
-                    </div>
-                    <div>
-                        <span>BirthDate:</span>
-                        <span id="birthdate"></span>
-                    </div>
-                    <div>
-                        <span>Categories:</span>
-                        <ul id="categories">
-                        </ul>
-                    </div>
+                <div>
+                    <span>Surname:</span>
+                    <span id="surname"></span>
+                </div>
+                <div>
+                    <span>EMail:</span>
+                    <span id="email"></span>
+                </div>
+                <div>
+                    <span>Phone:</span>
+                    <span id="phone"></span>
+                </div>
+                <div>
+                    <span>AddDate:</span>
+                    <span id="adddate"></span>
+                </div>
+                <div>
+                    <span>BirthDate:</span>
+                    <span id="birthdate"></span>
+                </div>
+                <div>
+                    <span>Categories:</span>
+                    <ul id="categories">
+                    </ul>
+                </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
+<script>
+
+    var search_input = document.querySelector("#search_input");
+
+    search_input.addEventListener("keyup", function (e) {
+
+        var search_item = e.target.value.toLowerCase();
+        var name_items = document.querySelectorAll(".table_body .text-center .name");
+
+        name_items.forEach(function (item) {
+            if (item.textContent.toLowerCase().indexOf(search_item) != -1) {
+                item.closest("tr").style.display = "table-row";
+            }
+            else {
+                item.closest("tr").style.display = "none";
+            }
+        })
+    })
+
+    $(document).on("click", ".detay", function () {
+        let id = $(this).attr("id");
+        fetch("/Author/Detail/" + id)
+            .then((res) => res.json())
+            .then((result) => {
+                $("#name").html(result.name);
+                $("#surname").html(result.surName);
+                $("#email").html(result.eMail);
+                $("#phone").html(result.phone);
+                $("#adddate").html(result.addDate);
+                $("#birthdate").html(result.birthDate);
+
+                $("#categories li").remove();
+
+                for (var i = 0; i < result.authorCategories.length; i++) {
 
 
-        $(document).on("click", ".detay", function () {
-            let id = $(this).attr("id");
-            fetch("/Author/Detail/" + id)
-                .then((res) => res.json())
-                .then((result) => {
-                    $("#name").html(result.name);
-                    $("#surname").html(result.surName);
-                    $("#email").html(result.eMail);
-                    $("#phone").html(result.phone);
-                    $("#adddate").html(result.addDate);
-                    $("#birthdate").html(result.birthDate);
-
-                    $("#categories li").remove();
-
-                    for (var i = 0; i < result.authorCategories.length; i++) {
-
-
-                        $("#categories").append(`
+                    $("#categories").append(`
                           <li>`+ result.authorCategories[i].category.categoryName + `</li>
 
                          `);
-                    }
-
-                    $("#detailmodal").modal();
-                })
-        })
-
-        $(document).on("click", ".delete", function () {
-
-            let id = $(this).attr("id");
-
-            $.ajax({
-                url: "/Author/Delete",
-                type: "POST",
-                data: { id: id },
-                success: function (msg) {
-                    alert(msg);
-                    $("#" + id).fadeOut();
-                },
-                error: function (err) {
-                    alert("Failed!");
                 }
+
+                $("#detailmodal").modal();
             })
+    })
+
+    $(document).on("click", ".delete", function () {
+
+        let id = $(this).attr("id");
+
+        $.ajax({
+            url: "/Author/Delete",
+            type: "POST",
+            data: { id: id },
+            success: function (msg) {
+                alert(msg);
+                $("#" + id).fadeOut();
+            },
+            error: function (err) {
+                alert("Failed!");
+            }
         })
-    </script>
+    })
+</script>
 
 

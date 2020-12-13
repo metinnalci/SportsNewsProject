@@ -5,6 +5,16 @@
 }
 @model List<SportsNewsProject.Models.VM.NewsVM>
 
+<form class="navbar-form">
+    <div class="input-group no-border">
+        <input type="text" id="search_input" class="form-control" placeholder="Search News Using Titles...">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+        </button>
+    </div>
+</form>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -18,14 +28,15 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <tr class="text-center"
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>SubTitle</th>
-                                <th>Content</th>
-                                <th>Author</th>
-                                <th>Category</th>
-                                <th>Detail/Edit/Delete</th>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>SubTitle</th>
+                                        <th>Content</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Detail/Edit/Delete</th>
+                                    </tr>
                                 </thead>
 
                                 <tbody>
@@ -42,7 +53,7 @@
                                             <td class="td-actions">
                                                 <button class="btn btn-outline-primary detail" id="@item.ID">
                                                     <i class="material-icons">description</i>
-                                                </button> 
+                                                </button>
 
                                                 <a href="/News/Edit/@item.ID">
                                                     <button class="btn btn-outline-success" rel="tooltip" id="@item.ID">

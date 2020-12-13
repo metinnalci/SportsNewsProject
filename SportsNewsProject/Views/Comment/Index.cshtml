@@ -5,6 +5,17 @@
 }
 
 @model List<SportsNewsProject.Models.VM.CommentVM>
+
+<form class="navbar-form">
+    <div class="input-group no-border">
+        <input type="text" id="search_input" class="form-control" placeholder="Search Comments Using User Nicknames or News Title...">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+        </button>
+    </div>
+</form>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -20,8 +31,8 @@
                                 <thead class=" text-primary">
                                     <tr class="text-center">
                                         <th>ID</th>
-                                        <th>User ID</th>
-                                        <th>News ID</th>
+                                        <th>User Nickname</th>
+                                        <th>News Title</th>
                                         <th>Content</th>
                                         <th>Adddate</th>
                                         <th>Edit/Delete</th>

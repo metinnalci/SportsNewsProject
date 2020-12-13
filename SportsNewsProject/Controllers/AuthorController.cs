@@ -18,7 +18,7 @@ namespace SportsNewsProject.Controllers
         {
             _newscontext = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(List<AuthorVM>? deneme)
         {
             List<AuthorVM> model = _newscontext.Authors.Where(q => q.IsDeleted == false).Include(q => q.AuthorCategories).Select(q => new AuthorVM()
             {
@@ -301,24 +301,34 @@ namespace SportsNewsProject.Controllers
 
         }
 
-        public IActionResult Search(string SearchString)
-        {
-            //@ViewData["id"] = SearchString;
-            AuthorVM model = new AuthorVM();
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                Author author = _newscontext.Authors.Where(q => q.Name.Contains(SearchString)).FirstOrDefault();
-                model.ID = author.ID;
-                model.Name = author.Name;
-                model.Surname = author.SurName;
-                model.EMail = author.EMail;
-                model.Phone = author.Phone;
-            }
+        //public IActionResult Search(string Name)
+        //{
+        //    //@ViewData["id"] = SearchString;
+        //    //AuthorVM model = new AuthorVM();
+        //    //if (!String.IsNullOrEmpty(SearchString))
+        //    //{
+        //        List<AuthorVM> deneme = _newscontext.Authors.Where(q => q.Name.Contains(Name)).Select(q => new AuthorVM()
+        //        {
+        //            ID = q.ID,
+        //            Name = q.Name,
+        //            Surname = q.SurName,
+        //            EMail = q.EMail,
+        //            Phone = q.Phone,
+                    
 
-            return View(model);
+        //        }).ToList();
 
-        }
+        //    return RedirectToAction("Index", "Author", deneme);
+        //    //}
+            
+        //}
 
     }
 }
 
+//Author author = _newscontext.Authors.Where(q => q.Name.Contains(SearchString)).FirstOrDefault();
+//model.ID = author.ID;
+//model.Name = author.Name;
+//model.Surname = author.SurName;
+//model.EMail = author.EMail;
+//model.Phone = author.Phone;
