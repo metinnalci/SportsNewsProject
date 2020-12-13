@@ -34,12 +34,12 @@
                             <th>Edit/Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table_body">
                         @foreach (var item in Model)
                         {
                             <tr class="text-center" id="@item.ID">
                                 <td>@item.ID</td>
-                                <td>@item.Name</td>
+                                <td class="name">@item.Name</td>
                                 <td>@item.SurName</td>
                                 <td>@item.EMail</td>
                                 <td>@item.NickName</td>
@@ -71,6 +71,23 @@
 </div>
 
 <script>
+
+    var search_input = document.querySelector("#search_input");
+
+    search_input.addEventListener("keyup", function (e) {
+
+        var search_item = e.target.value.toLowerCase();
+        var name_items = document.querySelectorAll(".table_body .text-center .name");
+
+        name_items.forEach(function (item) {
+            if (item.textContent.toLowerCase().indexOf(search_item) != -1) {
+                item.closest("tr").style.display = "table-row";
+            }
+            else {
+                item.closest("tr").style.display = "none";
+            }
+        })
+    })
 
     $(document).on("click", ".delete", function () {
 
