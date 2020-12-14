@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@model SportsNewsProject.Models.VM.UserVM
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Add User</h4>
+                <p class="card-category">Create a user profile</p>
+            </div>
+            <div class="card-body">
+                <form action="/Admin/User/Add" method="post">
+
+                    @await Html.PartialAsync("Partial/UserForm") 
+
+                    <button type="submit" class="btn btn-primary pull-right">Add Profile</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

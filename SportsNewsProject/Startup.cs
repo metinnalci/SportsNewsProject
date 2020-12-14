@@ -30,6 +30,7 @@ namespace SportsNewsProject
             .AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+            services.AddRazorPages();
             services.AddDbContext<SportsNewsContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
@@ -48,7 +49,13 @@ namespace SportsNewsProject
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
                 endpoints.MapControllerRoute("default", "{Controller=Home}/{Action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

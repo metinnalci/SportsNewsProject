@@ -19,7 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\articleimg\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>

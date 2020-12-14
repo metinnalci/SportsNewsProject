@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@model List<SportsNewsProject.Models.VM.CommentVM>
+
+<form class="navbar-form">
+    <div class="input-group no-border">
+        <input type="text" id="search_input" class="form-control" placeholder="Search Comments Using User Nickname, News Title, Content or Adddate...">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+        </button>
+    </div>
+</form>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Comments</h4>
+                        <p class="card-category"> All comments of this page </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>User Nickname</th>
+                                        <th>News Title</th>
+                                        <th>Content</th>
+                                        <th>Adddate</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody class="table_body">
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr class="text-center" id="@item.ID">
+
+                                            <td>@item.ID</td>
+                                            <td>@item.Username</td>
+                                            <td>@item.NewsTitle</td>
+                                            <td>@Html.Raw(item.Content)</td>
+                                            <td>@item.AddDate</td>
+                                            <td class="td-actions">
+                                                <a href="/Admin/Comment/Edit/@item.ID">
+                                                    <button class="btn btn-outline-success">
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                </a>
+                                                <span id="confirmDeleteSpan_@item.ID" style="display:none">
+                                                    <span>Are you sure you want to delete?</span>
+                                                    <button type="submit" class="btn btn-outline-success delete" id="@item.ID">Yes</button>
+                                                    <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',false)">No</a>
+                                                </span>
+
+                                                <span id="deleteSpan_@item.ID">
+                                                    <a href="#" class="btn btn-outline-danger" onclick="confirmDelete('@item.ID',true)"><i class="material-icons">close</i></a>
+                                                </span>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var search_input = document.querySelector("#search_input");
+
+    search_input.addEventListener("keyup", function (e) {
+
+        var search_item = e.target.value.toLowerCase();
+        var name_items = document.querySelectorAll(".table_body .text-center");
+
+
+        name_items.forEach(function (item) {
+            if (item.textContent.toLowerCase().indexOf(search_item) != -1) {
+                item.closest("tr").style.display = "table-row";
+            }
+            else {
+                item.closest("tr").style.display = "none";
+            }
+        })
+    })
+
+    $(document).on("click", ".delete", function () {
+
+        let id = $(this).attr("id");
+
+        $.ajax({
+            url: "/Admin/Comment/Delete",
+            type: "POST",
+            data: { id: id },
+            success: function (msg) {
+                alert(msg);
+                $("#" + id).fadeOut();
+            },
+            error: function (err) {
+                alert("Comment Deleting Failed!")
+            }
+        })
+    })
+</script>

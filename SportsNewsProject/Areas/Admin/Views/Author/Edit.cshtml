@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/MainLayout.cshtml";
+}
+
+@model SportsNewsProject.Models.VM.AuthorVM
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Edit Author</h4>
+                <p class="card-category">Edit a author</p>
+            </div>
+            <div class="card-body">
+                <form action="/Admin/Author/Edit" method="post">
+
+                    @await Html.PartialAsync("Partial/AuthorForm")
+                    @Html.HiddenFor(q => q.ID)
+
+                    <button type="submit" class="btn btn-primary pull-right">Edit Author</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
