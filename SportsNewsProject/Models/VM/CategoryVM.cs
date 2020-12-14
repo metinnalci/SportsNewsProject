@@ -17,6 +17,8 @@ namespace SportsNewsProject.Models.VM
         [Required(ErrorMessage = "Please fill required areas!")]
         public string Description { get; set; }
         public int? UpperCategoryId { get; set; }
+        public string UpperCategoryName { get; set; }
+        public List<Category> UpperCategory { get; set; }
         public DateTime Adddate { get; set; }
         
 

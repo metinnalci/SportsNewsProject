@@ -10,6 +10,7 @@ namespace SportsNewsProject.Models.ORM.Entities
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public Nullable<int> UpperCategoryID { get; set; }
+        public string UpperCategoryName { get; set; }
         public List<AuthorCategory> AuthorCategories { get; set; }
         public List<News> News { get; set; }
 

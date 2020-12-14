@@ -5,6 +5,11 @@
 }
 
 @model SportsNewsProject.Models.VM.CategoryVM
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-12">
@@ -15,8 +20,52 @@
             </div>
             <div class="card-body">
                 <form action="/Category/Edit/" method="post">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.Description, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.Description, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.UpperCategory, new { @class = "bmd-label-floating" })
+                                <select class="form-control selectpicker" data-style="btn btn-link" name="uppercategoryid">
+                                    <option>Select a Category</option>
+                                    @if (Model != null)
+                                    {
+                                        List<int> selected = new List<int>();
 
-                    @await Html.PartialAsync("Partial/CategoryForm")
+                                        @foreach (var item in Model.UpperCategory.Where(q => q.ID == Model.UpperCategoryId))
+                                        {
+                                            <option selected value="@item.ID">
+                                                @item.CategoryName
+                                            </option>
+                                            selected.Add(item.ID);
+                                        }
+
+                                        @foreach (var item in Model.UpperCategory)
+                                        {
+                                            if (!selected.Contains(item.ID) && Model.UpperCategoryId != 0)
+                                            {
+                                                <option value="@item.ID">@item.CategoryName</option>
+                                            }
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     @Html.HiddenFor(q => q.ID)
 
                     <button type="submit" class="btn btn-primary pull-right">Edit Category</button>

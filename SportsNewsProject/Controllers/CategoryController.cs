@@ -32,44 +32,48 @@ namespace SportsNewsProject.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            return View(GetCategoryVMForAdd());
         }
 
         [HttpPost]
-        public IActionResult Add(CategoryVM model)
+        public IActionResult Add(CategoryVM model,int? uppercategoryid)
         {
             if (ModelState.IsValid)
             {
-                Category category = new Category();
-                category.CategoryName = model.Name;
-                category.Description = model.Description;
-                category.UpperCategoryID = model.UpperCategoryId;
-                _newscontext.Categories.Add(category);
-                _newscontext.SaveChanges();
+                if(uppercategoryid == 1)
+                {
+                    Category category = new Category();
+                    category.CategoryName = model.Name;
+                    category.Description = model.Description;
+                    category.UpperCategoryID = 1;
+                    _newscontext.Categories.Add(category);
+                    _newscontext.SaveChanges();
+                }
+                else
+                {
+                    Category subcategory = new Category();
+                    subcategory.UpperCategoryID = uppercategoryid;
+                    subcategory.CategoryName = model.Name;
+                    subcategory.Description = model.Description;
+                    _newscontext.Categories.Add(subcategory);
+                    _newscontext.SaveChanges();
+                }
+                
             }
             else
             {
-                return View();
+                return View(GetCategoryVMForAdd());
             }
             return RedirectToAction("Index", "Category");
         }
 
         public IActionResult Edit(int id)
         {
-            CategoryVM model = _newscontext.Categories.Select(q => new CategoryVM()
-            {
-                ID = q.ID,
-                Name = q.CategoryName,
-                Description = q.Description,
-                UpperCategoryId = q.UpperCategoryID,
-
-            }).FirstOrDefault(x => x.ID == id);
-
-            return View(model);
+            return View(GetCategoryVMForEdit(id));
         }
 
         [HttpPost]
-        public IActionResult Edit(CategoryVM model)
+        public IActionResult Edit(CategoryVM model,int? uppercategoryid)
         {
             Category category = _newscontext.Categories.FirstOrDefault(x => x.ID == model.ID);
 
@@ -77,18 +81,21 @@ namespace SportsNewsProject.Controllers
             {
                 category.CategoryName = model.Name;
                 category.Description = model.Description;
-                category.UpperCategoryID = model.UpperCategoryId;
+                if(uppercategoryid == 1)
+                {
+                    category.UpperCategoryID = 1;
+                }
+                else
+                {
+                    category.UpperCategoryID = uppercategoryid;
+                }
+                
 
                 _newscontext.SaveChanges();
             }
             else
             {
-                model.ID = category.ID;
-                model.Name = category.CategoryName;
-                model.Description = category.Description;
-                model.UpperCategoryId = category.UpperCategoryID;
-
-                return View(model);
+                return View(GetCategoryVMForEdit(model.ID));
             }
             return RedirectToAction("Index", "Category");
         }
@@ -103,6 +110,30 @@ namespace SportsNewsProject.Controllers
             _newscontext.SaveChanges();
 
             return Json("Category Successfully Deleted!");
+        }
+
+
+        CategoryVM GetCategoryVMForAdd()
+        {
+            CategoryVM model = new CategoryVM();
+            model.UpperCategory = _newscontext.Categories.Where(q => q.UpperCategoryID == 0 || q.UpperCategoryID == 1).ToList();
+
+            return model;
+        }
+
+        CategoryVM GetCategoryVMForEdit(int id)
+        {
+            CategoryVM model = _newscontext.Categories.Select(q => new CategoryVM()
+            {
+                ID = q.ID,
+                Name = q.CategoryName,
+                Description = q.Description,
+                UpperCategoryId = q.UpperCategoryID,
+                UpperCategory = _newscontext.Categories.Where(q => q.UpperCategoryID == 0 || q.UpperCategoryID == 1).ToList()
+
+            }).FirstOrDefault(x => x.ID == id);
+
+            return model;
         }
 
 

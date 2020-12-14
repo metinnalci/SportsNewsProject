@@ -3,36 +3,42 @@
 *@
 
 @model SportsNewsProject.Models.VM.CategoryVM
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <style>
-        .field-validation-error {
-            color: red;
-        }
-    </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(q => q.Name)
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.Description, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.Description, new { @class = "form-control" })
-                @Html.ValidationMessageFor(q => q.Description)
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.UpperCategoryId, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.UpperCategoryId, new { @class = "form-control" })
-
-            </div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Description, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.UpperCategory, new { @class = "bmd-label-floating" })
+            <select class="form-control selectpicker" data-style="btn btn-link" name="uppercategoryid">
+                <option>Select a Category</option>
+                @foreach (var item in Model.UpperCategory)
+                {
+                    <option value="@item.ID">@item.CategoryName</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
