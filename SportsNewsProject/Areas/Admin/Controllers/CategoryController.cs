@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 namespace SportsNewsProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         private readonly SportsNewsContext _newscontext;
 
-        public CategoryController(SportsNewsContext newscontext)
+        public CategoryController(SportsNewsContext newscontext, IMemoryCache memoryCache) : base(newscontext, memoryCache)
         {
             _newscontext = newscontext;
         }

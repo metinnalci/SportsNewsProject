@@ -159,7 +159,7 @@
     $(document).on("click", ".detail", function () {
 
         let id = $(this).attr("id");
-        fetch("Admin/News/Detail/" + id)
+        fetch("/Admin/News/Detail/" + id)
             .then((res) => res.json())
             .then((data) => {
 
@@ -173,7 +173,7 @@
                     $("#images").append(
 
                         `<li>
-                            <img src="/assets/articleimg/` + item.imagePath + `" width="200" height="100" />
+                            <img src="/adminsite/assets/articleimg/` + item.imagePath + `" width="200" height="100" />
                         </li><br>`
 
                     )

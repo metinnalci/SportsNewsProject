@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
+using SportsNewsProject.Models.ORM.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,31 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         private readonly SportsNewsContext _newscontext;
         private readonly IMemoryCache _memoryCache;
 
-        public BaseController(SportsNewsContext context)
+        public BaseController(SportsNewsContext newscontext, IMemoryCache memoryCache)
         {
-            _newscontext = context;
+            _newscontext = newscontext;
+            _memoryCache = memoryCache;
         }
 
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-             
+            List<AdminMenu> menu = new List<AdminMenu>();
+
+            bool isExist = _memoryCache.TryGetValue("menus", out menu);
+
+            if (!isExist)
+            {
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(60));
+
+                 menu = _newscontext.AdminMenus.ToList();
+
+                _memoryCache.Set("menus", menu, cacheEntryOptions);
+            }
+
+            ViewBag.menu = menu;
             base.OnActionExecuting(context);
         }
 
