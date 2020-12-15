@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/MainLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/MainLayout.cshtml";
 }
 @model List<SportsNewsProject.Models.VM.NewsVM>
 
@@ -159,7 +159,7 @@
     $(document).on("click", ".detail", function () {
 
         let id = $(this).attr("id");
-        fetch("/News/Detail/" + id)
+        fetch("Admin/News/Detail/" + id)
             .then((res) => res.json())
             .then((data) => {
 
