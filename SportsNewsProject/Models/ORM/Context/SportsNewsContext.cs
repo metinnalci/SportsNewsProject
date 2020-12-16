@@ -23,5 +23,7 @@ namespace SportsNewsProject.Models.ORM.Context
         public DbSet<Pictures> Pictures { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<AdminMenu> AdminMenus { get; set; }
+        public DbSet<AdminUser> AdminUsers { get; set; }
+
     }
 }

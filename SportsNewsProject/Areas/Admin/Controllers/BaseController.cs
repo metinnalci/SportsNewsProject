@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
@@ -10,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Areas.Admin.Controllers
 {
+    
     [Area("Admin")]
+    [Authorize]
     public class BaseController : Controller
     {
         private readonly SportsNewsContext _newscontext;
@@ -25,6 +28,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
+            ViewBag.email = HttpContext.User.Claims.ToArray()[0].Value;
             List<AdminMenu> menu = new List<AdminMenu>();
 
             bool isExist = _memoryCache.TryGetValue("menus", out menu);

@@ -1,0 +1,21 @@
+﻿
+
+@model SportsNewsProject.Models.VM.LoginVM
+
+@Html.ValidationSummary()
+<p style="color:red">@ViewBag.error</p>
+<form action="/Admin/Login/Index" method="post">
+
+    <div>
+        @Html.LabelFor(q => q.EMail)
+        @Html.TextBoxFor(q => q.EMail)
+    </div>
+    <div>
+        @Html.LabelFor(q => q.Password)
+        @Html.PasswordFor(q => q.Password)
+    </div>
+    <div>
+        <input type="submit" name="name" value="Login" />
+    </div>
+</form>
+
