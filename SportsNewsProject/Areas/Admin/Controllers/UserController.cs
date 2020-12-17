@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using SportsNewsProject.Models.Attributes;
+using SportsNewsProject.Models.Enums;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
@@ -19,6 +21,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         {
             _newscontext = newscontext;
         }
+
+        [RoleControl(EnumRoles.UserList)]
         public IActionResult Index()
         {
             List<UserVM> users = _newscontext.Users.Where(q => q.IsDeleted == false).Select(q => new UserVM()
@@ -34,6 +38,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
             return View(users);
         }
+
+        [RoleControl(EnumRoles.UserAdd)]
         public IActionResult Add()
         {
             return View();
@@ -62,11 +68,11 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "User");
         }
 
+        [RoleControl(EnumRoles.UserEdit)]
         public IActionResult Edit(int id)
         {
             UserVM model = _newscontext.Users.Select(q => new UserVM()
             {
-
                 ID = q.ID,
                 Name = q.Name,
                 SurName = q.SurName,
@@ -77,7 +83,6 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
             }).FirstOrDefault(x => x.ID == id);
             
-
             return View(model);
         }
 
@@ -101,10 +106,11 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             {
                 return View(model);
             }
-
             return RedirectToAction("Index", "User");
         }
 
+
+        [RoleControl(EnumRoles.UserDelete)]
         [HttpPost]
         public IActionResult Delete(int id)
         {

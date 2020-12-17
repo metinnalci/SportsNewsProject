@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using SportsNewsProject.Models.Attributes;
+using SportsNewsProject.Models.Enums;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
@@ -22,6 +24,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         {
             _newscontext = newscontext;
         }
+
+        [RoleControl(EnumRoles.NewsList)]
         public IActionResult Index()
         {
             List<NewsVM> news = _newscontext.News.Where(q => q.IsDeleted == false).Include(q => q.Author).Include(q => q.Category).Select(q => new NewsVM()
@@ -38,6 +42,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return View(news);
         }
 
+        [RoleControl(EnumRoles.NewsAdd)]
         public IActionResult Add()
         {
             NewsVM model = new NewsVM();
@@ -114,6 +119,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "News");
         }
 
+        [RoleControl(EnumRoles.NewsEdit)]
         public IActionResult Edit(int id)
         {
             News article = _newscontext.News.FirstOrDefault(q => q.ID == id);
@@ -196,7 +202,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "News");
         }
 
-
+        [RoleControl(EnumRoles.NewsDelete)]
         [HttpPost]
         public IActionResult Delete(int id)
         {
