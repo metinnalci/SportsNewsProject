@@ -39,7 +39,7 @@ namespace SportsNewsProject.Models.Attributes
                 }
                 else
                 {
-                    context.HttpContext.Response.Redirect("/Admin/Error/YetkisizErisim");
+                        context.HttpContext.Response.Redirect("/Admin/Error/YetkisizErisim");
                 }
             }
             else

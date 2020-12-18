@@ -22,8 +22,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             _newscontext = newscontext;
         }
 
-        [RoleTest]
-        [RoleControl(EnumRoles.CategoryList)]
+        [RoleTest(EnumRoles.CategoryList)]
+        //[RoleControl(EnumRoles.CategoryList)]
 
         public IActionResult Index()
         {
