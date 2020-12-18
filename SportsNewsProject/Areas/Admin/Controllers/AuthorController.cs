@@ -22,6 +22,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         {
             _newscontext = newscontext;
         }
+
         [RoleControl(EnumRoles.AuthorList)]
         public IActionResult Index(List<AuthorVM>? deneme)
         {
@@ -42,7 +43,6 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         [RoleControl(EnumRoles.AuthorAdd)]
         public IActionResult Add()
         {
-            //ViewBag.Categories = _newscontext.Categories.ToList();
             AuthorVM model = new AuthorVM();
             model.categoryCheck = _newscontext.Categories.Select(q => new CategoryCheckVM()
             {

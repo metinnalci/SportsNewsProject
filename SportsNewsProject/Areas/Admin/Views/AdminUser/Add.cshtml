@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/MainLayout.cshtml";
+}
+
+@model SportsNewsProject.Models.VM.AdminUserVM
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Add Author</h4>
+                <p class="card-category">Create a author</p>
+            </div>
+            <div class="card-body">
+                <form action="/Admin/AdminUser/Add" method="post">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.Surname, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.Surname, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.Surname)
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type = "email" })
+                                @Html.ValidationMessageFor(q => q.EMail)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Roles:</label>
+                                <br>
+
+                                @for (int i = 0; i < Model.Roles.Length; i++)
+                                {
+                                   <input type="checkbox" checked="" />
+                                   <label>@Model.Roles[i]</label>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary pull-right">Add Author</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
