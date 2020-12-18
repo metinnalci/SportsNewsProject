@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using SportsNewsProject.Models.Enums;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
@@ -34,16 +35,10 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return View(model);
         }
 
-        //public IActionResult Add()
-        //{
-        //    AdminUserVM model = new AdminUserVM();
-        //    AdminUser adminUser = new AdminUser();
-        //    array = adminUser.Role.ToArray();
-
-        //    string[] abc = Convert.ToInt32(adminUser.Role).ToString().Split(';');
-        //    model.Roles = abc;
-
-        //    return View(model);
-        //}
+        public IActionResult Add()
+        {
+            //Enum.GetValues(typeof(SomeEnum)).Cast<SomeEnum>().Cast<int>().ToList()
+            return View();
+        }
     }
 }

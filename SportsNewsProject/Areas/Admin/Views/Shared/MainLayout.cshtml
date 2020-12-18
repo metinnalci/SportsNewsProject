@@ -62,6 +62,33 @@
                     <li class="nav-item ">
                         @foreach (var item in ViewBag.menu)
                         {
+                            if (item.Name.Contains("Admin Profiles"))
+                            {
+                                <a class="nav-link collapsed" href="@item.Route" data-toggle="collapse" data-target="#collapseAdminUser" aria-expanded="true" aria-controls="collapseAdminUser">
+                                    <i class="material-icons">@item.IconName</i>
+                                    <p>@item.Name</p>
+                                </a>
+                            }
+                        }
+
+                        <div id="collapseAdminUser" class="collapse container" aria-labelledby="headingUser" data-parent="#accordionSidebar">
+                            @foreach (var item in ViewBag.menu)
+                            {
+                                if (item.Route.Contains("/adminuser"))
+                                {
+                                    <div class="bg-light py-2 collapse-inner rounded ">
+                                        <a class="collapse-item" href="@item.Route">
+                                            <i class="material-icons">@item.IconName</i>
+                                            @item.Name
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        @foreach (var item in ViewBag.menu)
+                        {
                             if (item.Name.Contains("User Profiles"))
                             {
                                 <a class="nav-link collapsed" href="@item.Route" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
@@ -177,22 +204,6 @@
                                 </a>
                             }
                         }
-
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/admin/adminuser/index">
-                            <i class="material-icons">person</i>
-                            <p>Admin User</p>
-                        </a>
-
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/admin/adminuser/add">
-                            <i class="material-icons">person</i>
-                            <p>Add Admin User</p>
-                        </a>
-
-                    </li>
                     <!-- your sidebar here -->
                 </ul>
             </div>

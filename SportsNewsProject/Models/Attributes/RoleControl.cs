@@ -49,5 +49,11 @@ namespace SportsNewsProject.Models.Attributes
 
 
         }
+
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+        }
     }
 }

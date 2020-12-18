@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsNewsProject.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace SportsNewsProject.Models.VM
         [Display(Name = "Şifre tekrar")]
         public string Confirmpassword { get; set; }
         public string Roles { get; set; }
+        public string[] EnumRoles { get; set; }
 
     }
 }
