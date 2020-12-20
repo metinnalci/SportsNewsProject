@@ -29,7 +29,6 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 Name = q.Name,
                 Surname = q.SurName,
                 EMail = q.EMail,
-                Roles = q.Role
             }).ToList();
 
             return View(model);
@@ -37,8 +36,20 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
         public IActionResult Add()
         {
-            //Enum.GetValues(typeof(SomeEnum)).Cast<SomeEnum>().Cast<int>().ToList()
-            return View();
+            List<RolesVM> roles = new List<RolesVM>();
+            EnumRoles enumRoles = new EnumRoles();
+            string rolid = Convert.ToInt32(enumRoles).ToString();
+            string rolname = Convert.ToString(enumRoles);
+
+            List<int> rolidd = Enum.GetValues(typeof(EnumRoles)).Cast<EnumRoles>().Cast<int>().ToList();
+            //string[] rolnamee = Enum.GetNames(typeof(EnumRoles));
+
+            AdminUserVM model = new AdminUserVM();
+            
+            return View(model);
         }
     }
 }
+//model.Roles.RoleId = Enum.GetValues(typeof(EnumRoles)).Cast<EnumRoles>().Cast<int>().ToArray();
+//model.Roles.Ischecked = false;
+//model.Roles.EnumRoles = Enum.GetNames(typeof(EnumRoles));

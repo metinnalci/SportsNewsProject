@@ -41,16 +41,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Roles:</label>
                                 <br>
 
-                                @for (int i = 0; i < Model.Roles.Length; i++)
+                                @foreach (var item in Model.Roles)
                                 {
-                                   <input type="checkbox" checked="" />
-                                   <label>@Model.Roles[i]</label>
+                            <input type="checkbox" name="name" value="" checked=""/>
                                 }
+
                             </div>
                         </div>
                     </div>

@@ -115,9 +115,13 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         {
             Category category = _newscontext.Categories.FirstOrDefault(x => x.ID == id);
 
-            category.IsDeleted = true;
+          
 
-            _newscontext.SaveChanges();
+                category.IsDeleted = true;
+
+                _newscontext.SaveChanges();
+            
+;
 
             return Json("Category Successfully Deleted!");
         }
