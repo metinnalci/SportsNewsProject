@@ -22,7 +22,7 @@
                 <p class="card-category">All users of this page</p>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table class="table" id="usertable">
                     <thead class="text-warning">
                         <tr class="text-center">
                             <th>ID</th>
@@ -107,4 +107,16 @@
 
         })
     })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#usertable').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "ordering": false,
+            "dom": 'B<"clear">lfrtip',
+            "buttons": ['print', 'excel', 'pdf']
+        });
+    });
 </script>

@@ -22,7 +22,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             _newscontext = newscontext;
         }
 
-        [RoleControl(EnumRoles.UserList)]
+        [RoleTest(EnumRoles.UserList)]
         public IActionResult Index()
         {
             List<UserVM> users = _newscontext.Users.Where(q => q.IsDeleted == false).Select(q => new UserVM()
@@ -34,12 +34,12 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 BirthDate = q.BirthDate,
                 EMail = q.EMail
 
-            }).ToList();
+            }).OrderByDescending(q => q.ID).ToList();
 
             return View(users);
         }
 
-        [RoleControl(EnumRoles.UserAdd)]
+        [RoleTest(EnumRoles.UserAdd)]
         public IActionResult Add()
         {
             return View();
@@ -68,7 +68,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "User");
         }
 
-        [RoleControl(EnumRoles.UserEdit)]
+        [RoleTest(EnumRoles.UserEdit)]
         public IActionResult Edit(int id)
         {
             UserVM model = _newscontext.Users.Select(q => new UserVM()
@@ -110,7 +110,6 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         }
 
 
-        [RoleControl(EnumRoles.UserDelete)]
         [HttpPost]
         public IActionResult Delete(int id)
         {

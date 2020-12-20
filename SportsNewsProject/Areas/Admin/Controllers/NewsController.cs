@@ -25,7 +25,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             _newscontext = newscontext;
         }
 
-        [RoleControl(EnumRoles.NewsList)]
+        [RoleTest(EnumRoles.NewsList)]
         public IActionResult Index()
         {
             List<NewsVM> news = _newscontext.News.Where(q => q.IsDeleted == false).Include(q => q.Author).Include(q => q.Category).Select(q => new NewsVM()
