@@ -23,8 +23,8 @@ namespace SportsNewsProject.Models.VM
         [Compare("Password", ErrorMessage = "Şifreler uyuşmuyor")]
         [Display(Name = "Şifre tekrar")]
         public string Confirmpassword { get; set; }
-        public string Roles { get; set; }
-        public string[] EnumRoles { get; set; }
+
+        public List<RolesVM> Roles { get; set; }
 
     }
 }

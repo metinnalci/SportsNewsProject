@@ -8,6 +8,9 @@ namespace SportsNewsProject.Models.VM
 {
     public class RolesVM
     {
-        public string[] EnumRoles { get; set; }
+        public int RoleId { get; set; }
+        public string EnumRol { get; set; }
+
+        public bool Ischecked { get; set; }
     }
 }
