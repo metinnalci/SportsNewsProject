@@ -42,14 +42,12 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return View(news);
         }
 
-        [RoleControl(EnumRoles.NewsAdd)]
+        [RoleTest(EnumRoles.NewsAdd)]
         public IActionResult Add()
         {
-            NewsVM model = new NewsVM();
-            model.Categories = _newscontext.Categories.ToList();
-            model.Authors = _newscontext.Authors.ToList();
-            return View(model);
+            return View(GetNewsVMForAdd());
         }
+
 
         [HttpPost]
         public IActionResult Add(NewsVM model, int authorid, int categoryid)
@@ -110,32 +108,20 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             }
             else
             {
-                model.Categories = _newscontext.Categories.ToList();
-                model.Authors = _newscontext.Authors.ToList();
-                return View(model);
+                return View(GetNewsVMForAdd());
             }
 
 
             return RedirectToAction("Index", "News");
         }
 
-        [RoleControl(EnumRoles.NewsEdit)]
+        [RoleTest(EnumRoles.NewsEdit)]
         public IActionResult Edit(int id)
         {
-            News article = _newscontext.News.FirstOrDefault(q => q.ID == id);
-            NewsVM model = new NewsVM();
-
-            model.Content = article.Content;
-            model.Title = article.Title;
-            model.SubTitle = article.SubTitle;
-            model.Categories = _newscontext.Categories.ToList();
-            model.Authors = _newscontext.Authors.ToList();
-
-            return View(model);
+            return View(GetNewsVMForEdit(id));
         }
 
         [HttpPost]
-        // Sorun var!
         public IActionResult Edit(NewsVM model, int authorid, int categoryid)
         {
             News editarticle = _newscontext.News.FirstOrDefault(q => q.ID == model.ID);
@@ -191,18 +177,11 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             }
             else
             {
-                model.Content = editarticle.Content;
-                model.Title = editarticle.Title;
-                model.SubTitle = editarticle.SubTitle;
-                model.Categories = _newscontext.Categories.ToList();
-                model.Authors = _newscontext.Authors.ToList();
-
-                return View(model);
+                return View(GetNewsVMForEdit(model.ID));
             }
             return RedirectToAction("Index", "News");
         }
 
-        [RoleControl(EnumRoles.NewsDelete)]
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -218,6 +197,29 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             News detail = _newscontext.News.Include(q => q.PictureList).FirstOrDefault(x => x.ID == id);
 
             return Json(detail);
+        }
+
+        NewsVM GetNewsVMForAdd()
+        {
+            NewsVM model = new NewsVM();
+            model.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false).ToList();
+            model.Authors = _newscontext.Authors.Where(q => q.IsDeleted == false).ToList();
+
+            return model;
+        }
+
+        NewsVM GetNewsVMForEdit(int id)
+        {
+            News article = _newscontext.News.FirstOrDefault(q => q.ID == id);
+            NewsVM model = new NewsVM();
+
+            model.Content = article.Content;
+            model.Title = article.Title;
+            model.SubTitle = article.SubTitle;
+            model.Categories = _newscontext.Categories.ToList();
+            model.Authors = _newscontext.Authors.ToList();
+
+            return model;
         }
     }
 }
