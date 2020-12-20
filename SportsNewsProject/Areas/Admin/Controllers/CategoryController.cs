@@ -22,9 +22,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             _newscontext = newscontext;
         }
 
-        [RoleTest]
-        [RoleControl(EnumRoles.CategoryList)]
-
+        [RoleTest(EnumRoles.CategoryList)]
         public IActionResult Index()
         {
             List<CategoryVM> categories = _newscontext.Categories.Where(q => q.IsDeleted == false).Select(q => new CategoryVM()
@@ -34,11 +32,11 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 Description = q.Description,
                 UpperCategoryId = q.UpperCategoryID,
                 Adddate = q.AddDate
-            }).ToList();
+            }).OrderByDescending(q => q.Adddate).ToList();
             return View(categories);
         }
-        [RoleControl(EnumRoles.CategoryAdd)]
 
+        [RoleTest(EnumRoles.CategoryAdd)]
         public IActionResult Add()
         {
             return View(GetCategoryVMForAdd());
@@ -76,7 +74,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "Category");
         }
 
-        [RoleControl(EnumRoles.CategoryEdit)]
+        [RoleTest(EnumRoles.CategoryEdit)]
         public IActionResult Edit(int id)
         {
             return View(GetCategoryVMForEdit(id));
@@ -132,7 +130,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         CategoryVM GetCategoryVMForAdd()
         {
             CategoryVM model = new CategoryVM();
-            model.UpperCategory = _newscontext.Categories.Where(q => q.UpperCategoryID == 0 || q.UpperCategoryID == 1).ToList();
+            model.UpperCategory = _newscontext.Categories.Where(q => q.UpperCategoryID == 0 || q.UpperCategoryID == 1 && q.IsDeleted == false).ToList();
 
             return model;
         }
@@ -145,7 +143,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 Name = q.CategoryName,
                 Description = q.Description,
                 UpperCategoryId = q.UpperCategoryID,
-                UpperCategory = _newscontext.Categories.Where(q => q.UpperCategoryID == 0 || q.UpperCategoryID == 1).ToList()
+                UpperCategory = _newscontext.Categories.Where(q => q.UpperCategoryID == 0 || q.UpperCategoryID == 1 && q.IsDeleted == false).ToList()
 
             }).FirstOrDefault(x => x.ID == id);
 

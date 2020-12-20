@@ -23,44 +23,38 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             _newscontext = newscontext;
         }
 
-        [RoleControl(EnumRoles.AuthorList)]
-        public IActionResult Index(List<AuthorVM>? deneme)
+        [RoleTest(EnumRoles.AuthorList)]
+        public IActionResult Index(List<AuthorVM> deneme)
         {
-            List<AuthorVM> model = _newscontext.Authors.Where(q => q.IsDeleted == false).Include(q => q.AuthorCategories).Select(q => new AuthorVM()
+            if (deneme != null)
             {
-                ID = q.ID,
-                Name = q.Name,
-                Surname = q.SurName,
-                EMail = q.EMail,
-                Phone = q.Phone,
-                BirthDate = q.BirthDate,
-                Categories = q.AuthorCategories.Select(q => q.Category).ToList()
+                List<AuthorVM> model = _newscontext.Authors.Where(q => q.IsDeleted == false).Include(q => q.AuthorCategories).Select(q => new AuthorVM()
+                {
+                    ID = q.ID,
+                    Name = q.Name,
+                    Surname = q.SurName,
+                    EMail = q.EMail,
+                    Phone = q.Phone,
+                    BirthDate = q.BirthDate,
+                    Categories = q.AuthorCategories.Select(q => q.Category).ToList()
 
-            }).ToList();
+                }).OrderByDescending(q => q.ID).ToList();
 
-            return View(model);
+                return View(model);
+            }
+
+            return View();
         }
-        [RoleControl(EnumRoles.AuthorAdd)]
+
+        [RoleTest(EnumRoles.AuthorAdd)]
         public IActionResult Add()
         {
-            AuthorVM model = new AuthorVM();
-            model.categoryCheck = _newscontext.Categories.Select(q => new CategoryCheckVM()
-            {
-
-                categoryid = q.ID,
-                IsChecked = false,
-                Name = q.CategoryName
-
-            }).ToArray();
-
-            return View(model);
+            return View(GetAuthorForAdd());
         }
 
         [HttpPost]
         public IActionResult Add(AuthorVM model, int[] categoryid)
         {
-            //List<CategoryCheckVM> categoryCheckVMs = new List<CategoryCheckVM>();
-
             if (ModelState.IsValid)
             {
                 Author author = new Author();
@@ -78,32 +72,6 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
                 model.Categories = _newscontext.Categories.ToList();
 
-                //int[] selectedcategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
-
-                //foreach (var item in model.Categories)
-                //{
-                //    CategoryCheckVM categoryCheck = new CategoryCheckVM();
-                //    categoryCheck.categoryid = item.ID;
-
-                //    foreach (var item2 in selectedcategories)
-                //    {
-                //        if (item2 == categoryCheck.categoryid)
-                //        {
-                //            categoryCheck.IsChecked = true;
-                //            break;
-                //        }
-                //        else
-                //        {
-                //            categoryCheck.IsChecked = false;
-                //        }
-                //    }
-
-                //    categoryCheck.Name = item.CategoryName;
-                //    categoryCheckVMs.Add(categoryCheck);
-                //}
-
-                //model.categoryCheck = categoryCheckVMs.ToArray();
-
                 for (int i = 0; i < categoryid.Length; i++)
                 {
                     AuthorCategory authorcategory = new AuthorCategory();
@@ -116,64 +84,16 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             }
             else
             {
-                model.categoryCheck = _newscontext.Categories.Select(q => new CategoryCheckVM()
-                {
-
-                    categoryid = q.ID,
-                    IsChecked = false,
-                    Name = q.CategoryName
-
-                }).ToArray();
-
-                return View(model);
+                return View(GetAuthorForAdd());
             }
 
             return RedirectToAction("Index", "Author");
         }
-        [RoleControl(EnumRoles.AuthorEdit)]
+
+        [RoleTest(EnumRoles.AuthorEdit)]
         public IActionResult Edit(int id)
         {
-            Author author = _newscontext.Authors.FirstOrDefault(x => x.ID == id);
-            List<CategoryCheckVM> categoryChecks = new List<CategoryCheckVM>();
-
-            AuthorVM model = new AuthorVM();
-            model.Name = author.Name;
-            model.Surname = author.SurName;
-            model.EMail = author.EMail;
-            model.Phone = author.Phone;
-            model.BirthDate = author.BirthDate;
-            model.Categories = _newscontext.Categories.ToList();
-            //model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
-            int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
-
-            foreach (var item in model.Categories)
-            {
-                CategoryCheckVM categoryCheck = new CategoryCheckVM();
-                categoryCheck.categoryid = item.ID;
-
-
-                foreach (var item2 in selectedCategories)
-                {
-                    if (item2 == categoryCheck.categoryid)
-                    {
-                        categoryCheck.IsChecked = true;
-                        break;
-                    }
-                    else
-                    {
-                        categoryCheck.IsChecked = false;
-                    }
-
-                }
-
-                categoryCheck.Name = item.CategoryName;
-
-                categoryChecks.Add(categoryCheck);
-            }
-
-            model.categoryCheck = categoryChecks.ToArray();
-
-            return View(model);
+            return View(GetAuthorForEdit(id));
         }
 
         [HttpPost]
@@ -194,7 +114,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
                 int authorid = author.ID;
 
-                model.Categories = _newscontext.Categories.ToList();
+                model.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false).ToList();
                 int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == authorid).Select(q => q.CategoryID).ToArray();
 
                 foreach (var item in model.Categories)
@@ -237,54 +157,16 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 _newscontext.SaveChanges();
             }
 
-            //Sorun var!!
             else
             {
-                model.Name = author.Name;
-                model.Surname = author.SurName;
-                model.EMail = author.EMail;
-                model.Phone = author.Phone;
-                model.BirthDate = author.BirthDate;
-                model.Categories = _newscontext.Categories.ToList();
-                //model.categoryid = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
-                int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == model.ID).Select(q => q.CategoryID).ToArray();
-
-                foreach (var item in model.Categories)
-                {
-                    CategoryCheckVM categoryCheck = new CategoryCheckVM();
-                    categoryCheck.categoryid = item.ID;
-
-
-                    foreach (var item2 in selectedCategories)
-                    {
-                        if (item2 == categoryCheck.categoryid)
-                        {
-                            categoryCheck.IsChecked = true;
-                            break;
-                        }
-                        else
-                        {
-                            categoryCheck.IsChecked = false;
-                        }
-
-                    }
-
-                    categoryCheck.Name = item.CategoryName;
-
-                    categoryChecks.Add(categoryCheck);
-                }
-
-                model.categoryCheck = categoryChecks.ToArray();
-
-                return View(model);
+                return View(GetAuthorForEdit(model.ID));
             }
-           
+
 
             return RedirectToAction("Index", "Author");
         }
 
 
-        //[RoleControl(EnumRoles.AuthorDelete)]
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -306,34 +188,65 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
         }
 
-        //public IActionResult Search(string Name)
-        //{
-        //    //@ViewData["id"] = SearchString;
-        //    //AuthorVM model = new AuthorVM();
-        //    //if (!String.IsNullOrEmpty(SearchString))
-        //    //{
-        //        List<AuthorVM> deneme = _newscontext.Authors.Where(q => q.Name.Contains(Name)).Select(q => new AuthorVM()
-        //        {
-        //            ID = q.ID,
-        //            Name = q.Name,
-        //            Surname = q.SurName,
-        //            EMail = q.EMail,
-        //            Phone = q.Phone,
-                    
+        AuthorVM GetAuthorForAdd()
+        {
+            AuthorVM model = new AuthorVM();
+            model.categoryCheck = _newscontext.Categories.Where(q => q.IsDeleted == false).Select(q => new CategoryCheckVM()
+            {
 
-        //        }).ToList();
+                categoryid = q.ID,
+                IsChecked = false,
+                Name = q.CategoryName
 
-        //    return RedirectToAction("Index", "Author", deneme);
-        //    //}
-            
-        //}
+            }).ToArray();
 
+            return model;
+        }
+
+        AuthorVM GetAuthorForEdit(int id)
+        {
+            Author author = _newscontext.Authors.FirstOrDefault(x => x.ID == id);
+            List<CategoryCheckVM> categoryChecks = new List<CategoryCheckVM>();
+
+            AuthorVM model = new AuthorVM();
+            model.Name = author.Name;
+            model.Surname = author.SurName;
+            model.EMail = author.EMail;
+            model.Phone = author.Phone;
+            model.BirthDate = author.BirthDate;
+            model.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false).ToList();
+            int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
+
+            foreach (var item in model.Categories)
+            {
+                CategoryCheckVM categoryCheck = new CategoryCheckVM();
+                categoryCheck.categoryid = item.ID;
+
+
+                foreach (var item2 in selectedCategories)
+                {
+                    if (item2 == categoryCheck.categoryid)
+                    {
+                        categoryCheck.IsChecked = true;
+                        break;
+                    }
+                    else
+                    {
+                        categoryCheck.IsChecked = false;
+                    }
+
+                }
+
+                categoryCheck.Name = item.CategoryName;
+
+                categoryChecks.Add(categoryCheck);
+            }
+
+            model.categoryCheck = categoryChecks.ToArray();
+
+            return model;
+        }
     }
 }
 
-//Author author = _newscontext.Authors.Where(q => q.Name.Contains(SearchString)).FirstOrDefault();
-//model.ID = author.ID;
-//model.Name = author.Name;
-//model.Surname = author.SurName;
-//model.EMail = author.EMail;
-//model.Phone = author.Phone;
+

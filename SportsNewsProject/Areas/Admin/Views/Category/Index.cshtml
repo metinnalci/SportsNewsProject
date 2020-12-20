@@ -4,6 +4,9 @@
     Layout = "~/Areas/Admin/Views/Shared/MainLayout.cshtml";
 }
 
+
+
+
 @model List<SportsNewsProject.Models.VM.CategoryVM>
 <div class="content">
     <div class="container-fluid">
@@ -16,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="myTable">
                                 <thead class=" text-warning">
                                     <tr class="text-center">
                                         <th>ID</th>
@@ -24,7 +27,7 @@
                                         <th>Description</th>
                                         <th>UpperCategoryID</th>
                                         <th>Adddate</th>
-                                        <th> Edit/Delete</th>
+                                        <th>Edit/Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,21 +35,11 @@
                                     {
 
                                         <tr class="text-center" id="@item.ID">
-                                            <td>
-                                                @item.ID
-                                            </td>
-                                            <td>
-                                                @item.Name
-                                            </td>
-                                            <td>
-                                                @item.Description
-                                            </td>
-                                            <td class="text-primary">
-                                                @item.UpperCategoryId
-                                            </td>
-                                            <td>
-                                                @item.Adddate
-                                            </td>
+                                            <td>@item.ID</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Description</td>
+                                            <td>@item.UpperCategoryId</td>
+                                            <td>@item.Adddate</td>
                                             <td class="td-actions">
                                                 <a href="/Admin/Category/Edit/@item.ID">
                                                     <button class="btn btn-outline-success">
@@ -75,8 +68,21 @@
     </div>
 </div>
 
+
+
 <script>
-   $(document).on("click", ".delete", function () {
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "searching": false,
+            "ordering": false,
+            "lengthChange": false,
+            "dom": 'B<"clear">lfrtip',
+            "buttons": ['print', { extend: 'excel', text: 'Excel' }, 'pdf']
+        });
+    });
+</script>
+<script>
+    $(document).on("click", ".delete", function () {
 
         let id = $(this).attr("id")
 

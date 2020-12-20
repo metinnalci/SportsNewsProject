@@ -56,7 +56,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ViewBag.error = "Kullanıcı adı veya şifre hatalı!";
+                    ViewBag.error = "Email veya şifre hatalı!";
                     return View();
                 }
             }
