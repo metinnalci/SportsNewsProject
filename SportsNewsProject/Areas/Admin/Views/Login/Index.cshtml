@@ -18,8 +18,8 @@
             <form method="post" action="/Admin/Login/Index">
                 <h2 class="sr-only">Login Form</h2>
                 <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-                @Html.ValidationSummary()
-                <p style="color:red">@ViewBag.error</p>
+                @Html.ValidationSummary()<br>
+                <p style="color:red">@ViewBag.error</p><br>
                 <div class="form-group">
                     @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type = "email", @name = "email", @placeholder = "Email" })
                 </div>
