@@ -35,9 +35,10 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 SubTitle = q.SubTitle,
                 Content = q.Content,
                 AuthorName = q.Author.Name,
-                CategoryName = q.Category.CategoryName
+                CategoryName = q.Category.CategoryName,
+                AddDate = q.AddDate
 
-            }).ToList();
+            }).OrderByDescending(q => q.AddDate).ToList();
 
             return View(news);
         }
