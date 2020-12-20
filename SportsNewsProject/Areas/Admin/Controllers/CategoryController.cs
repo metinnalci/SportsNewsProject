@@ -35,8 +35,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             }).OrderByDescending(q => q.Adddate).ToList();
             return View(categories);
         }
-        [RoleControl(EnumRoles.CategoryAdd)]
 
+        [RoleTest(EnumRoles.CategoryAdd)]
         public IActionResult Add()
         {
             return View(GetCategoryVMForAdd());
