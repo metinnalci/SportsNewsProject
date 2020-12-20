@@ -32,7 +32,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 Description = q.Description,
                 UpperCategoryId = q.UpperCategoryID,
                 Adddate = q.AddDate
-            }).ToList();
+            }).OrderByDescending(q => q.Adddate).ToList();
             return View(categories);
         }
         [RoleControl(EnumRoles.CategoryAdd)]
@@ -74,7 +74,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return RedirectToAction("Index", "Category");
         }
 
-        [RoleControl(EnumRoles.CategoryEdit)]
+        [RoleTest(EnumRoles.CategoryEdit)]
         public IActionResult Edit(int id)
         {
             return View(GetCategoryVMForEdit(id));
