@@ -216,8 +216,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             model.Content = article.Content;
             model.Title = article.Title;
             model.SubTitle = article.SubTitle;
-            model.Categories = _newscontext.Categories.ToList();
-            model.Authors = _newscontext.Authors.ToList();
+            model.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false).ToList();
+            model.Authors = _newscontext.Authors.Where(q => q.IsDeleted == false).ToList();
 
             return model;
         }
