@@ -3,74 +3,76 @@
 *@
 
 @model SportsNewsProject.Models.VM.UserVM
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <style>
-        .field-validation-error {
-            color: red;
-        }
-    </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
 
-    <div class="row">
-        <div class="col-md-5">
-            <div class="form-group">
-                @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.SurName, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.SurName, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type = "email" })
-                @Html.ValidationMessageFor(q => q.EMail)
-            </div>
+<div class="row">
+    <div class="col-md-5">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Name, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.Name, new { @class = "form-control" })
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.NickName, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.NickName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(q => q.NickName)
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.Password, new { @class = "bmd-label-floating" })
-                @Html.PasswordFor(q => q.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(q => q.Password)
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                @Html.LabelFor(q => q.ConfirmPassword, new { @class = "bmd-label-floating" })
-                @Html.PasswordFor(q => q.ConfirmPassword, new { @class = "form-control" })
-                @Html.ValidationMessageFor(q => q.ConfirmPassword)
-            </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.SurName, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.SurName, new { @class = "form-control" })
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                @Html.LabelFor(q => q.BirthDate, new { @class = "bmd-label-floating" })
-                @Html.TextBoxFor(q => q.BirthDate, new { @class = "form-control", @id = "datepicker" })
-                @Html.ValidationMessageFor(q => q.BirthDate)
-            </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(q => q.EMail, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.EMail, new { @class = "form-control", @type = "email" })
+            @Html.ValidationMessageFor(q => q.EMail)
         </div>
-    </div>    
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.NickName, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.NickName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(q => q.NickName)
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.Password, new { @class = "bmd-label-floating" })
+            @Html.PasswordFor(q => q.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(q => q.Password)
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(q => q.ConfirmPassword, new { @class = "bmd-label-floating" })
+            @Html.PasswordFor(q => q.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(q => q.ConfirmPassword)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            @Html.LabelFor(q => q.BirthDate, new { @class = "bmd-label-floating" })
+            @Html.TextBoxFor(q => q.BirthDate, new { @class = "form-control", @id = "datepicker" })
+            @Html.ValidationMessageFor(q => q.BirthDate)
+        </div>
+    </div>
+</div>
 
+@section datepicker{
     <script>
-            $(function () {
-                $("#datepicker").datepicker({
-                   
-                });
+        $(function () {
+            $("#datepicker").datepicker({
+
             });
+        });
     </script>
+}

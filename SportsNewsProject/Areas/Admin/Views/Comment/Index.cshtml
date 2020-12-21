@@ -80,6 +80,21 @@
 </div>
 
 <script>
+    @section DeleteScript{
+            function confirmDelete(Id, isTrue) {
+            var deleteSpan = 'deleteSpan_' + Id;
+            var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
+
+            if (isTrue) {
+                $('#' + deleteSpan).hide();
+                $('#' + confirmDeleteSpan).show();
+            }
+            else {
+                $('#' + deleteSpan).show();
+                $('#' + confirmDeleteSpan).hide();
+            }
+        }
+        }
 
     var search_input = document.querySelector("#search_input");
 
@@ -98,6 +113,8 @@
             }
         })
     })
+
+
 
     $(document).on("click", ".delete", function () {
 

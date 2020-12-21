@@ -45,7 +45,7 @@
 
                                         <tr class="text-center" id="@item.ID">
                                             <td>@item.ID</td>
-                                            <td class="title">@item.Title</td>
+                                            <td class="name">@item.Title</td>
                                             <td>@item.SubTitle</td>
                                             <td>@Html.Raw(item.Content)</td>
                                             <td>@item.AuthorName</td>
@@ -117,13 +117,29 @@
 
 
 <script>
+    @section DeleteScript{
+            function confirmDelete(Id, isTrue) {
+            var deleteSpan = 'deleteSpan_' + Id;
+            var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
 
+            if (isTrue) {
+                $('#' + deleteSpan).hide();
+                $('#' + confirmDeleteSpan).show();
+            }
+            else {
+                $('#' + deleteSpan).show();
+                $('#' + confirmDeleteSpan).hide();
+            }
+        }
+        }
+
+    @section SearchScript{
     var search_input = document.querySelector("#search_input");
 
     search_input.addEventListener("keyup", function (e) {
 
         var search_item = e.target.value.toLowerCase();
-        var name_items = document.querySelectorAll(".table_body .text-center .title");
+        var name_items = document.querySelectorAll(".table_body .text-center .name");
 
         name_items.forEach(function (item) {
             if (item.textContent.toLowerCase().indexOf(search_item) != -1) {
@@ -134,6 +150,8 @@
             }
         })
     })
+    }
+
 
     $(document).on("click", ".delete", function () {
 

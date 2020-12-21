@@ -126,6 +126,7 @@
 
 <script>
 
+     @section SearchScript{
     var search_input = document.querySelector("#search_input");
 
     search_input.addEventListener("keyup", function (e) {
@@ -142,6 +143,22 @@
             }
         })
     })
+    }
+    @section DeleteScript{
+            function confirmDelete(Id, isTrue) {
+            var deleteSpan = 'deleteSpan_' + Id;
+            var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
+
+            if (isTrue) {
+                $('#' + deleteSpan).hide();
+                $('#' + confirmDeleteSpan).show();
+            }
+            else {
+                $('#' + deleteSpan).show();
+                $('#' + confirmDeleteSpan).hide();
+            }
+        }
+        }
 
     $(document).on("click", ".detay", function () {
         let id = $(this).attr("id");

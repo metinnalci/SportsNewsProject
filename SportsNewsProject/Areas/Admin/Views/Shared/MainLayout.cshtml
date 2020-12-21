@@ -205,7 +205,7 @@
                                 </a>
                             }
                         }
-                    <!-- your sidebar here -->
+                        <!-- your sidebar here -->
                 </ul>
             </div>
         </div>
@@ -323,19 +323,10 @@
 
     <!-- Delete Operation scripts -->
     <script>
-        function confirmDelete(Id, isTrue) {
-            var deleteSpan = 'deleteSpan_' + Id;
-            var confirmDeleteSpan = 'confirmDeleteSpan_' + Id;
 
-            if (isTrue) {
-                $('#' + deleteSpan).hide();
-                $('#' + confirmDeleteSpan).show();
-            }
-            else {
-                $('#' + deleteSpan).show();
-                $('#' + confirmDeleteSpan).hide();
-            }
-        }
+        @RenderSection("SearchScript", false)
+        @RenderSection("DeleteScript",false)
+        @RenderSection("datepicker",false)
 
 
         $(document).ready(function () {
