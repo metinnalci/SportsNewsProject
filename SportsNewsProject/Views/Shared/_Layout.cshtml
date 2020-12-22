@@ -81,7 +81,7 @@
 
                         <div class="col-md-6">
                             <div class="header_ad_banner">
-                                <a href="#"><img class="img-responsive" src="~/mainsite/assets/img/img_ad.jpg" alt=""></a>
+                                <a href="#"><img class="img-responsive" src="" alt=""></a>
                             </div>
                         </div><!--col-md-6-->
 
@@ -115,15 +115,10 @@
                     <div id="navbar" class="collapse navbar-collapse sidebar-offcanvas">
                         <ul class="nav navbar-nav">
                             <li class="hidden"><a href="#page-top"></a></li>
-                            <li><a class="page-scroll" href="category.html">Baseball</a></li>
-                            <li><a class="page-scroll" href="category.html">Football</a></li>
-                            <li><a class="page-scroll" href="category.html">Hockey</a></li>
-                            <li><a class="page-scroll" href="category.html">Basketball</a></li>
-                            <li><a class="page-scroll" href="category.html">Boxing</a></li>
-                            <li><a class="page-scroll" href="category.html">Golf</a></li>
-                            <li><a class="page-scroll" href="category.html">Tennis</a></li>
-                            <li><a class="page-scroll" href="category.html">Horse racing</a></li>
-                            <li><a class="page-scroll" href="category.html">Track & Field</a></li>
+                            @foreach (var item in ViewBag.categories)
+                            {
+                                <li><a class="page-scroll" href="">@item.CategoryName</a></li>
+                            }
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
