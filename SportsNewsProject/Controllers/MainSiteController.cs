@@ -34,7 +34,7 @@ namespace SportsNewsProject.Controllers
                     .SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
                     .SetSlidingExpiration(TimeSpan.FromSeconds(60));
 
-                categories = _newsContext.Categories.Where(q => q.IsDeleted == false).ToList();
+                categories = _newsContext.Categories.Where(q => q.IsDeleted == false && q.UpperCategoryID == 1).ToList();
 
                 _memoryCache.Set("categories", categories, cacheEntryOptions);
             }
