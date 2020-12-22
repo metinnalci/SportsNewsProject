@@ -15,7 +15,7 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
 
-                            @for (int i = 0; i < Model.News.Count; i++)
+                            @for (int i = 0; i < 3; i++)
                             {
                                 if (i == 0)
                                 {
@@ -73,49 +73,32 @@
             <div class="col-md-6">
                 <div class="feature_news_static">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="feature_news_item">
-                                <div class="item active">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/mainsite/assets/img/img_feature.jpg" alt="Chania">
-                                        </div> <!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h2><a href="single.html">Track Roboto the Real Tracker.</a></h2>
-                                            </div>
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div><!--item_title_date-->
-                                    </div> <!--item_wrapper-->
-                                    <div class="item_content">
-                                        Sed ut perspiciatis unde omnis iste natus error sit
-                                    </div>
+                        @for (int i = 3; i < 5; i++)
+                        {
+                            <div class="col-md-6">
+                                <div class="feature_news_item">
+                                    <div class="item active">
+                                        <div class="item_wrapper">
+                                            <div class="item_img">
+                                                <img class="img-responsive" src="/mainsite/assets/img/img_feature.jpg" alt="Chania">
+                                            </div> <!--item_img-->
+                                            <div class="item_title_date">
+                                                <div class="news_item_title">
+                                                    <h2><a href="">@Model.News[i].Title</a></h2>
+                                                </div>
+                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">Jhonson</a></div>
+                                            </div><!--item_title_date-->
+                                        </div> <!--item_wrapper-->
+                                        <div class="item_content">
+                                            @Model.News[i].SubTitle
+                                        </div>
 
-                                </div><!--item-->
-                            </div><!--feature_news_item-->
-                        </div>
+                                    </div><!--item-->
+                                </div><!--feature_news_item-->
+                            </div><!--col-xs-6-->
 
-                        <div class="col-md-6">
-                            <div class="feature_news_item">
-                                <div class="item active">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/mainsite/assets/img/img_feature2.jpg" alt="Chania">
-                                        </div> <!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h2><a href="single.html">David villa change his team last year.</a></h2>
-                                            </div>
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div><!--item_title_date-->
-                                    </div> <!--item_wrapper-->
-                                    <div class="item_content">
-                                        Sed ut perspiciatis unde omnis iste natus error sit
-                                    </div>
+                        }
 
-                                </div><!--item-->
-                            </div><!--feature_news_item-->
-                        </div><!--col-xs-6-->
                     </div><!--row-->
                 </div><!--feature_news_static-->
             </div><!--col-md-6-->
@@ -127,285 +110,111 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <div class="category_layout">
-                    <div class="item_caregory red"><h2><a href="category.html">Football</a></h2></div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="item feature_news_item">
-                                <div class="item_wrapper">
-                                    <div class="item_img">
-                                        <img class="img-responsive" src="/mainsite/assets/img/img_feature_news.jpg" alt="Chania">
-                                    </div><!--item_img-->
-                                    <div class="item_title_date">
-                                        <div class="news_item_title">
-                                            <h2><a href="#">22Leo Messi is boss of the bosses of the football world.</a></h2>
-                                        </div><!--news_item_title-->
-                                        <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                    </div><!--item_title_date-->
-                                </div><!--item_wrapper-->
-                                <div class="item_content">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                </div><!--item_content-->
+                @foreach (var item in Model.Categories)
+                {
+                    <div class="category_layout">
+                        <div class="item_caregory red"><h2><a href="">@item.CategoryName</a></h2></div>
+                        <div class="row">
+                            @foreach (var news in Model.News)
+                            {
+                                if (item.ID == news.CategoryID)
+                                {
 
-                            </div><!--feature_news_item-->
-                        </div><!--col-md-7-->
+                                    <div class="col-md-7">
+                                        <div class="item feature_news_item">
+                                            <div class="item_wrapper">
+                                                <div class="item_img">
+                                                    <img class="img-responsive" src="/mainsite/assets/img/img_feature_news.jpg" alt="Chania">
+                                                </div><!--item_img-->
+                                                <div class="item_title_date">
+                                                    <div class="news_item_title">
+                                                        <h2><a href="#">@news.Title</a></h2>
+                                                    </div><!--news_item_title-->
+                                                    <div class="item_meta"><a href="#">@news.AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">Jhonson</a></div>
+                                                </div><!--item_title_date-->
+                                            </div><!--item_wrapper-->
+                                            <div class="item_content">
+                                                @news.SubTitle
+                                            </div><!--item_content-->
 
-                        <div class="col-md-5">
-                            <div class="media_wrapper">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
+                                        </div><!--feature_news_item-->
+                                    </div><!--col-md-7-->
 
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
 
-                                    </div><!--media-body-->
-                                </div><!--media-->
+                                }
+                            }
 
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
+                            <div class="col-md-5">
+                                <div class="media_wrapper">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                        </div><!--media-left-->
+                                        <div class="media-body">
+                                            <h3 class="media-heading">
+                                                <a href="#">
+                                                    Machester United start the player
+                                                </a>
+                                            </h3>
 
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
+                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
 
-                                    </div><!--media-body-->
-                                </div><!--media-->
+                                        </div><!--media-body-->
+                                    </div><!--media-->
 
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
+                                        </div><!--media-left-->
+                                        <div class="media-body">
+                                            <h3 class="media-heading">
+                                                <a href="#">
+                                                    Machester United start the player
+                                                </a>
+                                            </h3>
 
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
+                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
 
-                                    </div><!--media-body-->
-                                </div><!--media-->
+                                        </div><!--media-body-->
+                                    </div><!--media-->
 
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
+                                        </div><!--media-left-->
+                                        <div class="media-body">
+                                            <h3 class="media-heading">
+                                                <a href="#">
+                                                    Machester United start the player
+                                                </a>
+                                            </h3>
 
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
+                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
 
-                                    </div><!--media-body-->
-                                </div><!--media-->
-                            </div><!--media_wrapper-->
+                                        </div><!--media-body-->
+                                    </div><!--media-->
 
-                        </div><!--col-md-5-->
-                    </div><!--row-->
-                </div><!--category_layout-->
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
+                                        </div><!--media-left-->
+                                        <div class="media-body">
+                                            <h3 class="media-heading">
+                                                <a href="#">
+                                                    Machester United start the player
+                                                </a>
+                                            </h3>
 
-                <div class="category_layout">
-                    <div class="item_caregory blue"><h2><a href="#">Hockey</a></h2></div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="item active feature_news_item">
-                                <div class="item_wrapper">
-                                    <div class="item_img">
-                                        <img class="img-responsive" src="/mainsite/assets/img/img-hockey.jpg" alt="Chania">
-                                    </div><!--item_img-->
-                                    <div class="item_title_date">
-                                        <div class="news_item_title">
-                                            <h2><a href="#">Argentia ahead two step playing hockey tournament</a></h2>
-                                        </div><!--news_item_title-->
-                                        <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                    </div><!--item_title_date-->
-                                </div><!--item_wrapper-->
-                                <div class="item_content">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                </div>
+                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
 
-                            </div><!--feature_news_item-->
-                        </div><!--col-md-7-->
+                                        </div><!--media-body-->
+                                    </div><!--media-->
+                                </div><!--media_wrapper-->
 
-                        <div class="col-md-5">
-                            <div class="media_wrapper">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list5.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list6.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list7.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-                            </div><!--media_wrapper-->
-                        </div><!--col-md-5-->
-                    </div><!--row-->
-                </div><!--category_layout-->
-
-                <div class="category_layout">
-                    <div class="item_caregory teal"><h2><a href="#">Tennis</a></h2></div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="item active feature_news_item">
-                                <div class="item_wrapper">
-                                    <div class="item_img">
-                                        <img class="img-responsive" src="/mainsite/assets/img/img_feature_news3.jpg" alt="Chania">
-                                    </div><!--item_img-->
-                                    <div class="item_title_date">
-                                        <div class="news_item_title">
-                                            <h2><a href="#">Leo Messi is boss of the bosses of the football world.</a></h3>
-                                        </div><!--news_item_title-->
-                                        <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                    </div><!--item_title_date-->
-                                </div><!--item_wrapper-->
-                                <div class="item_content">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                </div>
-
-                            </div><!--feature_news_item-->
-                        </div><!--col-md-7-->
-
-                        <div class="col-md-5">
-                            <div class="media_wrapper">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list7.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list8.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list9.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading">
-                                            <a href="#">
-                                                Machester United start the player
-                                            </a>
-                                        </h3>
-
-                                        <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                    </div><!--media-body-->
-                                </div><!--media-->
-                            </div><!--media_wrapper-->
-                        </div><!--col-md-5-->
-                    </div><!--row-->
-                </div><!--category_layout-->
+                            </div><!--col-md-5-->
+                        </div><!--row-->
+                    </div><!--category_layout-->
+                }
 
                 <div id="more_news_item" class="more_news_item">
                     <div class="more_news_heading"><h2><a href="#">More News</a></h2></div>
