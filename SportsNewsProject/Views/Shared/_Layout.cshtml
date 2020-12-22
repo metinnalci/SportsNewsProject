@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="top_ber_left">
-                                20 August. Thursday 2015. 2:00 PM.
+                                @DateTime.Now.ToString("dd MMMM dddd yyyy HH:mm")
                             </div><!--top_ber_left-->
                         </div><!--col-md-6-->
                         <div class="col-md-6">
@@ -117,17 +117,18 @@
                             <li class="hidden"><a href="#page-top"></a></li>
                             @foreach (var item in ViewBag.categories)
                             {
-                                <li><a class="page-scroll" href="">@item.CategoryName</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@item.CategoryName <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var sub in ViewBag.subcategories)
+                                        {
+                                            <li><a href="#">@sub.CategoryName</a></li>
+                                        }
+                                    </ul>
+                                </li>
                             }
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                </ul>
-                            </li>
+
                         </ul>
                         <div class="pull-right">
                             <form class="navbar-form" role="search">

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
+using SportsNewsProject.Models.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,11 @@ namespace SportsNewsProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            HomeVM home = new HomeVM();
+            home.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false && q.UpperCategoryID == 1).ToList();
+            home.News = _newscontext.News.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).ToList();
+
+            return View(home);
         }
     }
 }

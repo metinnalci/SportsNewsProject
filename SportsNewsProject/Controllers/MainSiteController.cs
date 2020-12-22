@@ -34,12 +34,13 @@ namespace SportsNewsProject.Controllers
                     .SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
                     .SetSlidingExpiration(TimeSpan.FromSeconds(60));
 
-                categories = _newsContext.Categories.Where(q => q.IsDeleted == false && q.UpperCategoryID == 1).ToList();
+                categories = _newsContext.Categories.Where(q => q.IsDeleted == false).ToList();
 
                 _memoryCache.Set("categories", categories, cacheEntryOptions);
             }
 
-            ViewBag.categories = categories;
+            ViewBag.categories = categories.Where(q => q.UpperCategoryID == 1);
+            ViewBag.subcategories = categories.Where(q => q.UpperCategoryID > 1);
 
             base.OnActionExecuting(context);
         }
