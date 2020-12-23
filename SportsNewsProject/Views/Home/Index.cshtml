@@ -137,7 +137,7 @@
                                                         </div><!--item_title_date-->
                                                     </div><!--item_wrapper-->
                                                     <div class="item_content">
-                                                        @item.News[i].SubTitle
+                                                        @item.News[i].SubTitle.Substring(0,70) ...
                                                     </div><!--item_content-->
 
                                                 </div><!--feature_news_item-->
@@ -157,7 +157,7 @@
                                                             </a>
                                                         </h3>
 
-                                                        <p>@item.News[i].SubTitle</p>
+                                                        <p>@item.News[i].SubTitle.Substring(0,70) ...</p>
 
                                                     </div><!--media-body-->
                                                 </div><!--media-->
