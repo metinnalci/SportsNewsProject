@@ -122,7 +122,11 @@
                                     <ul class="dropdown-menu">
                                         @foreach (var sub in ViewBag.subcategories)
                                         {
-                                            <li><a href="#">@sub.CategoryName</a></li>
+                                            if (sub.UpperCategoryID == item.ID)
+                                            {
+                                                <li><a href="#">@sub.CategoryName</a></li>
+
+                                            }
                                         }
                                     </ul>
                                 </li>

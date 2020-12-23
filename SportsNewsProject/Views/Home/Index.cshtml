@@ -28,7 +28,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="">@Model.News[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">Jhonson</a></div>
+                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">@Model.News[i].SubTitle</div>
@@ -45,7 +45,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="#">@Model.News[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">Jhonson</a></div>
+                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
 
@@ -86,7 +86,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="">@Model.News[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">Jhonson</a></div>
+                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">
@@ -115,11 +115,10 @@
                     <div class="category_layout">
                         <div class="item_caregory red"><h2><a href="">@item.CategoryName</a></h2></div>
                         <div class="row">
-                            @foreach (var news in Model.News)
+                            @for (int i = 0; i < Model.News.Count; i++)
                             {
-                                if (item.ID == news.CategoryID)
+                                if (item.ID == Model.News[i].CategoryID)
                                 {
-
                                     <div class="col-md-7">
                                         <div class="item feature_news_item">
                                             <div class="item_wrapper">
@@ -128,90 +127,42 @@
                                                 </div><!--item_img-->
                                                 <div class="item_title_date">
                                                     <div class="news_item_title">
-                                                        <h2><a href="#">@news.Title</a></h2>
+                                                        <h2><a href="#">@Model.News[i].Title</a></h2>
                                                     </div><!--news_item_title-->
-                                                    <div class="item_meta"><a href="#">@news.AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">Jhonson</a></div>
+                                                    <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                                 </div><!--item_title_date-->
                                             </div><!--item_wrapper-->
                                             <div class="item_content">
-                                                @news.SubTitle
+                                                @Model.News[i].SubTitle
                                             </div><!--item_content-->
 
                                         </div><!--feature_news_item-->
                                     </div><!--col-md-7-->
 
+                                    <div class="col-md-5">
+                                        <div class="media_wrapper">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                                </div><!--media-left-->
+                                                <div class="media-body">
+                                                    <h3 class="media-heading">
+                                                        <a href="#">
+                                                            @Model.News[i].Title
+                                                        </a>
+                                                    </h3>
 
+                                                    <p>@Model.News[i].SubTitle</p>
+
+                                                </div><!--media-body-->
+                                            </div><!--media-->
+                                        </div><!--media_wrapper-->
+
+                                    </div><!--col-md-5-->
                                 }
+
                             }
 
-                            <div class="col-md-5">
-                                <div class="media_wrapper">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                        </div><!--media-left-->
-                                        <div class="media-body">
-                                            <h3 class="media-heading">
-                                                <a href="#">
-                                                    Machester United start the player
-                                                </a>
-                                            </h3>
-
-                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                        </div><!--media-body-->
-                                    </div><!--media-->
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
-                                        </div><!--media-left-->
-                                        <div class="media-body">
-                                            <h3 class="media-heading">
-                                                <a href="#">
-                                                    Machester United start the player
-                                                </a>
-                                            </h3>
-
-                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                        </div><!--media-body-->
-                                    </div><!--media-->
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
-                                        </div><!--media-left-->
-                                        <div class="media-body">
-                                            <h3 class="media-heading">
-                                                <a href="#">
-                                                    Machester United start the player
-                                                </a>
-                                            </h3>
-
-                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                        </div><!--media-body-->
-                                    </div><!--media-->
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
-                                        </div><!--media-left-->
-                                        <div class="media-body">
-                                            <h3 class="media-heading">
-                                                <a href="#">
-                                                    Machester United start the player
-                                                </a>
-                                            </h3>
-
-                                            <p>Sed perspiciatis unde omnis iste natus voluptatem.</p>
-
-                                        </div><!--media-body-->
-                                    </div><!--media-->
-                                </div><!--media_wrapper-->
-
-                            </div><!--col-md-5-->
                         </div><!--row-->
                     </div><!--category_layout-->
                 }
