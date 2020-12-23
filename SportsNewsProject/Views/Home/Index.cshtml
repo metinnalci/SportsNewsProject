@@ -26,7 +26,7 @@
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="">@Model.News[i].Title</a></h2>
+                                                    <h2><a href="/NewsDetail/Index/@Model.News[i].ID" name="id" id="@Model.News[i].ID">@Model.News[i].Title</a></h2>
                                                 </div>
                                                 <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
@@ -43,7 +43,7 @@
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="#">@Model.News[i].Title</a></h2>
+                                                    <h2><a href="/NewsDetail/Index/@Model.News[i].ID">@Model.News[i].Title</a></h2>
                                                 </div>
                                                 <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
@@ -84,7 +84,7 @@
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="">@Model.News[i].Title</a></h2>
+                                                    <h2><a href="/NewsDetail/Index/@Model.News[i].ID">@Model.News[i].Title</a></h2>
                                                 </div>
                                                 <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
@@ -127,7 +127,7 @@
                                                 </div><!--item_img-->
                                                 <div class="item_title_date">
                                                     <div class="news_item_title">
-                                                        <h2><a href="#">@Model.News[i].Title</a></h2>
+                                                        <h2><a href="/NewsDetail/Index/@Model.News[i].ID">@Model.News[i].Title</a></h2>
                                                     </div><!--news_item_title-->
                                                     <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                                 </div><!--item_title_date-->
@@ -146,7 +146,7 @@
                                                 </div><!--media-left-->
                                                 <div class="media-body">
                                                     <h3 class="media-heading">
-                                                        <a href="#">
+                                                        <a href="/NewsDetail/Index/@Model.News[i].ID">
                                                             @Model.News[i].Title
                                                         </a>
                                                     </h3>

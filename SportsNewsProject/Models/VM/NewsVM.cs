@@ -25,6 +25,7 @@ namespace SportsNewsProject.Models.VM
         public List<string> MainImagePath { get; set; }
         public List<Category> Categories { get; set; }
         public List<Author> Authors { get; set; }
+        public List<Comment> Comments { get; set; }
 
     }
 }
