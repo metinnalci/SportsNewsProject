@@ -33,8 +33,23 @@ namespace SportsNewsProject.Controllers
             model.AddDate = news.AddDate;
             model.Comments = news.CommentList.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).ToList();
             
-
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(NewsVM model)
+        {
+            Comment comment = new Comment();
+            comment.Content = model.Comment.Content;
+            comment.NewsId = model.ID;
+            comment.UserId = model.Comment.User.ID;
+            comment.User.EMail = model.Comment.User.EMail;
+            comment.User.NickName = model.Comment.User.NickName;
+
+            _newscontext.Comments.Add(comment);
+            _newscontext.SaveChanges();
+            
+            return RedirectToAction("NewsDetail","Index");
         }
     }
 }
