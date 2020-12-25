@@ -10,6 +10,5 @@ namespace SportsNewsProject.Models.VM
     {
         public List<News> News { get; set; }
         public List<Category> Categories { get; set; }
-        public News LastNews { get; set; }
     }
 }

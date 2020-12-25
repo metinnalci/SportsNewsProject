@@ -31,7 +31,7 @@
                                                 <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
-                                        <div class="item_content">@Model.News[i].SubTitle</div>
+                                        <div class="item_content">@Model.News[i].SubTitle.Substring(0, 70) ...</div>
                                     </div><!--feature_news_item-->
                                 }
                                 else
@@ -50,7 +50,7 @@
                                         </div> <!--item_wrapper-->
 
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle
+                                            @Model.News[i].SubTitle.Substring(0, 70) ...
                                         </div>
 
                                     </div><!--feature_news_item-->
@@ -90,7 +90,7 @@
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle
+                                            @Model.News[i].SubTitle.Substring(0, 70) ...
                                         </div>
 
                                     </div><!--item-->
