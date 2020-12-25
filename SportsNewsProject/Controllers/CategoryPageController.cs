@@ -22,6 +22,7 @@ namespace SportsNewsProject.Controllers
         {
             CategoryPageVM page = new CategoryPageVM();
             page.category = _newsContext.Categories.Include(q => q.News.OrderByDescending(x => x.AddDate)).ThenInclude(News => News.Author).Where(q => q.IsDeleted == false).FirstOrDefault(x => x.ID == id);
+            page.news = _newsContext.News.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).Take(4).ToList();
             return View(page);
         }
     }
