@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model SportsNewsProject.Models.VM.HomeVM
+@model SportsNewsProject.Models.VM.MainHomeVM
 <!-- Feature Carousel Section -->
 <section id="feature_news_section" class="feature_news_section section_wrapper">
     <div class="container">
@@ -31,7 +31,7 @@
                                                 <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
-                                        <div class="item_content">@Model.News[i].SubTitle</div>
+                                        <div class="item_content">@Model.News[i].SubTitle.Substring(0, 70) ...</div>
                                     </div><!--feature_news_item-->
                                 }
                                 else
@@ -50,7 +50,7 @@
                                         </div> <!--item_wrapper-->
 
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle
+                                            @Model.News[i].SubTitle.Substring(0, 70) ...
                                         </div>
 
                                     </div><!--feature_news_item-->
@@ -90,7 +90,7 @@
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle
+                                            @Model.News[i].SubTitle.Substring(0, 70) ...
                                         </div>
 
                                     </div><!--item-->
@@ -137,7 +137,7 @@
                                                         </div><!--item_title_date-->
                                                     </div><!--item_wrapper-->
                                                     <div class="item_content">
-                                                        @item.News[i].SubTitle.Substring(0,70) ...
+                                                        @item.News[i].SubTitle.Substring(0, 70) ...
                                                     </div><!--item_content-->
 
                                                 </div><!--feature_news_item-->
@@ -157,7 +157,7 @@
                                                             </a>
                                                         </h3>
 
-                                                        <p>@item.News[i].SubTitle.Substring(0,70) ...</p>
+                                                        <p>@item.News[i].SubTitle.Substring(0, 70) ...</p>
 
                                                     </div><!--media-body-->
                                                 </div><!--media-->
@@ -175,194 +175,101 @@
                 }
 
                 <div id="more_news_item" class="more_news_item">
-                    <div class="more_news_heading"><h2><a href="#">More News</a></h2></div>
+                    <div class="more_news_heading"><h2><a href="#">Daha Fazla Haber</a></h2></div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="feature_news_item">
-                                <div class="item">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/mainsite/assets/img/img-news.jpg" alt="Chania">
-                                        </div><!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h3><a href="#">Track Roboto the Real Tracker.</a></h3>
-                                            </div><!--news_item_title-->
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div><!--item_title_date-->
-                                    </div><!--item_wrapper-->
-                                    <div class="item_content">
-                                        Sed ut perspiciatis unde omnis iste natus error sit
-                                    </div><!--item_content-->
+                        @for (int i = 9; i < 12; i++)
+                        {
+                            <div class="col-md-4">
+                                <div class="feature_news_item">
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_img">
+                                                <img class="img-responsive" src="/mainsite/assets/img/img-news.jpg" alt="Chania">
+                                            </div><!--item_img-->
+                                            <div class="item_title_date">
+                                                <div class="news_item_title">
+                                                    <h3><a href="#">@Model.News[i].Title</a></h3>
+                                                </div><!--news_item_title-->
+                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
+                                            </div><!--item_title_date-->
+                                        </div><!--item_wrapper-->
+                                        <div class="item_content">
+                                            @Model.News[i].SubTitle.Substring(0, 35) ...
+                                        </div><!--item_content-->
 
-                                </div><!--item-->
-                            </div><!--feature_news_item-->
-                        </div><!--col-xs-4-->
+                                    </div><!--item-->
+                                </div><!--feature_news_item-->
+                            </div><!--col-xs-4-->
 
-                        <div class="col-md-4">
-                            <div class="feature_news_item">
-                                <div class="item active">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/mainsite/assets/img/img-news1.jpg" alt="Chania">
-                                        </div><!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h3><a href="#">Track Roboto the Real Tracker.</a></h3>
-                                            </div><!--news_item_title-->
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div><!--item_title_date-->
-                                    </div><!--item_wrapper-->
-                                    <div class="item_content">
-                                        Sed ut perspiciatis unde omnis iste natus error sit
-                                    </div><!--item_content-->
+                        }
 
-                                </div><!--item-->
-                            </div><!--feature_news_item-->
-                        </div><!--col-xs-4-->
-
-                        <div class="col-md-4">
-                            <div class="feature_news_item">
-                                <div class="item active">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/mainsite/assets/img/img-news2.jpg" alt="Chania">
-                                        </div><!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h3><a href="#">Track Roboto the Real Tracker.</a></h3>
-                                            </div><!--news_item_title-->
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div><!--item_title_date-->
-                                    </div><!--item_wrapper-->
-                                    <div class="item_content">
-                                        Sed ut perspiciatis unde omnis iste natus error sit
-                                    </div><!--item_content-->
-
-                                </div><!--item-->
-                            </div><!--feature_news_item-->
-                        </div><!--col-xs-4-->
                     </div><!--row-->
                 </div><!--more_news_item-->
             </div><!--col-md-9-->
 
             <div class="col-md-3">
-
-                <!--<div class="tab sitebar">
+                <div class="tab sitebar">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#1" data-toggle="tab">Latest</a></li>
+                        <li class="active"><a href="#1" data-toggle="tab">Son Dakika</a></li>
                         <li><a href="#2" data-toggle="tab">Populer</a></li>
                     </ul>
 
                     <div class="tab-content">
                         <div class="tab-pane active" id="1">
+                            @for (int i = 5; i < 9; i++)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                    </div>
+                                    <!--media-left-->
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">@Model.News[i].Title</a></h4>
+                                    </div>
+                                    <!--media-body-->
+                                </div><!--media-->
+
+                            }
+                          
+                        </div><!--tab-pane-->
+                        <div class="tab-pane" id="2">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
+                                </div>
+                                <!--media-left-->
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+                                    <span class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-full"></i>
+                                    </span>
+                                </div>
+                                <!--media-body-->
+                            </div><!--media-->
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                </div>-->
-                <!--media-left-->
-                <!--<div class="media-body">
-                    <h4 class="media-heading"><a href="#">Spain going to made class football</a></h4>
-                    <span class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-full"></i>
-                    </span>
-                </div>-->
-                <!--media-body-->
-                <!--</div>--><!--media-->
-                <!--<div class="media">
-                    <div class="media-left">
-                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list5.jpg" alt="Generic placeholder image"></a>
-                    </div>-->
-                <!--media-left-->
-                <!--<div class="media-body">
-                    <h4 class="media-heading"><a href="#">Spain going to made class football</a></h4>
-                    <span class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-full"></i>
-                    </span>
-                </div>-->
-                <!--media-body-->
-                <!--</div>--><!--media-->
-                <!--<div class="media">
-                    <div class="media-left">
-                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
-                    </div>-->
-                <!--media-left-->
-                <!--<div class="media-body">
-                    <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                    <span class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-full"></i>
-                    </span>
-                </div>-->
-                <!--media-body-->
-                <!--</div>--><!--media-->
-                <!--<div class="media">
-                    <div class="media-left">
-                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
-                    </div>-->
-                <!--media-left-->
-                <!--<div class="media-body">
-                    <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                    <span class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-full"></i>
-                    </span>
-                </div>-->
-                <!--media-body-->
-                <!--</div>--><!--media-->
-                <!--</div>--><!--tab-pane-->
-                <!--<div class="tab-pane" id="2">
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list4.jpg" alt="Generic placeholder image"></a>
-                        </div>-->
-                <!--media-left-->
-                <!--<div class="media-body">
-                    <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                    <span class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-full"></i>
-                    </span>
-                </div>-->
-                <!--media-body-->
-                <!--</div>--><!--media-->
-                <!--<div class="media">
-                    <div class="media-left">
-                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
-                    </div>-->
-                <!--media-left-->
-                <!--<div class="media-body">
-                    <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                    <span class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-full"></i>
-                    </span>
-                </div>-->
-                <!--media-body-->
-                <!--</div>--><!--media-->
-                <!--</div>--><!--tab-pane-->
-                <!--</div>--><!--tab-content-->
-                <!--</div>--><!--tab-->
+                                </div>
+                                <!--media-left-->
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
+                                    <span class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-full"></i>
+                                    </span>
+                                </div>
+                                <!--media-body-->
+                            </div><!--media-->
+                        </div><!--tab-pane-->
+                    </div><!--tab-content-->
+                </div><!--tab-->
                 @*<div class="ad">
                         <img class="img-responsive" src="/mainsite/assets/img/img-sitebar.jpg" alt="img" />
                         <img class="img-responsive" src="/mainsite/assets/img/img-sitebar.jpg" alt="img" />

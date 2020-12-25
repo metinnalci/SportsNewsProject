@@ -26,6 +26,7 @@ namespace SportsNewsProject.Controllers
         {
             List<Category> categories = new List<Category>();
 
+
             bool isExist = _memoryCache.TryGetValue("categories", out categories);
 
             if (!isExist)
