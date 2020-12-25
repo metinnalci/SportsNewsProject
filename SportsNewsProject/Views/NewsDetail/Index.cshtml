@@ -21,14 +21,6 @@
                             </div><!--news_item_title-->
                             <div class="item_meta"><a>@Model.AddDate.ToString("dd MMM yyy"),</a> by:<a>@Model.AuthorName</a></div>
 
-                            <span class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-full"></i>
-                            </span>
-
                             <div class="single_social_icon">
                                 <a class="icons-sm fb-ic" href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
                                 <!--Twitter-->
@@ -178,7 +170,7 @@
                     <div class="add_a_comment">
                         <div class="single_media_title"><h2>Add a Comment</h2></div>
                         <div class="comment_form">
-                            <form action="/NewsDetail/AddComment">
+                            <form action="/NewsDetail/AddComment/@Model.ID" @*id="@Model.ID" name="id"*@ method="post">
                                 <div class="form-group">
                                     @Html.LabelFor(q => q.Comment.User.NickName, new { @class = "bmd-label-floating" })
                                     @Html.TextBoxFor(q => q.Comment.User.NickName, new { @class = "form-control" })
