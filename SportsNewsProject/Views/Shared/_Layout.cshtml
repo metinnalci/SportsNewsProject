@@ -78,7 +78,6 @@
                                 <a href="index.html"><img class="img-responsive" src="~/mainsite/assets/img/logo.png" alt=""></a>
                             </div><!--logo-->
                         </div><!--col-md-3-->
-
                         @*<div class="col-md-6">
                             <div class="header_ad_banner">
                                 <a href="#"><img class="img-responsive" src="" alt=""></a>
@@ -120,6 +119,8 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">@item.CategoryName <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
+                                        <li><a href="/CategoryPage/Category/@item.ID">Tüm Haberler</a></li>
+
                                         @foreach (var sub in ViewBag.subcategories)
                                         {
                                             if (sub.UpperCategoryID == item.ID)
@@ -156,56 +157,28 @@
         <footer class="footer_section section_wrapper section_wrapper">
             <div class="footer_top_section">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" style="display:flex; justify-content:space-evenly;">
                         <div class="col-md-3">
                             <div class="text_widget footer_widget">
-                                <div class="footer_widget_title"><h2>About Sports Mag</h2></div>
+                                <div class="footer_widget_title"><h2>Sports News Hakkında</h2></div>
 
                                 <div class="footer_widget_content">
-                                    Collaborativelyadministrate empowered marketsplug-and-play networks. Dynamic procrastinate after.marketsplug-and-play networks. Dynamic procrastinate users after. Dynamic procrastinateafter. marketsplug-and-play networks. Dynamic procrastinate users after...
+                                    Sports News bir spor haberleri sitesidir. BABoost sınıfından Metin Nalcı ve Doğan Aker tarafından hazırlanmış olup, hiç bir ticari amaç güdülmemektedir.
                                 </div>
                             </div><!--text_widget-->
                         </div><!--col-xs-3-->
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <div class="footer_widget">
-                                <div class="footer_widget_title"><h2>Discover</h2></div>
+                                <div class="footer_widget_title"><h2>Keşfet</h2></div>
                                 <div class="footer_menu_item ">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <ul class="nav navbar-nav ">
-                                                <li><a href="../navbar/">Baseball</a></li>
-                                                <li><a href="../navbar-static-top/">Football</a></li>
-                                                <li><a href="./">Cricket</a></li>
-                                                <li><a href="../navbar/">Rugbi</a></li>
-                                                <li><a href="../navbar/">Hockey</a></li>
-                                                <li><a href="../navbar-static-top/">Boxing</a></li>
-                                                <li><a href="./">Golf</a></li>
-                                                <li><a href="../navbar/">Tennis</a></li>
-                                                <li><a href="../navbar/">Horse Racing</a></li>
-                                            </ul>
-                                        </div><!--col-sm-4-->
-                                        <div class="col-sm-4 ">
-                                            <ul class="nav navbar-nav  ">
-                                                <li><a href="../navbar/">Track & Field</a></li>
-                                                <li><a href="../navbar-static-top/">MembershipContact us</a></li>
-                                                <li><a href="./">Newsletter Alerts</a></li>
-                                                <li><a href="../navbar/">Podcast</a></li>
-                                                <li><a href="../navbar/">Blog</a></li>
-                                                <li><a href="../navbar-static-top/">SMS Subscription</a></li>
-                                                <li><a href="./">Advertisement Policy</a></li>
-                                                <li><a href="../navbar/">Jobs</a></li>
-                                            </ul>
-                                        </div><!--col-sm-4-->
-                                        <div class="col-sm-4">
-                                            <ul class="nav navbar-nav ">
-                                                <li><a href="../navbar/">Report technical issue</a></li>
-                                                <li><a href="../navbar-static-top/">Complaints & Corrections</a></li>
-                                                <li><a href="./">Terms & Conditions</a></li>
-                                                <li><a href="../navbar-static-top/">Privacy Policy</a></li>
-                                                <li><a href="./">Cookie Policy</a></li>
-                                                <li><a href="../navbar/">Securedrop</a></li>
-                                                <li><a href="../navbar/">Archives</a></li>
+                                                @foreach (var item in ViewBag.categories)
+                                                {
+                                                    <li><a href="">@item.CategoryName</a></li>
+                                                }
                                             </ul>
                                         </div><!--col-sm-4-->
                                     </div><!--row-->
@@ -213,11 +186,22 @@
                             </div><!--footer_widget-->
                         </div><!--col-xs-6-->
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="text_widget footer_widget">
-                                <div class="footer_widget_title"><h2>Editor’s Message</h2></div>
-                                <img src="~/mainsite/assets/img/img-author.jpg" />
-                                <div class="footer_widget_content">Collaborativelyadministrate empowered marketsplug-and-play networks. Dynamic procrastinate after.marketsplug-and-play networks. Dynamic procrastinate users after. Dynamic procrastinateafter. marketsplug-and-play networks. Dynamic procrastinate users after...</div>
+                                <div class="footer_widget_title"><h2>Feedback</h2></div>
+                                <div class="footer_menu_item">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <ul class="nav navbar-nav ">
+                                                <li><a href="./">Bize Ulaşın</a></li>
+                                                <li><a href="../navbar/">Teknik Sorun Bildir</a></li>
+                                                <li><a href="../navbar-static-top/">Şikayet & Geliştirmeler</a></li>
+                                            </ul>
+                                        </div><!--col-sm-4-->
+
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div><!--col-xs-3-->
                     </div><!--row-->
@@ -243,7 +227,6 @@
                 </div><!--container-->
             </div><!--copyright-section-->
         </footer>
-
     </div> <!--main-wrapper-->
 
 </body>

@@ -22,8 +22,8 @@ namespace SportsNewsProject.Controllers
         public IActionResult Index()
         {
             HomeVM home = new HomeVM();
-            home.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false && q.UpperCategoryID >= 1).ToList();
-            home.News = _newscontext.News.Where(q => q.IsDeleted == false).Include(q => q.Author).OrderByDescending(q => q.AddDate).ToList();
+            home.Categories = _newscontext.Categories.Include(q => q.News.OrderByDescending(q => q.AddDate).Take(5)).Where(q => q.IsDeleted == false && q.UpperCategoryID >= 1).ToList();
+            home.News = _newscontext.News.Where(q => q.IsDeleted == false).Include(q => q.Author).OrderByDescending(q => q.AddDate).Take(5).ToList();
 
             return View(home);
         }
