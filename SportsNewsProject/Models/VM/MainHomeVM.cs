@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Models.VM
 {
-    public class MainHomeVM
+    public class MainHomeVM : MainBaseVM
     {
-        public List<News> News { get; set; }
         public List<Category> Categories { get; set; }
     }
 }

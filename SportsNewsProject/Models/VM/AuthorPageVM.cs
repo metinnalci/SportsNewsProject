@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Models.VM
 {
-    public class CategoryPageVM : MainBaseVM
+    public class AuthorPageVM : MainBaseVM
     {
-        public Category category { get; set; }
+        public Author author { get; set; }
     }
 }

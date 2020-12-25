@@ -26,12 +26,12 @@
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="/NewsDetail/Index/@Model.News[i].ID" name="id" id="@Model.News[i].ID">@Model.News[i].Title</a></h2>
+                                                    <h2><a href="/NewsDetail/Index/@Model.news[i].ID" name="id" id="@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
+                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
-                                        <div class="item_content">@Model.News[i].SubTitle.Substring(0, 70) ...</div>
+                                        <div class="item_content">@Model.news[i].SubTitle.Substring(0, 70) ...</div>
                                     </div><!--feature_news_item-->
                                 }
                                 else
@@ -43,14 +43,14 @@
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="/NewsDetail/Index/@Model.News[i].ID">@Model.News[i].Title</a></h2>
+                                                    <h2><a href="/NewsDetail/Index/@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
+                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
 
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle.Substring(0, 70) ...
+                                            @Model.news[i].SubTitle.Substring(0, 70) ...
                                         </div>
 
                                     </div><!--feature_news_item-->
@@ -84,13 +84,13 @@
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="/NewsDetail/Index/@Model.News[i].ID">@Model.News[i].Title</a></h2>
+                                                    <h2><a href="/NewsDetail/Index/@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
+                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle.Substring(0, 70) ...
+                                            @Model.news[i].SubTitle.Substring(0, 70) ...
                                         </div>
 
                                     </div><!--item-->
@@ -133,7 +133,7 @@
                                                             <div class="news_item_title">
                                                                 <h2><a href="/NewsDetail/Index/@item.News[i].ID">@item.News[i].Title</a></h2>
                                                             </div><!--news_item_title-->
-                                                            <div class="item_meta"><a href="#">@item.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@item.News[i].Author?.Name</a></div>
+                                                            <div class="item_meta"><a href="#">@item.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@item.News[i].AuthorID">@item.News[i].Author?.Name</a></div>
                                                         </div><!--item_title_date-->
                                                     </div><!--item_wrapper-->
                                                     <div class="item_content">
@@ -188,13 +188,13 @@
                                             </div><!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h3><a href="#">@Model.News[i].Title</a></h3>
+                                                    <h3><a href="#">@Model.news[i].Title</a></h3>
                                                 </div><!--news_item_title-->
-                                                <div class="item_meta"><a href="#">@Model.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.News[i].Author?.Name</a></div>
+                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
                                         </div><!--item_wrapper-->
                                         <div class="item_content">
-                                            @Model.News[i].SubTitle.Substring(0, 35) ...
+                                            @Model.news[i].SubTitle.Substring(0, 35) ...
                                         </div><!--item_content-->
 
                                     </div><!--item-->
@@ -224,7 +224,7 @@
                                     </div>
                                     <!--media-left-->
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">@Model.News[i].Title</a></h4>
+                                        <h4 class="media-heading"><a href="#">@Model.news[i].Title</a></h4>
                                     </div>
                                     <!--media-body-->
                                 </div><!--media-->
