@@ -41,56 +41,74 @@
                     <div class="single_related_news">
                         <div class="single_media_title"><h2>Related News</h2></div>
                         <div class="media_wrapper">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list5.jpg" alt="Generic placeholder image"></a>
-                                </div><!--media-left-->
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <a href="#">
-                                            Machester United start the player
-                                        </a>
-                                    </h4>
-                                    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                    <div class="media_content">
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-                                    </div><!--media_content-->
-                                </div><!--media-body-->
-                            </div><!--media-->
 
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
-                                </div><!--media-left-->
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <a href="#">
-                                            Machester United start the player
-                                        </a>
-                                    </h4>
-                                    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                    <div class="media_content">
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-                                    </div><!--media_content-->
-                                </div><!--media-body-->
-                            </div><!--media-->
+                            @foreach (var item in Model.Categories)
+                            {
+                                @for (int i = 0; i < 4; i++)
+                                {
+                                    @if (item.News.Count > i)
+                                    {
+                                        @if (Model.ID != item.News[i].ID)
+                                        {
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="/NewsDetail/Index/@item.News[i].ID"><img class="media-object" src="/mainsite/assets/img/img-list5.jpg" alt="Generic placeholder image"></a>
+                                                </div><!--media-left-->
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">
+                                                        <a href="/NewsDetail/Index/@item.News[i].ID">
+                                                            @item.News[i].Title;
+                                                        </a>
+                                                    </h4>
+                                                    <div class="media_meta"><a href="#">@item.News[i].AddDate.ToString("dd MMM yyy"),</a> by:<a href="/AuthorPage/Author/@item.News[i].AuthorID">@item.News[i].Author.Name</a></div>
+                                                    <div class="media_content">
+                                                        <p>@Html.Raw(item.News[i].Content.Substring(0, 70)) ...</p>
+                                                    </div><!--media_content-->
+                                                </div><!--media-body-->
+                                            </div><!--media-->
+                                        }
+                                    }
 
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
-                                </div><!--media-left-->
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <a href="#">
-                                            Machester United start the player
-                                        </a>
-                                    </h4>
-                                    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                    <div class="media_content">
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-                                    </div><!--media_content-->
-                                </div><!--media-body-->
-                            </div><!--media-->
+                                }
+                            }
+
+
+                            <!--<div class="media">
+    <div class="media-left">
+        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
+    </div>-->
+                            <!--media-left-->
+                            <!--<div class="media-body">
+    <h4 class="media-heading">
+        <a href="#">
+            Machester United start the player
+        </a>
+    </h4>
+    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
+    <div class="media_content">
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
+    </div>-->
+                            <!--media_content-->
+                            <!--</div>--><!--media-body-->
+                            <!--</div>--><!--media-->
+                            <!--<div class="media">
+    <div class="media-left">
+        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
+    </div>-->
+                            <!--media-left-->
+                            <!--<div class="media-body">
+    <h4 class="media-heading">
+        <a href="#">
+            Machester United start the player
+        </a>
+    </h4>
+    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
+    <div class="media_content">
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
+    </div>-->
+                            <!--media_content-->
+                            <!--</div>--><!--media-body-->
+                            <!--</div>--><!--media-->
                         </div><!--media_wrapper-->
                     </div><!--single_related_news-->
 
@@ -155,7 +173,7 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(q => q.Comment.User.EMail, new { @class = "bmd-label-floating" })
-                                    @Html.TextBoxFor(q => q.Comment.User.EMail, new { @class = "form-control" , @type = "email"})
+                                    @Html.TextBoxFor(q => q.Comment.User.EMail, new { @class = "form-control", @type = "email" })
                                 </div>
                                 <div class="form-group comment">
                                     @Html.LabelFor(q => q.Comment.Content, new { @class = "bmd-label-floating" })

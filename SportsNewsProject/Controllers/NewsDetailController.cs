@@ -34,6 +34,7 @@ namespace SportsNewsProject.Controllers
             modell.Content = news.Content;
             modell.AddDate = news.AddDate;
             modell.Comments = news.CommentList.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).ToList();
+            modell.Categories = _newscontext.Categories.Where(q => q.ID == news.CategoryID).Include(q => q.News).ThenInclude(q => q.Author).OrderByDescending(q => q.AddDate).ToList();
             
             return View(modell);
         }
