@@ -16,5 +16,9 @@ namespace SportsNewsProject.Models.ORM.Entities
         [ForeignKey("UserId")]
         public User User { get; set; }
         public string Content { get; set; }
+
+        public int? ParentId { get; set; }
+
+        public List<Comment>? ChildComments { get; set; }
     }
 }

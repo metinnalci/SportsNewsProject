@@ -58,5 +58,14 @@ namespace SportsNewsProject.Controllers
             
             return RedirectToAction("Index", "NewsDetail", model);
         }
+
+
+        public IActionResult Reply()
+        {
+
+
+            return View();
+        }
+
     }
 }

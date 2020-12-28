@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SportsNewsProject.Models.ORM.Context;
@@ -9,9 +10,10 @@ using SportsNewsProject.Models.ORM.Context;
 namespace SportsNewsProject.Migrations
 {
     [DbContext(typeof(SportsNewsContext))]
-    partial class SportsNewsContextModelSnapshot : ModelSnapshot
+    [Migration("20201225200215_uppercommentid")]
+    partial class uppercommentid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,9 +173,6 @@ namespace SportsNewsProject.Migrations
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("CommentID")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
@@ -183,15 +182,13 @@ namespace SportsNewsProject.Migrations
                     b.Property<int>("NewsId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ParentId")
+                    b.Property<int?>("UpperId")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CommentID");
 
                     b.HasIndex("NewsId");
 
@@ -320,10 +317,6 @@ namespace SportsNewsProject.Migrations
 
             modelBuilder.Entity("SportsNewsProject.Models.ORM.Entities.Comment", b =>
                 {
-                    b.HasOne("SportsNewsProject.Models.ORM.Entities.Comment", null)
-                        .WithMany("ChildComments")
-                        .HasForeignKey("CommentID");
-
                     b.HasOne("SportsNewsProject.Models.ORM.Entities.News", "News")
                         .WithMany("CommentList")
                         .HasForeignKey("NewsId")
@@ -379,11 +372,6 @@ namespace SportsNewsProject.Migrations
                     b.Navigation("AuthorCategories");
 
                     b.Navigation("News");
-                });
-
-            modelBuilder.Entity("SportsNewsProject.Models.ORM.Entities.Comment", b =>
-                {
-                    b.Navigation("ChildComments");
                 });
 
             modelBuilder.Entity("SportsNewsProject.Models.ORM.Entities.News", b =>
