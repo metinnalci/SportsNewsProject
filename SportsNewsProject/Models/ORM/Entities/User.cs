@@ -13,6 +13,7 @@ namespace SportsNewsProject.Models.ORM.Entities
         public string NickName { get; set; }
         public string Password { get; set; }
         public DateTime BirthDate { get; set; }
+        public DateTime LastLogin { get; set; }
         public List<Comment> CommentList { get; set; }
 
     }

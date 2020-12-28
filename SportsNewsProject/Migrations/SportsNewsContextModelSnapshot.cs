@@ -274,6 +274,9 @@ namespace SportsNewsProject.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
+                    b.Property<DateTime>("LastLogin")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 

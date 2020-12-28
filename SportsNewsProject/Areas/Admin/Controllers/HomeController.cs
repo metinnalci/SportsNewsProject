@@ -32,5 +32,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             ViewBag.TotalArticle = _newscontext.News.Count();
             return View(charts);
         }
+
+        
     }
 }
