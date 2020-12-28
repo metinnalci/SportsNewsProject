@@ -117,53 +117,57 @@
                         <div class="category_layout">
                             <div class="item_caregory red"><h2><a href="">@item.CategoryName</a></h2></div>
                             <div class="row">
-                                @for (int i = 0; i < item.News.Count; i++)
+                                @for (int i = 0; i < 3; i++)
                                 {
-                                    if (item.ID == item.News[i].CategoryID)
+                                    if (item.News.Count > i)
                                     {
-                                        if (i == 0)
+                                        if (item.ID == item.News[i].CategoryID)
                                         {
-                                            <div class="col-md-7">
-                                                <div class="item feature_news_item">
-                                                    <div class="item_wrapper">
-                                                        <div class="item_img">
-                                                            <img class="img-responsive" src="/mainsite/assets/img/img_feature_news.jpg" alt="Chania">
-                                                        </div><!--item_img-->
-                                                        <div class="item_title_date">
-                                                            <div class="news_item_title">
-                                                                <h2><a href="/NewsDetail/Index/@item.News[i].ID">@item.News[i].Title</a></h2>
-                                                            </div><!--news_item_title-->
-                                                            <div class="item_meta"><a href="#">@item.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@item.News[i].AuthorID">@item.News[i].Author?.Name</a></div>
-                                                        </div><!--item_title_date-->
-                                                    </div><!--item_wrapper-->
-                                                    <div class="item_content">
-                                                        @item.News[i].SubTitle.Substring(0, 70) ...
-                                                    </div><!--item_content-->
+                                            if (i == 0)
+                                            {
+                                                <div class="col-md-7">
+                                                    <div class="item feature_news_item">
+                                                        <div class="item_wrapper">
+                                                            <div class="item_img">
+                                                                <img class="img-responsive" src="/mainsite/assets/img/img_feature_news.jpg" alt="Chania">
+                                                            </div><!--item_img-->
+                                                            <div class="item_title_date">
+                                                                <div class="news_item_title">
+                                                                    <h2><a href="/NewsDetail/Index/@item.News[i].ID">@item.News[i].Title</a></h2>
+                                                                </div><!--news_item_title-->
+                                                                <div class="item_meta"><a href="#">@item.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@item.News[i].AuthorID">@item.News[i].Author?.Name</a></div>
+                                                            </div><!--item_title_date-->
+                                                        </div><!--item_wrapper-->
+                                                        <div class="item_content">
+                                                            @item.News[i].SubTitle.Substring(0, 70) ...
+                                                        </div><!--item_content-->
 
-                                                </div><!--feature_news_item-->
-                                            </div><!--col-md-7-->
+                                                    </div><!--feature_news_item-->
+                                                </div><!--col-md-7-->
 
+                                            }
+                                            <div class="col-md-5">
+                                                <div class="media_wrapper">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                                        </div><!--media-left-->
+                                                        <div class="media-body">
+                                                            <h3 class="media-heading">
+                                                                <a href="/NewsDetail/Index/@item.News[i].ID">
+                                                                    @item.News[i].Title
+                                                                </a>
+                                                            </h3>
+
+                                                            <p>@item.News[i].SubTitle.Substring(0, 70) ...</p>
+
+                                                        </div><!--media-body-->
+                                                    </div><!--media-->
+                                                </div><!--media_wrapper-->
+
+                                            </div><!--col-md-5-->
                                         }
-                                        <div class="col-md-5">
-                                            <div class="media_wrapper">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                                    </div><!--media-left-->
-                                                    <div class="media-body">
-                                                        <h3 class="media-heading">
-                                                            <a href="/NewsDetail/Index/@item.News[i].ID">
-                                                                @item.News[i].Title
-                                                            </a>
-                                                        </h3>
 
-                                                        <p>@item.News[i].SubTitle.Substring(0, 70) ...</p>
-
-                                                    </div><!--media-body-->
-                                                </div><!--media-->
-                                            </div><!--media_wrapper-->
-
-                                        </div><!--col-md-5-->
                                     }
 
                                 }
