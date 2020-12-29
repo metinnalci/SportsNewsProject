@@ -62,7 +62,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             {
                 foreach (var item in model.articleimages)
                 {
-
+                    //adminin eklediği resim 5 mb dan büyük ise ekranda uyarı versin . MB kontrolü backend den yani bu kod bloğundan yapılacak
                     var guid = Guid.NewGuid().ToString();
 
                     var path = Path.Combine(

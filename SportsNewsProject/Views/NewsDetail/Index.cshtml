@@ -184,6 +184,13 @@
                             </form>
                         </div><!--comment_form-->
                     </div><!--add_a_comment-->
+                    <div>
+                        <form action="/newsdetail/reply" method="post">
+                            <input type="hidden" name="parentid" value="@Model.ID" />
+                            <input type="text" name="replycomment" value="" />
+                            <button type="submit">Reply</button>
+                        </form>
+                    </div>
 
                 </div><!--single_content_layout-->
             </div>

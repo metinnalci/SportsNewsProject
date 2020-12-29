@@ -38,7 +38,8 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, model.EMail),
-                        new Claim(ClaimTypes.Role, adminuser.Role)
+                        new Claim(ClaimTypes.Role, adminuser.Role),
+                        new Claim(ClaimTypes.UserData,"Admin")
 
                     };
 

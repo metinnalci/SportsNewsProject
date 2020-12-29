@@ -24,6 +24,23 @@ namespace SportsNewsProject.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                if(HttpContext.User.Claims.ToArray()[2].Value == "Site")
+                {
+                    ViewBag.name = HttpContext.User.Claims.ToArray()[1].Value;
+                    ViewBag.IsAuth = true; 
+
+                }
+                else
+                {
+                    ViewBag.IsAuth = false;
+                }
+            }
+            else
+            {
+                ViewBag.IsAuth = false;
+            }
             List<Category> categories = new List<Category>();
 
 

@@ -60,12 +60,29 @@ namespace SportsNewsProject.Controllers
             return RedirectToAction("Index", "NewsDetail", model);
         }
 
-
-        public IActionResult Reply()
+        //parentid, userid, replycomment   => ReplyVM
+        [HttpPost]
+        public IActionResult Reply(ReplyVM model)
         {
+            //parentid
+            Comment comment = new Comment();
+            comment.UserId = model.userid;
+            comment.ParentId = model.parentid;
+            comment.Content = model.replycomment;
 
+            _newscontext.Comments.Add(comment);
+            _newscontext.SaveChanges();
 
             return View();
+        }
+
+
+        public class ReplyVM
+        {
+            public int parentid { get; set; }
+            public int userid { get; set; }
+            public string replycomment { get; set; }
+
         }
 
     }
