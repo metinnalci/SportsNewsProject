@@ -30,7 +30,7 @@ namespace SportsNewsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = _newscontext.Users.FirstOrDefault(x => x.EMail == model.EMail && x.Password == model.Password && x.IsDeleted == false);
+                User user = _newscontext.Users.FirstOrDefault(x => x.EMail == model.EMail && x.Password == model.Password && x.IsActive == true && x.IsDeleted == false);
                 if(user != null)
                 {
                     var claims = new List<Claim>

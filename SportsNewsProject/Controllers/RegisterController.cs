@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SportsNewsProject.Controllers
@@ -15,7 +19,7 @@ namespace SportsNewsProject.Controllers
 
         public RegisterController(SportsNewsContext newscontext)
         {
-            _newscontext = newscontext;                
+            _newscontext = newscontext;
         }
 
         public IActionResult Register()
@@ -44,18 +48,45 @@ namespace SportsNewsProject.Controllers
 
                 //email gönderme kodu. EMail ile kullanıcıya 31. satırdaki confirmcode u yolla. 
                 //http://localhost:5000/Register/Confirm/22336525112asd
+
+                string confirmurl = "https://localhost:44356/Register/Confirm/" + confirmcode;
+
+                MimeMessage message = new MimeMessage();
+
+                MailboxAddress from = new MailboxAddress("SportsNewsTeam", "sportsnewsteam.noreply@gmail.com");
+                message.From.Add(from);
+
+                MailboxAddress to = new MailboxAddress(user.Name, user.EMail);
+                message.To.Add(to);
+
+                message.Subject = "no-reply";
+
+                BodyBuilder bodyBuilder = new BodyBuilder();
+                bodyBuilder.TextBody = "Please click on the link to confirm your email address: " + confirmurl;
+
+                message.Body = bodyBuilder.ToMessageBody();
+
+                SmtpClient client = new SmtpClient();
+
+                client.Connect("smtp.gmail.com", 465, true);
+                client.Authenticate("sportsnewsteam.noreply@gmail.com", "$Rdot3PxrtV9QQpYFzVYA#w%RpU2!BGC5UN8cSXNhAs@iq@GvZ");
+
+
+                client.Send(message);
+                client.Disconnect(true);
+                client.Dispose();
+
+                return Redirect("/Home/Index");
             }
             else
             {
                 return View();
             }
-
-            return RedirectToAction("Index", "Home");
         }
 
 
         [HttpGet("Register/Confirm/{confirmcode}")]
-        public IActionResult Confirmcode(string confirmcode)
+        public async Task<IActionResult> Confirmcode(string confirmcode)
         {
             User user = _newscontext.Users.FirstOrDefault(q => q.ConfirmCode == confirmcode);
 
@@ -65,6 +96,23 @@ namespace SportsNewsProject.Controllers
                 _newscontext.SaveChanges();
 
                 //kullanıcıyı login yap
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Email, user.EMail),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.UserData,"Site")
+                };
+
+                var userIdentity = new ClaimsIdentity(claims, "login");
+
+                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+
+                await HttpContext.SignInAsync(principal);
+
+                user.LastLogin = DateTime.Now;
+
+                _newscontext.SaveChanges();
             }
             return Redirect("/Home/Index");
         }
