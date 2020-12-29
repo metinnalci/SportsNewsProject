@@ -36,8 +36,8 @@ namespace SportsNewsProject.Controllers
                 user.BirthDate = model.BirthDate;
                 user.EMail = model.EMail;
                 user.Password = model.Password;
-                //user.ConfirmCode = confirmcode;
-                //user.IsActive = false;
+                user.ConfirmCode = confirmcode;
+                user.IsActive = false;
 
                 _newscontext.Users.Add(user);
                 _newscontext.SaveChanges();
@@ -54,19 +54,19 @@ namespace SportsNewsProject.Controllers
         }
 
 
-        //[HttpGet("Register/Confirm/{confirmcode}")]
-        //public IActionResult Confirmcode(string confirmcode)
-        //{
-        //    User user = _newscontext.Users.FirstOrDefault(q => q.ConfirmCode == confirmcode);
+        [HttpGet("Register/Confirm/{confirmcode}")]
+        public IActionResult Confirmcode(string confirmcode)
+        {
+            User user = _newscontext.Users.FirstOrDefault(q => q.ConfirmCode == confirmcode);
 
-        //    if (user != null)
-        //    {
-        //        user.IsActive = true;
-        //        _newscontext.SaveChanges();
+            if (user != null)
+            {
+                user.IsActive = true;
+                _newscontext.SaveChanges();
 
-        //        //kullanıcıyı login yap
-        //    }
-        //    return Redirect("/Home/Index");
-        //}
+                //kullanıcıyı login yap
+            }
+            return Redirect("/Home/Index");
+        }
     }
 }

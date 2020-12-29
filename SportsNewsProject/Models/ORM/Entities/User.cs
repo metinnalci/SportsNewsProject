@@ -16,8 +16,8 @@ namespace SportsNewsProject.Models.ORM.Entities
         public DateTime LastLogin { get; set; }
         public List<Comment> CommentList { get; set; }
 
-        //public string ConfirmCode { get; set; }
-        //public bool IsActive { get; set; }
+        public string ConfirmCode { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }
