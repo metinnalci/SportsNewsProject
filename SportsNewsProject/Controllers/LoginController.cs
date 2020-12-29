@@ -64,5 +64,11 @@ namespace SportsNewsProject.Controllers
                 return View();
             }
         }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/Home/Index/");
+        }
     }
 }
