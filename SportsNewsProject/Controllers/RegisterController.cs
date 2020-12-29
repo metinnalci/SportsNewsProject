@@ -76,12 +76,18 @@ namespace SportsNewsProject.Controllers
                 client.Disconnect(true);
                 client.Dispose();
 
-                return Redirect("/Home/Index");
+                return RedirectToAction("PendingPage", "Register");
             }
             else
             {
                 return View();
             }
+        }
+
+        
+        public IActionResult PendingPage()
+        {
+            return View();
         }
 
 
