@@ -84,7 +84,7 @@ namespace SportsNewsProject.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("EMail", "Bu email adresini kullanan bir hesap var, lütfen farklı bir email adresi girin! Ya da zaten hesabınız varsa giriş yapmayı deneyin...");
+                    ModelState.AddModelError("EMail", "Bu email adresini kullanan bir hesap var, lütfen farklı bir email adresi girin! Ya da hesabınız varsa giriş yapmayı deneyin...");
                     return View();
                 }
             }
