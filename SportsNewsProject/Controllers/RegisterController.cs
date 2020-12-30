@@ -32,51 +32,61 @@ namespace SportsNewsProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                string confirmcode = Guid.NewGuid().ToString();
-                User user = new User();
-                user.Name = model.Name;
-                user.SurName = model.Surname;
-                user.NickName = model.Username;
-                user.BirthDate = model.BirthDate;
-                user.EMail = model.EMail;
-                user.Password = model.Password;
-                user.ConfirmCode = confirmcode;
-                user.IsActive = false;
+                User existingUser = _newscontext.Users.FirstOrDefault(x => x.EMail == model.EMail);
 
-                _newscontext.Users.Add(user);
-                _newscontext.SaveChanges();
+                if(existingUser == null)
+                {
+                    string confirmcode = Guid.NewGuid().ToString();
+                    User user = new User();
+                    user.Name = model.Name;
+                    user.SurName = model.Surname;
+                    user.NickName = model.Username;
+                    user.BirthDate = model.BirthDate;
+                    user.EMail = model.EMail;
+                    user.Password = model.Password;
+                    user.ConfirmCode = confirmcode;
+                    user.IsActive = false;
 
-                //email gönderme kodu. EMail ile kullanıcıya 31. satırdaki confirmcode u yolla. 
-                //http://localhost:5000/Register/Confirm/22336525112asd
+                    _newscontext.Users.Add(user);
+                    _newscontext.SaveChanges();
 
-                string confirmurl = "https://localhost:44356/Register/Confirm/" + confirmcode;
+                    //email gönderme kodu. EMail ile kullanıcıya 31. satırdaki confirmcode u yolla. 
+                    //http://localhost:5000/Register/Confirm/22336525112asd
 
-                MimeMessage message = new MimeMessage();
+                    string confirmurl = "https://localhost:44356/Register/Confirm/" + confirmcode;
 
-                MailboxAddress from = new MailboxAddress("SportsNewsTeam", "sportsnewsteam.noreply@gmail.com");
-                message.From.Add(from);
+                    MimeMessage message = new MimeMessage();
 
-                MailboxAddress to = new MailboxAddress(user.Name, user.EMail);
-                message.To.Add(to);
+                    MailboxAddress from = new MailboxAddress("SportsNewsTeam", "sportsnewsteam.noreply@gmail.com");
+                    message.From.Add(from);
 
-                message.Subject = "no-reply";
+                    MailboxAddress to = new MailboxAddress(user.Name, user.EMail);
+                    message.To.Add(to);
 
-                BodyBuilder bodyBuilder = new BodyBuilder();
-                bodyBuilder.TextBody = "Please click on the link to confirm your email address: " + confirmurl;
+                    message.Subject = "no-reply";
 
-                message.Body = bodyBuilder.ToMessageBody();
+                    BodyBuilder bodyBuilder = new BodyBuilder();
+                    bodyBuilder.TextBody = "Please click on the link to confirm your email address: " + confirmurl;
 
-                SmtpClient client = new SmtpClient();
+                    message.Body = bodyBuilder.ToMessageBody();
 
-                client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("sportsnewsteam.noreply@gmail.com", "$Rdot3PxrtV9QQpYFzVYA#w%RpU2!BGC5UN8cSXNhAs@iq@GvZ");
+                    SmtpClient client = new SmtpClient();
+
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.Authenticate("sportsnewsteam.noreply@gmail.com", "$Rdot3PxrtV9QQpYFzVYA#w%RpU2!BGC5UN8cSXNhAs@iq@GvZ");
 
 
-                client.Send(message);
-                client.Disconnect(true);
-                client.Dispose();
+                    client.Send(message);
+                    client.Disconnect(true);
+                    client.Dispose();
 
-                return RedirectToAction("PendingPage", "Register");
+                    return RedirectToAction("PendingPage", "Register");
+                }
+                else
+                {
+                    ModelState.AddModelError("EMail", "Bu email adresini kullanan bir hesap var, lütfen farklı bir email adresi girin! Ya da zaten hesabınız varsa giriş yapmayı deneyin...");
+                    return View();
+                }
             }
             else
             {

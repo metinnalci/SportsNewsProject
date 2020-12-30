@@ -29,6 +29,11 @@
     <link rel="stylesheet" type="text/css" href="/mainsite/loginregister/css/util.css">
     <link rel="stylesheet" type="text/css" href="/mainsite/loginregister/css/main.css">
     <!--===============================================================================================-->
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
@@ -78,6 +83,7 @@
                     <div class="wrap-input100 validate-input m-b-36" data-validate="Email zorunlu!">
                         @Html.TextBoxFor(q => q.EMail, new { @class = "input100", @name = "email" })
                         <span class="focus-input100"></span>
+                        @Html.ValidationMessageFor(q => q.EMail)
                     </div>
 
                     <span class="txt1 p-b-11">
@@ -100,6 +106,7 @@
                         </span>
                         @Html.PasswordFor(q => q.ConfirmPassword, new { @class = "input100", @name = "confpass" })
                         <span class="focus-input100"></span>
+                        @Html.ValidationMessageFor(q => q.ConfirmPassword)
                     </div>
 
                     <div class="flex-sb-m w-full p-b-48">
