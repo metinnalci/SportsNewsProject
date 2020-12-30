@@ -188,11 +188,11 @@
                                 <div class="footer_widget_title"><h2>Keşfet</h2></div>
                                 <div class="footer_menu_item ">
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <ul class="nav navbar-nav ">
                                                 @foreach (var item in ViewBag.categories)
                                                 {
-                                                    <li><a href="">@item.CategoryName</a></li>
+                                                    <li><a href="/CategoryPage/Category/@item.ID">@item.CategoryName</a></li>
                                                 }
                                             </ul>
                                         </div><!--col-sm-4-->

@@ -25,9 +25,9 @@
                                         </div><!--item_img-->
                                         <div class="item_title_date">
                                             <div class="news_item_title">
-                                                <h1><a href="single.html">@Model.author.News[i].Title</a></h1>
+                                                <h1><a href="/NewsDetail/Index/@Model.author.News[i].ID">@Model.author.News[i].Title</a></h1>
                                             </div><!--news_item_title-->
-                                            <div class="item_meta"><a href="#">@Model.author.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.author.Name</a></div>
+                                            <div class="item_meta">@Model.author.News[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.author.ID">@Model.author.Name</a></div>
                                         </div><!--item_title_date-->
                                     </div><!--item_wrapper-->
                                     <div class="item_content">
@@ -52,9 +52,9 @@
                                         </div> <!--item_img-->
                                         <div class="item_title_date">
                                             <div class="news_item_title">
-                                                <h2><a href="single.html">@Model.author.News[i].Title</a></h2>
+                                                <h2><a href="/NewsDetail/Index/@Model.author.News[i].ID">@Model.author.News[i].Title</a></h2>
                                             </div>
-                                            <div class="item_meta"><a href="#">@Model.author.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="#">@Model.author.Name</a></div>
+                                            <div class="item_meta">@Model.author.News[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.author.ID">@Model.author.Name</a></div>
                                         </div><!--item_title_date-->
                                     </div> <!--item_wrapper-->
                                     <div class="item_content">
@@ -84,10 +84,10 @@
                             {
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                        <a href="/NewsDetail/Index/@item.ID"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
                                     </div><!--media-left-->
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">@item.Title</a></h4>
+                                        <h4 class="media-heading"><a href="/NewsDetail/Index/@item.ID">@item.Title</a></h4>
                                     </div><!--media-body-->
                                 </div><!--media-->
 

@@ -28,7 +28,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="/NewsDetail/Index/@Model.news[i].ID" name="id" id="@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
+                                                <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">@Model.news[i].SubTitle.Substring(0, 70) ...</div>
@@ -45,7 +45,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="/NewsDetail/Index/@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
+                                                <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
 
@@ -86,7 +86,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="/NewsDetail/Index/@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
+                                                <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">
@@ -115,7 +115,7 @@
                     if (item.UpperCategoryID == 1)
                     {
                         <div class="category_layout">
-                            <div class="item_caregory red"><h2><a href="">@item.CategoryName</a></h2></div>
+                            <div class="item_caregory red"><h2><a href="/CategoryPage/Category/@item.ID">@item.CategoryName</a></h2></div>
                             <div class="row">
                                 @for (int i = 0; i < 3; i++)
                                 {
@@ -135,7 +135,7 @@
                                                                 <div class="news_item_title">
                                                                     <h2><a href="/NewsDetail/Index/@item.News[i].ID">@item.News[i].Title</a></h2>
                                                                 </div><!--news_item_title-->
-                                                                <div class="item_meta"><a href="#">@item.News[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@item.News[i].AuthorID">@item.News[i].Author?.Name</a></div>
+                                                                <div class="item_meta">@item.News[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@item.News[i].AuthorID">@item.News[i].Author?.Name</a></div>
                                                             </div><!--item_title_date-->
                                                         </div><!--item_wrapper-->
                                                         <div class="item_content">
@@ -192,9 +192,9 @@
                                             </div><!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h3><a href="#">@Model.news[i].Title</a></h3>
+                                                    <h3><a href="/NewsDetail/Index/@Model.news[i].ID">@Model.news[i].Title</a></h3>
                                                 </div><!--news_item_title-->
-                                                <div class="item_meta"><a href="#">@Model.news[i].AddDate.ToString("dd MMM yyyy"),</a> by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
+                                                <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
                                         </div><!--item_wrapper-->
                                         <div class="item_content">
@@ -214,7 +214,7 @@
             <div class="col-md-3">
                 <div class="tab sitebar">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#1" data-toggle="tab">Son Dakika</a></li>
+                        <li class="active"><a href="#1" data-toggle="tab">En Son</a></li>
                         <li><a href="#2" data-toggle="tab">Populer</a></li>
                     </ul>
 
@@ -224,11 +224,11 @@
                             {
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                        <a href="/NewsDetail/Index/@Model.news[i].ID"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
                                     </div>
                                     <!--media-left-->
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">@Model.news[i].Title</a></h4>
+                                        <h4 class="media-heading"><a href="/NewsDetail/Index/@Model.news[i].ID">@Model.news[i].Title</a></h4>
                                     </div>
                                     <!--media-body-->
                                 </div><!--media-->
