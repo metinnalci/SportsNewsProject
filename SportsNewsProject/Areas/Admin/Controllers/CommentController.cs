@@ -76,7 +76,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             }
 
             _newscontext.SaveChanges();
-            return RedirectToAction("Index", "Comment");
+            return Redirect("/Admin/Comment/Index/");
         }
 
         [RoleControl(EnumRoles.CommentDelete)]

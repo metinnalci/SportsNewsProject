@@ -65,7 +65,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 return View();
             }
 
-            return RedirectToAction("Index", "User");
+            return Redirect("/Admin/User/Index/");
         }
 
         [RoleTest(EnumRoles.UserEdit)]
@@ -106,7 +106,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             {
                 return View(model);
             }
-            return RedirectToAction("Index", "User");
+            return Redirect("/Admin/User/Index/");
         }
 
 

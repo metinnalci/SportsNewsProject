@@ -87,7 +87,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 return View(GetAuthorForAdd());
             }
 
-            return RedirectToAction("Index", "Author");
+            return Redirect("/Admin/Author/Index/");
         }
 
         [RoleTest(EnumRoles.AuthorEdit)]
@@ -162,8 +162,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 return View(GetAuthorForEdit(model.ID));
             }
 
-
-            return RedirectToAction("Index", "Author");
+            return Redirect("/Admin/Author/Index/");
         }
 
 

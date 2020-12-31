@@ -13,7 +13,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 {
     
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Policy = "AdminAccess")]
     public class BaseController : Controller
     {
         private readonly SportsNewsContext _newscontext;

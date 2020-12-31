@@ -71,7 +71,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             {
                 return View(GetCategoryVMForAdd());
             }
-            return RedirectToAction("Index", "Category");
+            return Redirect("/Admin/Category/Index");
         }
 
         [RoleTest(EnumRoles.CategoryEdit)]
@@ -105,7 +105,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             {
                 return View(GetCategoryVMForEdit(model.ID));
             }
-            return RedirectToAction("Index", "Category");
+            return Redirect("/Admin/Category/Index");
         }
 
         [RoleControl(EnumRoles.CategoryDelete)]

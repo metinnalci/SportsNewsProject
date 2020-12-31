@@ -113,7 +113,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             }
 
 
-            return RedirectToAction("Index", "News");
+            return Redirect("/Admin/News/Index/");
         }
 
         [RoleTest(EnumRoles.NewsEdit)]
@@ -180,7 +180,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             {
                 return View(GetNewsVMForEdit(model.ID));
             }
-            return RedirectToAction("Index", "News");
+            return Redirect("/Admin/News/Index/");
         }
 
         [HttpPost]

@@ -47,13 +47,13 @@ namespace SportsNewsProject.Areas.Admin.Controllers
 
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
-                    await HttpContext.SignInAsync(principal);
+                    await HttpContext.SignInAsync("AdminScheme", principal);
 
                     adminuser.LastLoginDate = DateTime.Now;
 
                     _newscontext.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return Redirect("/Admin/Home/Index/");
                 }
                 else
                 {
