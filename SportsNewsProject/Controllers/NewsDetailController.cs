@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Controllers
 {
+    [Authorize(Policy = "UserAccess")]
     public class NewsDetailController : MainSiteController
     {
         private readonly SportsNewsContext _newscontext;
@@ -20,6 +22,7 @@ namespace SportsNewsProject.Controllers
             _newscontext = newscontext;
         }
 
+        [AllowAnonymous]
         public IActionResult Index(int id, NewsVM? model)
         {
             NewsVM modell = new NewsVM();

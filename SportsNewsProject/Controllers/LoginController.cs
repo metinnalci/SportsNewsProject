@@ -45,7 +45,7 @@ namespace SportsNewsProject.Controllers
                     
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                     
-                    await HttpContext.SignInAsync(principal);
+                    await HttpContext.SignInAsync("UserScheme",principal);
 
                     user.LastLogin = DateTime.Now;
 

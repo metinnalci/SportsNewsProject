@@ -36,12 +36,31 @@ namespace SportsNewsProject
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMemoryCache();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
+            services.AddAuthentication("UserScheme")
+                .AddCookie("UserScheme", options =>
                 {
                     options.LoginPath = "/Login/Login/";
-                    options.LoginPath = "/Admin/Login/Index/";
+                    options.Cookie.Name = "UserCookie";
                 });
+            services.AddAuthentication("AdminScheme")
+                .AddCookie("AdminScheme", options =>
+                {
+                    options.LoginPath = "/Admin/Login/Index/";
+                    options.Cookie.Name = "AdminCookie";
+                });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("UserAccess", policy =>
+                {
+                    policy.AuthenticationSchemes.Add("UserScheme");
+                    policy.RequireAuthenticatedUser();
+                });
+                options.AddPolicy("AdminAccess", policy => 
+                {
+                    policy.AuthenticationSchemes.Add("AdminScheme");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
