@@ -23,14 +23,14 @@ namespace SportsNewsProject.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index(int id, NewsVM? model)
+        public IActionResult Index(NewsVM model)
         {
             NewsVM modell = new NewsVM();
             News news = new News();
-            id = model.ID;
-            news = _newscontext.News.Include(q => q.Author).Include(q => q.CommentList).ThenInclude(q => q.User).FirstOrDefault(x => x.ID == id);
 
-            modell.ID = id;
+            news = _newscontext.News.Include(q => q.Author).Include(q => q.CommentList).ThenInclude(q => q.User).FirstOrDefault(x => x.ID == model.ID);
+
+            modell.ID = model.ID;
             modell.Title = news.Title;
             modell.SubTitle = news.SubTitle;
             modell.AuthorName = news.Author.Name;
@@ -38,7 +38,7 @@ namespace SportsNewsProject.Controllers
             modell.AddDate = news.AddDate;
             modell.Comments = news.CommentList.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).ToList();
             modell.Categories = _newscontext.Categories.Where(q => q.ID == news.CategoryID).Include(q => q.News).ThenInclude(q => q.Author).OrderByDescending(q => q.AddDate).ToList();
-            
+
             return View(modell);
         }
 
@@ -49,44 +49,38 @@ namespace SportsNewsProject.Controllers
             Comment comment = new Comment();
             User user = new User();
 
-            //int id = model.ID;
             comment.NewsId = model.ID;
             comment.Content = model.Comment.Content;
             user = _newscontext.Users.Where(q => q.EMail == model.Comment.User.EMail).FirstOrDefault();
             comment.UserId = user.ID;
-            //comment.User.EMail = user.EMail;
-            //comment.User.NickName = user.NickName;
+            comment.ParentId = 0;
+
 
             _newscontext.Comments.Add(comment);
             _newscontext.SaveChanges();
-            
+
             return RedirectToAction("Index", "NewsDetail", model);
         }
 
-        //parentid, userid, replycomment   => ReplyVM
         [HttpPost]
-        public IActionResult Reply(ReplyVM model)
+        public IActionResult Reply(ReplyVM replyVM, NewsVM model)
         {
-            //parentid
+
             Comment comment = new Comment();
-            comment.UserId = model.userid;
-            comment.ParentId = model.parentid;
-            comment.Content = model.replycomment;
+            User user = new User();
+            user = _newscontext.Users.Where(q => q.EMail == replyVM.useremail).FirstOrDefault();
+
+            comment.UserId = user.ID;
+            comment.ParentId = replyVM.parentid;
+            comment.NewsId = model.ID;
+            comment.Content = replyVM.replycomment;
 
             _newscontext.Comments.Add(comment);
             _newscontext.SaveChanges();
 
-            return View();
+            return RedirectToAction("Index", "NewsDetail", model);
         }
 
-
-        public class ReplyVM
-        {
-            public int parentid { get; set; }
-            public int userid { get; set; }
-            public string replycomment { get; set; }
-
-        }
 
     }
 }
