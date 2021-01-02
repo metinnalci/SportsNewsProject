@@ -18,6 +18,7 @@ namespace SportsNewsProject.Models.ORM.Entities
 
         public string ConfirmCode { get; set; }
         public bool IsActive { get; set; }
+        public string ResetCode { get; set; }
 
     }
 }

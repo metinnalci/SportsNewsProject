@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
@@ -63,6 +65,93 @@ namespace SportsNewsProject.Controllers
             {
                 return View();
             }
+        }
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ForgotPassword(ForgotPasswordVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                User email = _newscontext.Users.FirstOrDefault(x => x.EMail == model.Email && x.IsActive == true);
+
+                if (email != null)
+                {
+                    string resetcode = Guid.NewGuid().ToString();
+
+                    email.ResetCode = resetcode;
+
+                    _newscontext.SaveChanges();
+
+                    string reseturl = "https://localhost:44356/Login/Reset/" + resetcode;
+
+                    MimeMessage message = new MimeMessage();
+
+                    MailboxAddress from = new MailboxAddress("SportsNewsTeam", "sportsnewsteam.noreply@gmail.com");
+                    message.From.Add(from);
+
+                    MailboxAddress to = new MailboxAddress(email.Name, email.EMail);
+                    message.To.Add(to);
+
+                    message.Subject = "Reset Password";
+
+                    BodyBuilder bodyBuilder = new BodyBuilder();
+                    bodyBuilder.TextBody = "Lütfen şifrenizi sıfırlamak için linke tıklayın: " + reseturl;
+
+                    message.Body = bodyBuilder.ToMessageBody();
+
+                    SmtpClient client = new SmtpClient();
+
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.Authenticate("sportsnewsteam.noreply@gmail.com", "$Rdot3PxrtV9QQpYFzVYA#w%RpU2!BGC5UN8cSXNhAs@iq@GvZ");
+
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                    client.Dispose();
+
+                    return RedirectToAction("Login", "Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "Girmiş olduğunuz Email adresi sistemimizde kayıtlı değil!");
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpGet("Login/Reset/{resetcode}")]
+        public IActionResult Reset(string resetcode)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Reset(ResetPasswordVM model, string resetcode)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = _newscontext.Users.FirstOrDefault(x => x.ResetCode == resetcode);
+
+                user.Password = model.Password;
+
+                _newscontext.SaveChanges();
+
+                return Redirect("/Login/Login/");
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         public async Task<IActionResult> LogOut()
