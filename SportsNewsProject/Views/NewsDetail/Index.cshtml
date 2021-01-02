@@ -74,38 +74,38 @@
 
 
                             <!--<div class="media">
-    <div class="media-left">
-        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
-    </div>-->
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
+                            </div>-->
                             <!--media-left-->
                             <!--<div class="media-body">
-    <h4 class="media-heading">
-        <a href="#">
-            Machester United start the player
-        </a>
-    </h4>
-    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-    <div class="media_content">
-        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-    </div>-->
+                            <h4 class="media-heading">
+                                <a href="#">
+                                    Machester United start the player
+                                </a>
+                            </h4>
+                            <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
+                            <div class="media_content">
+                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
+                            </div>-->
                             <!--media_content-->
                             <!--</div>--><!--media-body-->
                             <!--</div>--><!--media-->
                             <!--<div class="media">
-    <div class="media-left">
-        <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
-    </div>-->
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
+                            </div>-->
                             <!--media-left-->
                             <!--<div class="media-body">
-    <h4 class="media-heading">
-        <a href="#">
-            Machester United start the player
-        </a>
-    </h4>
-    <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-    <div class="media_content">
-        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-    </div>-->
+                            <h4 class="media-heading">
+                                <a href="#">
+                                    Machester United start the player
+                                </a>
+                            </h4>
+                            <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
+                            <div class="media_content">
+                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
+                            </div>-->
                             <!--media_content-->
                             <!--</div>--><!--media-body-->
                             <!--</div>--><!--media-->
@@ -121,45 +121,68 @@
                         <div class="single_media_title"><h2>Related Comments</h2></div>
                         @foreach (var item in Model.Comments)
                         {
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img alt="64x64" class="media-object" data-src="/mainsite/assets/img/img-author1.jpg"
-                                             src="/mainsite/assets/img/img-author1.jpg" data-holder-rendered="true">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h2 class="media-heading">@item.User.NickName</h2>
-                                    <p>@item.AddDate.ToString("dd MMM yyy HH:mm")</p>
-                                    @Html.Raw(item.Content)
-
-                                    <div class="comment_article_social">
-                                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                                        <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                        <a href="#"><span class="reply_ic"> Reply </span></a>
+                            @if (item.ParentId == 0)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img alt="64x64" class="media-object" data-src="/mainsite/assets/img/img-author1.jpg"
+                                                 src="/mainsite/assets/img/img-author1.jpg" data-holder-rendered="true">
+                                        </a>
                                     </div>
-                                    <div class="media reply">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img alt="64x64" class="media-object" data-src="/mainsite/assets/img/img-author2.jpg"
-                                                     src="/mainsite/assets/img/img-author2.jpg" data-holder-rendered="true">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h2 class="media-heading">Admin</h2>
-                                            But who has any right to find fault with a man who chooses to enjoy a pleasure
-                                            that has no annoying consequences, or one who avoids a pain that produces no
-                                            resultant pleasure?
+                                    <div class="media-body">
+                                        <h2 class="media-heading">@item.User.NickName</h2>
+                                        <p>@item.AddDate.ToString("dd MMM yyy HH:mm")</p>
+                                        @Html.Raw(item.Content)
 
-                                            <div class="comment_article_social">
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                                                <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                                <a href="#"><span class="reply_ic"> Reply </span></a>
-                                            </div>
+                                        <div class="comment_article_social">
+                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                                            <a href="#"><span class="reply_ic"> Reply </span></a>
                                         </div>
+                                        <div>
+                                            <div class="add_a_reply">
+                                                <div class="single_media_title"><h2>Add a Reply</h2></div>
+                                                <div class="reply_form">
+                                                    <form action="/newsdetail/reply" method="post">
+                                                        <input type="hidden" name="ID" value="@Model.ID" />
+                                                        <input type="hidden" name="parentid" value="@item.ID" />
+                                                        <input type="text" name="useremail" placeholder="email" />
+                                                        <input type="text" name="replycomment" placeholder="Reply" />
+                                                        <button type="submit" class="btn btn-submit red">Reply</button>
+                                                    </form>
+                                                </div><!--reply_form-->
+                                            </div><!--add_a_reply-->
+                                        </div>
+                                        @for (int i = 0; i < Model.Comments.Count; i++)
+                                        {
+                                            @if (item.ID == Model.Comments[i].ParentId)
+                                            {
+                                                <div class="media reply">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img alt="64x64" class="media-object" data-src="/mainsite/assets/img/img-author2.jpg"
+                                                                 src="/mainsite/assets/img/img-author2.jpg" data-holder-rendered="true">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h2 class="media-heading">@Model.Comments[i].User.NickName</h2>
+                                                        <p>@Model.Comments[i].AddDate.ToString("dd MMM yyy HH:mm")</p>
+                                                        @Html.Raw(Model.Comments[i].Content)
+
+                                                        <div class="comment_article_social">
+                                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                                            <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                                                            <a href="#"><span class="reply_ic"> Reply </span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
                     </div><!--readers_comment-->
 
@@ -184,13 +207,7 @@
                             </form>
                         </div><!--comment_form-->
                     </div><!--add_a_comment-->
-                    <div>
-                        <form action="/newsdetail/reply" method="post">
-                            <input type="hidden" name="parentid" value="@Model.ID" />
-                            <input type="text" name="replycomment" value="" />
-                            <button type="submit">Reply</button>
-                        </form>
-                    </div>
+
 
                 </div><!--single_content_layout-->
             </div>
