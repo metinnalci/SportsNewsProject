@@ -40,13 +40,11 @@ namespace SportsNewsProject
                 .AddCookie("UserScheme", options =>
                 {
                     options.LoginPath = "/Login/Login/";
-                    options.Cookie.Name = "UserCookie";
                 });
             services.AddAuthentication("AdminScheme")
                 .AddCookie("AdminScheme", options =>
                 {
                     options.LoginPath = "/Admin/Login/Index/";
-                    options.Cookie.Name = "AdminCookie";
                 });
             services.AddAuthorization(options =>
             {
