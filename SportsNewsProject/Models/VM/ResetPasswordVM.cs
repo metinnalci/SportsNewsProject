@@ -12,5 +12,6 @@ namespace SportsNewsProject.Models.VM
 
         [Compare("Password", ErrorMessage = ("Lütfen aynı şifreyi giriniz!"))]
         public string ConfirmPassword { get; set; }
+        public string ResetCode { get; set; }
     }
 }

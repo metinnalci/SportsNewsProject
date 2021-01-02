@@ -131,17 +131,22 @@ namespace SportsNewsProject.Controllers
         [HttpGet("Login/Reset/{resetcode}")]
         public IActionResult Reset(string resetcode)
         {
-            return View();
+            User user = _newscontext.Users.FirstOrDefault(x => x.ResetCode == resetcode);
+            
+            ResetPasswordVM model = new ResetPasswordVM();
+
+            model.ResetCode = user.ResetCode;
+
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Reset(ResetPasswordVM model, string resetcode)
+        public IActionResult Reset(ResetPasswordVM model)
         {
             if (ModelState.IsValid)
             {
-                User user = _newscontext.Users.FirstOrDefault(x => x.ResetCode == resetcode);
-
-                user.Password = model.Password;
+                User password = _newscontext.Users.FirstOrDefault(x => x.ResetCode == model.ResetCode);
+                password.Password = model.Password;
 
                 _newscontext.SaveChanges();
 
