@@ -72,43 +72,6 @@
                                 }
                             }
 
-
-                            <!--<div class="media">
-                            <div class="media-left">
-                                <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list2.jpg" alt="Generic placeholder image"></a>
-                            </div>-->
-                            <!--media-left-->
-                            <!--<div class="media-body">
-                            <h4 class="media-heading">
-                                <a href="#">
-                                    Machester United start the player
-                                </a>
-                            </h4>
-                            <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                            <div class="media_content">
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-                            </div>-->
-                            <!--media_content-->
-                            <!--</div>--><!--media-body-->
-                            <!--</div>--><!--media-->
-                            <!--<div class="media">
-                            <div class="media-left">
-                                <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list3.jpg" alt="Generic placeholder image"></a>
-                            </div>-->
-                            <!--media-left-->
-                            <!--<div class="media-body">
-                            <h4 class="media-heading">
-                                <a href="#">
-                                    Machester United start the player
-                                </a>
-                            </h4>
-                            <div class="media_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                            <div class="media_content">
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore</p>
-                            </div>-->
-                            <!--media_content-->
-                            <!--</div>--><!--media-body-->
-                            <!--</div>--><!--media-->
                         </div><!--media_wrapper-->
                     </div><!--single_related_news-->
 
@@ -138,18 +101,25 @@
                                         <div class="comment_article_social">
                                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
                                             <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                            <a href="#"><span class="reply_ic"> Reply </span></a>
+                                            <button onclick="addreply('@item.ID',true)" class="reply_ic"><span> Reply </span></button>
                                         </div>
-                                        <div>
-                                            <div class="add_a_reply">
+                                        <div id="replyform_@item.ID" style="display:none">
+                                            <div class="add_a_comment">
                                                 <div class="single_media_title"><h2>Add a Reply</h2></div>
-                                                <div class="reply_form">
+                                                <div class="comment_form">
                                                     <form action="/newsdetail/reply" method="post">
                                                         <input type="hidden" name="ID" value="@Model.ID" />
                                                         <input type="hidden" name="parentid" value="@item.ID" />
-                                                        <input type="text" name="useremail" placeholder="email" />
-                                                        <input type="text" name="replycomment" placeholder="Reply" />
+
+                                                        <div class="form-group">
+                                                            <input type="text" name="useremail" placeholder="Email" style="width:100%"/>
+                                                        </div>
+                                                        <div class="form-group comment">
+                                                            <input type="text" name="replycomment" placeholder="Content" style="width:100%; height:80px"/>
+                                                        </div>
+
                                                         <button type="submit" class="btn btn-submit red">Reply</button>
+
                                                     </form>
                                                 </div><!--reply_form-->
                                             </div><!--add_a_reply-->
@@ -173,13 +143,11 @@
                                                         <div class="comment_article_social">
                                                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
                                                             <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                                                            <a href="#"><span class="reply_ic"> Reply </span></a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             }
                                         }
-
                                     </div>
                                 </div>
                             }
@@ -394,3 +362,14 @@
             </div>
         </div>
 </section>
+
+<script>
+    function addreply(id, isTrue) {
+
+        var replyform = 'replyform_' + id;
+
+        if (isTrue) {
+            $('#' + replyform).toggle(1000);
+        }
+    }
+</script>

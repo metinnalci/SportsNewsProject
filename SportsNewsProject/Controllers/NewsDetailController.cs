@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Controllers
 {
-    [Authorize(Policy = "UserAccess")]
+    //[Authorize(Policy = "UserAccess")]
     public class NewsDetailController : MainSiteController
     {
         private readonly SportsNewsContext _newscontext;
@@ -22,7 +22,7 @@ namespace SportsNewsProject.Controllers
             _newscontext = newscontext;
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult Index(NewsVM model)
         {
             NewsVM modell = new NewsVM();
