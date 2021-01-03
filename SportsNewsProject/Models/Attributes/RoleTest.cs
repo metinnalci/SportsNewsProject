@@ -13,33 +13,33 @@ namespace SportsNewsProject.Models.Attributes
         string rol = "0";
         public RoleTest(EnumRoles roles)
         {
-            rol = Convert.ToInt32(roles).ToString(); 
+            rol = Convert.ToInt32(roles).ToString();
         }
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             string role = context.HttpContext.User.Claims.ToArray()[1].Value;
 
-            if(role != null)
+            if (role != null)
             {
                 string[] adminrooles = role.Split(";");
                 bool haveAccess = false;
 
                 foreach (var item in adminrooles)
                 {
-                    if(item == rol)
+                    if (item == rol)
                     {
                         haveAccess = true;
                     }
                 }
                 if (!haveAccess)
                 {
-                    context.Result = new RedirectToActionResult("YetkisizErisim", "Error", null);
+                    context.Result = new RedirectResult("/Admin/Error/YetkisizErisim");
                 }
-               
+
             }
-            else 
+            else
             {
-            context.Result = new RedirectToActionResult("YetkisizErisim", "Error", null);
+                context.Result = new RedirectResult("/Admin/Error/YetkisizErisim");
             }
 
         }

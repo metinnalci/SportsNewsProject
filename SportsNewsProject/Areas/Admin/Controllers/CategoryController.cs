@@ -108,7 +108,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return Redirect("/Admin/Category/Index");
         }
 
-        [RoleControl(EnumRoles.CategoryDelete)]
+        [RoleTest(EnumRoles.CategoryDelete)]
 
         [HttpPost]
         public IActionResult Delete(int id)

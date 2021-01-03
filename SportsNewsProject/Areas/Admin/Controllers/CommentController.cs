@@ -23,7 +23,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             _newscontext = newscontext;
         }
 
-        [RoleControl(EnumRoles.CommentList)]
+        [RoleTest(EnumRoles.CommentList)]
         public IActionResult Index()
         {
             List<CommentVM> comments = _newscontext.Comments.Where(q => q.IsDeleted == false).Include(q => q.News).Include(q => q.User).Select(q => new CommentVM()
@@ -39,7 +39,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return View(comments);
         }
 
-        [RoleControl(EnumRoles.AuthorEdit)]
+        [RoleTest(EnumRoles.AuthorEdit)]
         public IActionResult Edit(int id)
         {
             CommentVM model = _newscontext.Comments.Select(q => new CommentVM()
@@ -79,7 +79,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             return Redirect("/Admin/Comment/Index/");
         }
 
-        [RoleControl(EnumRoles.CommentDelete)]
+        [RoleTest(EnumRoles.CommentDelete)]
         [HttpPost]
         public IActionResult Delete(int id)
         {
