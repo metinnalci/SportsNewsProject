@@ -13,7 +13,7 @@ namespace SportsNewsProject.Models.VM
         public string Username { get; set; }
         public string NewsTitle { get; set; }
 
-        [Required(ErrorMessage = "Please enter a camment!")]
+        [Required(ErrorMessage = "Please enter a comment!")]
         public string Content { get; set; }
         public DateTime AddDate { get; set; }
         public List<User> Users { get; set; }
