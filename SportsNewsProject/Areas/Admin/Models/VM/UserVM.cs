@@ -9,6 +9,8 @@ namespace SportsNewsProject.Models.VM
     public class UserVM
     {
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Please fill required areas!")]
         public string Name { get; set; }
         public string SurName { get; set; }
 

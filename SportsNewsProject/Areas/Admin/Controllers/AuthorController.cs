@@ -190,7 +190,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
         AuthorVM GetAuthorForAdd()
         {
             AuthorVM model = new AuthorVM();
-            model.categoryCheck = _newscontext.Categories.Where(q => q.IsDeleted == false).Select(q => new CategoryCheckVM()
+            model.categoryCheck = _newscontext.Categories.Where(q => q.IsDeleted == false && q.UpperCategoryID == 1).Select(q => new CategoryCheckVM()
             {
 
                 categoryid = q.ID,
@@ -213,7 +213,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
             model.EMail = author.EMail;
             model.Phone = author.Phone;
             model.BirthDate = author.BirthDate;
-            model.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false).ToList();
+            model.Categories = _newscontext.Categories.Where(q => q.IsDeleted == false && q.UpperCategoryID == 1).ToList();
             int[] selectedCategories = _newscontext.AuthorCategories.Where(q => q.AuthorID == id).Select(q => q.CategoryID).ToArray();
 
             foreach (var item in model.Categories)

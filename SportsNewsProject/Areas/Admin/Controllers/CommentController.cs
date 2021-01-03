@@ -34,7 +34,7 @@ namespace SportsNewsProject.Areas.Admin.Controllers
                 Content = q.Content,
                 AddDate = q.AddDate
 
-            }).ToList();
+            }).OrderByDescending(q => q.AddDate).ToList();
 
             return View(comments);
         }

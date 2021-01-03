@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="commenttable">
                                 <thead class=" text-primary">
                                     <tr class="text-center">
                                         <th>ID</th>
@@ -133,4 +133,16 @@
             }
         })
     })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#commenttable').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "ordering": false,
+            "dom": 'B<"clear">lfrtip',
+            "buttons": ['print', 'excel', 'pdf']
+        });
+    });
 </script>

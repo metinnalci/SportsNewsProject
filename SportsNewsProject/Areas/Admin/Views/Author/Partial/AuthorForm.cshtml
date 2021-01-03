@@ -47,7 +47,7 @@
     <div class="col-md-3">
         <div class="form-group">
             @Html.LabelFor(q => q.BirthDate, new { @class = "bmd-label-floating" })
-            @Html.TextBoxFor(q => q.BirthDate, new { @class = "form-control", @id = "datepicker" })
+            @Html.TextBoxFor(q => q.BirthDate, new { @class = "form-control", @type = "date"})
             @Html.ValidationMessageFor(q => q.BirthDate)
         </div>
     </div>
@@ -65,7 +65,10 @@
         </div>
     </div>
 </div>
-@section datepicker{
+
+
+
+@*@section datepicker{
     <script>
         $(function () {
             $("#datepicker").datepicker({
@@ -73,4 +76,4 @@
             });
         });
     </script>
-}
+}*@
