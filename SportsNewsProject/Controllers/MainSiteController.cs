@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Controllers
 {
+    [Authorize(Policy = "UserAccess")]
     public class MainSiteController : Controller
     {
         private readonly SportsNewsContext _newsContext;

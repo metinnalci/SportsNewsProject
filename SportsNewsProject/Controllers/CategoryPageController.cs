@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Controllers
 {
+    [AllowAnonymous]
     public class CategoryPageController : MainSiteController
     {
         private readonly SportsNewsContext _newsContext;
