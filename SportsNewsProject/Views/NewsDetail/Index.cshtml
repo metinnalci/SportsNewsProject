@@ -99,8 +99,8 @@
                                         @Html.Raw(item.Content)
 
                                         <div class="comment_article_social">
-                                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                                            <a href="#"><i @*class="fa fa-thumbs-o-up"*@ class="glyphicon glyphicon-triangle-top" aria-hidden="true"></i></a>
+                                            <a href="#"><i @*class="fa fa-thumbs-o-down"*@ class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></i></a>
                                             <button onclick="addreply('@item.ID',true)" class="reply_ic"><span> Reply </span></button>
                                         </div>
                                         <div id="replyform_@item.ID" style="display:none">
