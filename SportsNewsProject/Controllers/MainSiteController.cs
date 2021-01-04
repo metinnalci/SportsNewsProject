@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
@@ -54,7 +55,7 @@ namespace SportsNewsProject.Controllers
                     .SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
                     .SetSlidingExpiration(TimeSpan.FromSeconds(60));
 
-                categories = _newsContext.Categories.Where(q => q.IsDeleted == false).ToList();
+                categories = _newsContext.Categories.Include(x => x.News).Where(q => q.IsDeleted == false).ToList();
 
                 _memoryCache.Set("categories", categories, cacheEntryOptions);
             }

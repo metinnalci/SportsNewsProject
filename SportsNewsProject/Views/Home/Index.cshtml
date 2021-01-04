@@ -31,7 +31,7 @@
                                                 <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/AuthorPage/Author/@Model.news[i].AuthorID">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
                                         </div> <!--item_wrapper-->
-                                        <div class="item_content">@Model.news[i].SubTitle.Substring(0, 70) ...</div>
+                                        <div class="item_content">@Model.news[i].SubTitle.Substring(0, 15) ...</div>
                                     </div><!--feature_news_item-->
                                 }
                                 else
@@ -50,7 +50,7 @@
                                         </div> <!--item_wrapper-->
 
                                         <div class="item_content">
-                                            @Model.news[i].SubTitle.Substring(0, 70) ...
+                                            @Model.news[i].SubTitle.Substring(0, 15) ...
                                         </div>
 
                                     </div><!--feature_news_item-->
@@ -90,7 +90,7 @@
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content">
-                                            @Model.news[i].SubTitle.Substring(0, 70) ...
+                                            @Model.news[i].SubTitle.Substring(0, 15) ...
                                         </div>
 
                                     </div><!--item-->
@@ -112,7 +112,7 @@
             <div class="col-md-9">
                 @foreach (var item in Model.Categories)
                 {
-                    if (item.UpperCategoryID == 1)
+                    if (item.UpperCategoryID > 1 && item.News.Count != 0)
                     {
                         <div class="category_layout">
                             <div class="item_caregory red"><h2><a href="/CategoryPage/Category/@item.ID">@item.CategoryName</a></h2></div>
@@ -139,33 +139,37 @@
                                                             </div><!--item_title_date-->
                                                         </div><!--item_wrapper-->
                                                         <div class="item_content">
-                                                            @item.News[i].SubTitle.Substring(0, 70) ...
+                                                            @item.News[i].SubTitle
                                                         </div><!--item_content-->
 
                                                     </div><!--feature_news_item-->
                                                 </div><!--col-md-7-->
 
                                             }
-                                            <div class="col-md-5">
-                                                <div class="media_wrapper">
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                                        </div><!--media-left-->
-                                                        <div class="media-body">
-                                                            <h3 class="media-heading">
-                                                                <a href="/NewsDetail/Index/@item.News[i].ID">
-                                                                    @item.News[i].Title
-                                                                </a>
-                                                            </h3>
+                                            else
+                                            {
+                                                <div class="col-md-5">
+                                                    <div class="media_wrapper">
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <a href="#"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                                            </div><!--media-left-->
+                                                            <div class="media-body">
+                                                                <h3 class="media-heading">
+                                                                    <a href="/NewsDetail/Index/@item.News[i].ID">
+                                                                        @item.News[i].Title
+                                                                    </a>
+                                                                </h3>
 
-                                                            <p>@item.News[i].SubTitle.Substring(0, 70) ...</p>
+                                                                <p>@item.News[i].SubTitle</p>
 
-                                                        </div><!--media-body-->
-                                                    </div><!--media-->
-                                                </div><!--media_wrapper-->
+                                                            </div><!--media-body-->
+                                                        </div><!--media-->
+                                                    </div><!--media_wrapper-->
 
-                                            </div><!--col-md-5-->
+                                                </div><!--col-md-5-->
+
+                                            }
                                         }
 
                                     }
@@ -198,7 +202,7 @@
                                             </div><!--item_title_date-->
                                         </div><!--item_wrapper-->
                                         <div class="item_content">
-                                            @Model.news[i].SubTitle.Substring(0, 35) ...
+                                            @Model.news[i].SubTitle.Substring(0,10) ...
                                         </div><!--item_content-->
 
                                     </div><!--item-->

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Category";
+    ViewData["Title"] = "SubCategory";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,7 +8,7 @@
 
 <section id="feature_category_section" class="feature_category_section category_page section_wrapper">
     <div class="container">
-        <div class="item_caregory red"><h2>@Model.category.CategoryName.ToUpper()</h2></div>
+        <div class="item_caregory red"><h2><a href="">@Model.category.CategoryName.ToUpper()</a></h2></div>
         <div class="row">
             <div class="col-md-9">
                 @for (int i = 0; i < 1; i++)
@@ -56,7 +56,7 @@
                                         </div><!--item_title_date-->
                                     </div> <!--item_wrapper-->
                                     <div class="item_content">
-                                        @Model.category.News[i].SubTitle.Substring(0, 70) ...
+                                        @Model.category.News[i].SubTitle.Substring(0, 10) ...
                                     </div>
 
                                 </div><!--item-->
