@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SportsNewsProject.Controllers
 {
-    //[Authorize(Policy = "UserAccess")]
+    [AllowAnonymous]
     public class NewsDetailController : MainSiteController
     {
         private readonly SportsNewsContext _newscontext;
