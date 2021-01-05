@@ -87,7 +87,7 @@ namespace SportsNewsProject.Controllers
 
                     _newscontext.SaveChanges();
 
-                    string reseturl = "https://localhost:44356/Login/Reset/" + resetcode;
+                    string reseturl = "http://sportsnewsprojectapp.herokuapp.com./Login/Reset/" + resetcode;
 
                     MimeMessage message = new MimeMessage();
 

@@ -53,7 +53,7 @@ namespace SportsNewsProject.Controllers
                     //email gönderme kodu. EMail ile kullanıcıya 31. satırdaki confirmcode u yolla. 
                     //http://localhost:5000/Register/Confirm/22336525112asd
 
-                    string confirmurl = "https://localhost:44356/Register/Confirm/" + confirmcode;
+                    string confirmurl = "http://sportsnewsprojectapp.herokuapp.com./Register/Confirm/" + confirmcode;
 
                     MimeMessage message = new MimeMessage();
 
