@@ -20,6 +20,8 @@ namespace SportsNewsProject.Controllers
         {
             _newsContext = newsContext;
         }
+
+        [Route("kategori/{id}/{title}")]
         public IActionResult Category(int id)
         {
             CategoryPageVM page = new CategoryPageVM();
@@ -27,6 +29,8 @@ namespace SportsNewsProject.Controllers
             page.news = _newsContext.News.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).Take(4).ToList();
             return View(page);
         }
+
+        [Route("altkategori/{id}/{title}")]
         public IActionResult SubCategory(int id)
         {
             CategoryPageVM subpage = new CategoryPageVM();

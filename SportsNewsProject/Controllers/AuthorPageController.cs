@@ -21,6 +21,7 @@ namespace SportsNewsProject.Controllers
             _newscontext = newscontext;
         }
 
+        [Route("yazar/{id}/{title}")]
         public IActionResult Author(int id)
         {
             AuthorPageVM author = new AuthorPageVM();

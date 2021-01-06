@@ -22,6 +22,7 @@ namespace SportsNewsProject.Controllers
             _newscontext = newscontext;
         }
 
+        [Route("login")]
         public IActionResult Login()
         {
             return View();
@@ -67,6 +68,7 @@ namespace SportsNewsProject.Controllers
             }
         }
 
+        [Route("forgot-password")]
         public IActionResult ForgotPassword()
         {
             return View();

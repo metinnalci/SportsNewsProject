@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -69,8 +68,8 @@
                                     {
                                     <ul class="nav navbar-nav">
                                         <li><a href="/Admin/Login/">Admin Login</a></li>
-                                        <li><a href="/Login/Login/">Login</a></li>
-                                        <li><a href="/Register/Register/">Register</a></li>
+                                        <li><a href="/login">Login</a></li>
+                                        <li><a href="/register">Register</a></li>
                                     </ul>
                                     }
                                     else
@@ -91,7 +90,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="logo">
-                                <a href="/"><img class="img-responsive" src="~/mainsite/assets/img/sportsnewslogo.png" alt="" style="width:160px; height:130px;"></a>
+                                <a href="/anasayfa"><img class="img-responsive" src="~/mainsite/assets/img/sportsnewslogo.png" alt="" style="width:160px; height:130px;"></a>
                             </div><!--logo-->
                         </div><!--col-md-3-->
                         
@@ -119,14 +118,14 @@
                                     <ul class="dropdown-menu">
                                         @if (item.News.Count != 0)
                                         {
-                                            <li><a href="/CategoryPage/Category/@item.ID">@item.CategoryName</a></li>
+                                            <li><a href="/kategori/@item.ID/@UrlHelpers.FriendlyUrl(item.CategoryName)">@item.CategoryName</a></li>
                                         }
 
                                         @foreach (var sub in ViewBag.subcategories)
                                         {
                                             if (sub.UpperCategoryID == item.ID)
                                             {
-                                                <li><a href="/CategoryPage/SubCategory/@sub.ID">@sub.CategoryName</a></li>
+                                                <li><a href="/altkategori/@sub.ID/@UrlHelpers.FriendlyUrl(sub.CategoryName)">@sub.CategoryName</a></li>
 
                                             }
                                         }
@@ -178,7 +177,7 @@
                                             <ul class="nav navbar-nav ">
                                                 @foreach (var item in ViewBag.categories)
                                                 {
-                                                    <li><a href="/CategoryPage/Category/@item.ID">@item.CategoryName</a></li>
+                                                    <li><a href="/kategori/@item.ID/@UrlHelpers.FriendlyUrl(item.CategoryName)">@item.CategoryName</a></li>
                                                 }
                                             </ul>
                                         </div><!--col-sm-4-->

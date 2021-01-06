@@ -22,6 +22,7 @@ namespace SportsNewsProject.Controllers
             _newscontext = newscontext;
         }
 
+        [Route("register")]
         public IActionResult Register()
         {
             return View();
