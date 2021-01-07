@@ -22,7 +22,7 @@ namespace SportsNewsProject.Controllers
             _newscontext = newscontext;
         }
 
-        //[AllowAnonymous]
+        [Route("haber/{id}/{title}")]
         public IActionResult Index(NewsVM model)
         {
             NewsVM modell = new NewsVM();
@@ -38,6 +38,7 @@ namespace SportsNewsProject.Controllers
             modell.AddDate = news.AddDate;
             modell.Comments = news.CommentList.Where(q => q.IsDeleted == false).OrderByDescending(q => q.AddDate).ToList();
             modell.Categories = _newscontext.Categories.Where(q => q.ID == news.CategoryID).Include(q => q.News).ThenInclude(q => q.Author).OrderByDescending(q => q.AddDate).ToList();
+            modell.authorid = news.AuthorID;
 
             return View(modell);
         }

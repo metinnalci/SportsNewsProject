@@ -21,11 +21,11 @@
                                     <div class="item active feature_news_item">
                                         <div class="item_wrapper">
                                             <div class="item_img">
-                                                <a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img-carousel1.jpg" alt="Chania"></a>
+                                                <a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img-carousel1.jpg" alt="Chania"></a>
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)" name="id" id="@Model.news[i].ID">@Model.news[i].Title</a></h2>
+                                                    <h2><a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)" name="id" id="@Model.news[i].ID">@Model.news[i].Title</a></h2>
                                                 </div>
                                                 <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@Model.news[i].AuthorID/@UrlHelpers.FriendlyUrl(Model.news[i].Author?.Name)">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
@@ -38,11 +38,11 @@
                                     <div class="item feature_news_item">
                                         <div class="item_wrapper">
                                             <div class="item_img">
-                                                <a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img-carousel2.jpg" alt="Chania"></a>
+                                                <a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img-carousel2.jpg" alt="Chania"></a>
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h2>
+                                                    <h2><a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h2>
                                                 </div>
                                                 <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@Model.news[i].AuthorID/@UrlHelpers.FriendlyUrl(Model.news[i].Author?.Name)">@Model.news[i].Author?.Name</a></div>
                                             </div> <!--item_title_date-->
@@ -79,11 +79,11 @@
                                     <div class="item active">
                                         <div class="item_wrapper">
                                             <div class="item_img">
-                                                <a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img_feature.jpg" alt="Chania"></a>
+                                                <a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img_feature.jpg" alt="Chania"></a>
                                             </div> <!--item_img-->
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
-                                                    <h2><a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h2>
+                                                    <h2><a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h2>
                                                 </div>
                                                 <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@Model.news[i].AuthorID/@UrlHelpers.FriendlyUrl(Model.news[i].Author?.Name)">@Model.news[i].Author?.Name</a></div>
                                             </div><!--item_title_date-->
@@ -128,11 +128,11 @@
                                                     <div class="item feature_news_item">
                                                         <div class="item_wrapper">
                                                             <div class="item_img">
-                                                                <a href="/NewsDetail/Index/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img_feature_news.jpg" alt="Chania"></a>
+                                                                <a href="/haber/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img_feature_news.jpg" alt="Chania"></a>
                                                             </div><!--item_img-->
                                                             <div class="item_title_date">
                                                                 <div class="news_item_title">
-                                                                    <h2><a href="/NewsDetail/Index/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)">@item.News[i].Title</a></h2>
+                                                                    <h2><a href="/haber/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)">@item.News[i].Title</a></h2>
                                                                 </div><!--news_item_title-->
                                                                 <div class="item_meta">@item.News[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@Model.news[i].AuthorID/@UrlHelpers.FriendlyUrl(item.News[i].Author?.Name)">@item.News[i].Author?.Name</a></div>
                                                             </div><!--item_title_date-->
@@ -151,11 +151,11 @@
                                                     <div class="media_wrapper">
                                                         <div class="media">
                                                             <div class="media-left">
-                                                                <a href="/NewsDetail/Index/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                                                <a href="/haber/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
                                                             </div><!--media-left-->
                                                             <div class="media-body">
                                                                 <h3 class="media-heading">
-                                                                    <a href="/NewsDetail/Index/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)">
+                                                                    <a href="/haber/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)">
                                                                         @item.News[i].Title
                                                                     </a>
                                                                 </h3>
@@ -195,11 +195,11 @@
                                             <div class="item">
                                                 <div class="item_wrapper">
                                                     <div class="item_img">
-                                                        <a href="/NewsDetail/Index/@news.ID/@UrlHelpers.FriendlyUrl(news.Title)"><img class="img-responsive" src="/mainsite/assets/img/img-news.jpg" alt="Chania"></a>
+                                                        <a href="/haber/@news.ID/@UrlHelpers.FriendlyUrl(news.Title)"><img class="img-responsive" src="/mainsite/assets/img/img-news.jpg" alt="Chania"></a>
                                                     </div><!--item_img-->
                                                     <div class="item_title_date">
                                                         <div class="news_item_title">
-                                                            <h3><a href="/NewsDetail/Index/@news.ID/@UrlHelpers.FriendlyUrl(news.Title)">@news.Title</a></h3>
+                                                            <h3><a href="/haber/@news.ID/@UrlHelpers.FriendlyUrl(news.Title)">@news.Title</a></h3>
                                                         </div><!--news_item_title-->
                                                         <div class="item_meta">@news.AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@news.AuthorID/@UrlHelpers.FriendlyUrl(news.Author?.Name)">@news.Author?.Name</a></div>
                                                     </div><!--item_title_date-->
@@ -235,11 +235,11 @@
                             {
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
+                                        <a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="media-object" src="/mainsite/assets/img/img-list.jpg" alt="Generic placeholder image"></a>
                                     </div>
                                     <!--media-left-->
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h4>
+                                        <h4 class="media-heading"><a href="/haber/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h4>
                                     </div>
                                     <!--media-body-->
                                 </div><!--media-->
