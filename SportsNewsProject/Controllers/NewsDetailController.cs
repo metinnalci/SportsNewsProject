@@ -81,6 +81,23 @@ namespace SportsNewsProject.Controllers
             return RedirectToAction("Index", "NewsDetail", model);
         }
 
+        [HttpPost]
+        public void Voting(int id, bool isTrue)
+        {
+            Comment comment = new Comment();
+            comment = _newscontext.Comments.FirstOrDefault(x => x.ID == id);
+            if (isTrue)
+            {
+                comment.Likes++;
+            }
+            else
+            {
+                comment.Dislikes++;
+            }
+            
+            _newscontext.SaveChanges();
+
+        }
 
     }
 }
