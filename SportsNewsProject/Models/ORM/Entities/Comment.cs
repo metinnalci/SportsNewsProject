@@ -19,6 +19,7 @@ namespace SportsNewsProject.Models.ORM.Entities
 
         public int? ParentId { get; set; }
 
-        public List<Comment>? ChildComments { get; set; }
+        public int Likes { get; set; } = 0;
+        public int Dislikes { get; set; } = 0;
     }
 }
