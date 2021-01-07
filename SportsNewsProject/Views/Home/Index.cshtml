@@ -184,31 +184,39 @@
                 <div id="more_news_item" class="more_news_item">
                     <div class="more_news_heading"><h2><a href="#">Daha Fazla Haber</a></h2></div>
                     <div class="row">
-                        @for (int i = 9; i < 12; i++)
+                        @foreach (var item in Model.Categories)
                         {
-                            <div class="col-md-4">
-                                <div class="feature_news_item">
-                                    <div class="item">
-                                        <div class="item_wrapper">
-                                            <div class="item_img">
-                                                <a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)"><img class="img-responsive" src="/mainsite/assets/img/img-news.jpg" alt="Chania"></a>
-                                            </div><!--item_img-->
-                                            <div class="item_title_date">
-                                                <div class="news_item_title">
-                                                    <h3><a href="/NewsDetail/Index/@Model.news[i].ID/@UrlHelpers.FriendlyUrl(Model.news[i].Title)">@Model.news[i].Title</a></h3>
-                                                </div><!--news_item_title-->
-                                                <div class="item_meta">@Model.news[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@Model.news[i].AuthorID/@UrlHelpers.FriendlyUrl(Model.news[i].Author?.Name)">@Model.news[i].Author?.Name</a></div>
-                                            </div><!--item_title_date-->
-                                        </div><!--item_wrapper-->
-                                        <div class="item_content">
-                                            @Model.news[i].SubTitle.Substring(0, 10) ...
-                                        </div><!--item_content-->
+                            if (item.CategoryName.Contains("Futbol") && item.UpperCategoryID == 1)
+                            {
+                                foreach (var news in item.News.Take(3))
+                                {
+                                    <div class="col-md-4">
+                                        <div class="feature_news_item">
+                                            <div class="item">
+                                                <div class="item_wrapper">
+                                                    <div class="item_img">
+                                                        <a href="/NewsDetail/Index/@news.ID/@UrlHelpers.FriendlyUrl(news.Title)"><img class="img-responsive" src="/mainsite/assets/img/img-news.jpg" alt="Chania"></a>
+                                                    </div><!--item_img-->
+                                                    <div class="item_title_date">
+                                                        <div class="news_item_title">
+                                                            <h3><a href="/NewsDetail/Index/@news.ID/@UrlHelpers.FriendlyUrl(news.Title)">@news.Title</a></h3>
+                                                        </div><!--news_item_title-->
+                                                        <div class="item_meta">@news.AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@news.AuthorID/@UrlHelpers.FriendlyUrl(news.Author?.Name)">@news.Author?.Name</a></div>
+                                                    </div><!--item_title_date-->
+                                                </div><!--item_wrapper-->
+                                                <div class="item_content">
+                                                    @news.SubTitle.Substring(0, 10) ...
+                                                </div><!--item_content-->
 
-                                    </div><!--item-->
-                                </div><!--feature_news_item-->
-                            </div><!--col-xs-4-->
+                                            </div><!--item-->
+                                        </div><!--feature_news_item-->
+                                    </div><!--col-xs-4-->
 
+                                }
+
+                            }
                         }
+
 
                     </div><!--row-->
                 </div><!--more_news_item-->
@@ -235,7 +243,6 @@
                                     </div>
                                     <!--media-body-->
                                 </div><!--media-->
-
                             }
 
                         </div><!--tab-pane-->
