@@ -68,14 +68,14 @@ namespace SportsNewsProject
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
+                //app.UseStatusCodePagesWithReExecute("/error/{0}");
+            }
+            else
+            {
                 app.UseStatusCodePagesWithReExecute("/error/{0}");
             }
-            //else
-            //{
-            //    app.UseStatusCodePagesWithReExecute("/error/{0}");
-            //}
-            
+
             app.UseRouting();
             app.UseStaticFiles();
             app.UseAuthentication();

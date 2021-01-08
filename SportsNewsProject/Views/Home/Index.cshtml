@@ -116,7 +116,7 @@
                         <div class="category_layout">
                             <div class="item_caregory red"><h2><a href="/altkategori/@item.ID/@UrlHelpers.FriendlyUrl(item.CategoryName)">@item.CategoryName</a></h2></div>
                             <div class="row">
-                                @for (int i = 0; i < 3; i++)
+                                @for (int i = 0; i < 5; i++)
                                 {
                                     if (item.News.Count > i)
                                     {
@@ -138,7 +138,7 @@
                                                             </div><!--item_title_date-->
                                                         </div><!--item_wrapper-->
                                                         <div class="item_content">
-                                                            @item.News[i].SubTitle
+                                                            @item.News[i].SubTitle.Substring(0, 25) ...
                                                         </div><!--item_content-->
 
                                                     </div><!--feature_news_item-->
@@ -160,7 +160,7 @@
                                                                     </a>
                                                                 </h3>
 
-                                                                <p>@item.News[i].SubTitle</p>
+                                                                <p>@item.News[i].SubTitle.Substring(0, 16) ...</p>
 
                                                             </div><!--media-body-->
                                                         </div><!--media-->
