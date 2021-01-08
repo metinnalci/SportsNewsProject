@@ -60,7 +60,7 @@ namespace SportsNewsProject.Controllers
                 _memoryCache.Set("categories", categories, cacheEntryOptions);
             }
 
-            ViewBag.categories = categories.Where(q => q.UpperCategoryID == 1);
+            ViewBag.categories = categories.Where(q => q.UpperCategoryID == 1).ToList();
             ViewBag.subcategories = categories.Where(q => q.UpperCategoryID > 1);
 
             base.OnActionExecuting(context);
