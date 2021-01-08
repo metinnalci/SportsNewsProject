@@ -41,7 +41,6 @@ namespace SportsNewsProject.Controllers
                         new Claim(ClaimTypes.Email, model.EMail),
                         new Claim(ClaimTypes.Name, user.Name),
                         new Claim(ClaimTypes.UserData,"Site")
-
                     };
 
                     var userIdentity = new ClaimsIdentity(claims, "login");
@@ -164,7 +163,7 @@ namespace SportsNewsProject.Controllers
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync("UserScheme");
-            return Redirect("/Home/Index/");
+            return Redirect("/anasayfa");
         }
     }
 }

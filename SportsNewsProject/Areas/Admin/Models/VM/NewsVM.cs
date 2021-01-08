@@ -28,6 +28,7 @@ namespace SportsNewsProject.Models.VM
         public List<Comment> Comments { get; set; }
         public Comment Comment { get; set; }
         public int? authorid { get; set; }
+        public string UserEmail { get; set; }
 
     }
 }

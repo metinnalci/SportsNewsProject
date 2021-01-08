@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using SportsNewsProject.Models.Helpers;
 using SportsNewsProject.Models.ORM.Context;
 using SportsNewsProject.Models.ORM.Entities;
 using SportsNewsProject.Models.VM;
@@ -49,18 +50,20 @@ namespace SportsNewsProject.Controllers
         {
             Comment comment = new Comment();
             User user = new User();
-
+            News news = _newscontext.News.FirstOrDefault(x => x.ID == model.ID);
+            model.Title = news.Title;
+            
             comment.NewsId = model.ID;
             comment.Content = model.Comment.Content;
-            user = _newscontext.Users.Where(q => q.EMail == model.Comment.User.EMail).FirstOrDefault();
+            user = _newscontext.Users.Where(q => q.EMail == model.UserEmail).FirstOrDefault();
             comment.UserId = user.ID;
             comment.ParentId = 0;
 
-
             _newscontext.Comments.Add(comment);
             _newscontext.SaveChanges();
+            string url = "/haber/" + model.ID + "/" + UrlHelpers.FriendlyUrl(model.Title);
 
-            return RedirectToAction("Index", "NewsDetail", model);
+            return Redirect(url);
         }
 
         [HttpPost]
@@ -70,6 +73,8 @@ namespace SportsNewsProject.Controllers
             Comment comment = new Comment();
             User user = new User();
             user = _newscontext.Users.Where(q => q.EMail == replyVM.useremail).FirstOrDefault();
+            News news = _newscontext.News.FirstOrDefault(x => x.ID == model.ID);
+            model.Title = news.Title;
 
             comment.UserId = user.ID;
             comment.ParentId = replyVM.parentid;
@@ -78,8 +83,9 @@ namespace SportsNewsProject.Controllers
 
             _newscontext.Comments.Add(comment);
             _newscontext.SaveChanges();
+            string url = "/haber/" + model.ID + "/" + UrlHelpers.FriendlyUrl(model.Title);
 
-            return RedirectToAction("Index", "NewsDetail", model);
+            return Redirect(url);
         }
 
         [HttpPost]
