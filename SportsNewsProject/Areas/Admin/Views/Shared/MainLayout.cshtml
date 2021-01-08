@@ -65,7 +65,7 @@
 
                         }
                     }
-                    <li class="nav-item ">
+                    @*<li class="nav-item ">
                         @foreach (var item in ViewBag.menu)
                         {
                             if (item.Name.Contains("Admin Profiles"))
@@ -91,7 +91,7 @@
                                 }
                             }
                         </div>
-                    </li>
+                    </li>*@
                     <li class="nav-item ">
                         @foreach (var item in ViewBag.menu)
                         {
@@ -240,7 +240,6 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a class="dropdown-item" href="#">@ViewBag.email</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/Admin/Login/Logout">Log out</a>
                                 </div>
