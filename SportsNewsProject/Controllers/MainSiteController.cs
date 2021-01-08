@@ -32,6 +32,7 @@ namespace SportsNewsProject.Controllers
                 if(HttpContext.User.Claims.ToArray()[2].Value == "Site")
                 {
                     ViewBag.name = HttpContext.User.Claims.ToArray()[1].Value;
+                    ViewBag.email = HttpContext.User.Claims.ToArray()[0].Value;
                     ViewBag.IsAuth = true; 
 
                 }

@@ -15,12 +15,10 @@
     }
     .like{
         color:darkgreen;
-        
         font:bold;
     }
     .dislike{
         color:darkred;
-        
         font:bold;
     }
 </style>
@@ -131,10 +129,10 @@
                                                         <input type="hidden" name="parentid" value="@item.ID" />
 
                                                         <div class="form-group">
-                                                            <input type="text" name="useremail" placeholder="Email" style="width:100%"/>
+                                                            <input type="text" name="useremail" placeholder="Email" style="width:100%" />
                                                         </div>
                                                         <div class="form-group comment">
-                                                            <input type="text" name="replycomment" placeholder="Content" style="width:100%; height:80px"/>
+                                                            <input type="text" name="replycomment" placeholder="Content" style="width:100%; height:80px" />
                                                         </div>
 
                                                         <button type="submit" class="btn btn-submit red">Reply</button>
@@ -173,27 +171,35 @@
                         }
                     </div><!--readers_comment-->
 
-                    <div class="add_a_comment">
-                        <div class="single_media_title"><h2>Add a Comment</h2></div>
-                        <div class="comment_form">
-                            <form action="/NewsDetail/AddComment/@Model.ID" method="post">
-                                <div class="form-group">
-                                    @Html.LabelFor(q => q.Comment.User.NickName, new { @class = "bmd-label-floating" })
-                                    @Html.TextBoxFor(q => q.Comment.User.NickName, new { @class = "form-control" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(q => q.Comment.User.EMail, new { @class = "bmd-label-floating" })
-                                    @Html.TextBoxFor(q => q.Comment.User.EMail, new { @class = "form-control", @type = "email" })
-                                </div>
-                                <div class="form-group comment">
-                                    @Html.LabelFor(q => q.Comment.Content, new { @class = "bmd-label-floating" })
-                                    @Html.TextAreaFor(q => q.Comment.Content, new { @class = "form-control" })
-                                </div>
+                    @if (ViewBag.IsAuth == false)
+                    {
+                        <div class="add_a_comment">
+                            <div class="single_media_title"><h2>Add a Comment</h2></div>
+                            <div class="comment_form">
 
-                                <button type="submit" class="btn btn-submit red">Submit</button>
-                            </form>
-                        </div><!--comment_form-->
-                    </div><!--add_a_comment-->
+                                <a href="/Login">Yorum yapabilmek için lütfen <span style="color:tomato">giriş</span> yapınız!</a>
+                                
+                            </div><!--comment_form-->
+                        </div><!--add_a_comment-->
+                    }
+                    else
+                    {
+                        <div class="add_a_comment">
+                            <div class="single_media_title"><h2>Add a Comment</h2></div>
+                            <div class="comment_form">
+                                <form action="/NewsDetail/AddComment/@Model.ID" method="post">
+                                    <input type="hidden" name="UserEmail" value="@ViewBag.email" />
+                                    <div class="form-group comment">
+                                        @Html.LabelFor(q => q.Comment.Content, new { @class = "bmd-label-floating" })
+                                        @Html.TextAreaFor(q => q.Comment.Content, new { @class = "form-control" })
+                                    </div>
+
+                                    <button type="submit" class="btn btn-submit red">Submit</button>
+                                </form>
+                            </div><!--comment_form-->
+                        </div><!--add_a_comment-->
+                    }
+
 
 
                 </div><!--single_content_layout-->
