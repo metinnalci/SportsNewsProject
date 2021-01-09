@@ -116,7 +116,7 @@
                                         @Html.Raw(item.Content)
 
                                         <div class="comment_article_social">
-                                            <a href="javascript:void(0);" onclick="like(@item.ID)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><input class="voteinp like" type="number" value="@item.Likes" id="like_@item.ID" /></a>
+                                            <a href="javascript:void(0);" onclick="like('@item.ID','@ViewBag.email')"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><input class="voteinp like" type="number" value="@item.Likes" id="like_@item.ID" /></a>
                                             <a href="javascript:void(0);" onclick="dislike(@item.ID)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i><input class="voteinp dislike" type="number" value="@item.Dislikes" id="dislike_@item.ID" /></a>
                                             <button onclick="addreply('@item.ID',true)" class="reply_ic"><span> Reply </span></button>
                                         </div>
@@ -176,9 +176,7 @@
                         <div class="add_a_comment">
                             <div class="single_media_title"><h2>Add a Comment</h2></div>
                             <div class="comment_form">
-
-                                <a href="/Login">Yorum yapabilmek için lütfen <span style="color:tomato">giriş</span> yapınız!</a>
-                                
+                                <span>Yorum yapabilmek için lütfen <a href="/login" style="color:tomato">giriş</a> yapınız!</span>
                             </div><!--comment_form-->
                         </div><!--add_a_comment-->
                     }
@@ -398,19 +396,24 @@
         }
     }
 
-    function like(id) {
+    function like(id, useremail) {
 
         var likeinput = 'like_' + id;
         var like = document.querySelector('#' + likeinput);
-        like.value = parseInt(like.value) + 1;
-        $('#' + likeinput).css("color", "green");
+        like.value.toggle;
         $.ajax({
             url: "/NewsDetail/Voting",
             type: "POST",
             data: {
                 id: id,
-                isTrue:true
-            }
+                isTrue: true,
+                useremail: useremail
+            },
+            error: function (err) {
+                alert("Sadece 1 oy verebilirsiniz!");
+            },
+            success:
+                like.value = parseInt(like.value) + 1
         })
     }
     function clike(id) {

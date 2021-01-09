@@ -89,20 +89,45 @@ namespace SportsNewsProject.Controllers
         }
 
         [HttpPost]
-        public void Voting(int id, bool isTrue)
+        public IActionResult Voting(int id, bool isTrue, string useremail)
         {
             Comment comment = new Comment();
             comment = _newscontext.Comments.FirstOrDefault(x => x.ID == id);
-            if (isTrue)
+            
+
+            if (comment.VoteEmail == null)
             {
-                comment.Likes++;
+                comment.VoteEmail = new List<string>() { };
+                comment.VoteEmail?.Add(useremail);
+                if (isTrue)
+                {
+                    comment.Likes++;
+                }
+                else
+                {
+                    comment.Dislikes++;
+                }
             }
             else
             {
-                comment.Dislikes++;
+                int flag = comment.VoteEmail.IndexOf(useremail);
+                if (flag == -1)
+                {
+                    comment.VoteEmail.Add(useremail);
+                    if (isTrue)
+                    {
+                        comment.Likes++;
+                    }
+                    else
+                    {
+                        comment.Dislikes++;
+                    }
+                }
             }
             
             _newscontext.SaveChanges();
+
+            return Json("Oyunuz başarıyla alınmıştır!");
 
         }
 
