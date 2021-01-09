@@ -134,7 +134,7 @@
                                                                 <div class="news_item_title">
                                                                     <h2><a href="/haber/@item.News[i].ID/@UrlHelpers.FriendlyUrl(item.News[i].Title)">@item.News[i].Title</a></h2>
                                                                 </div><!--news_item_title-->
-                                                                <div class="item_meta">@item.News[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@Model.news[i].AuthorID/@UrlHelpers.FriendlyUrl(item.News[i].Author?.Name)">@item.News[i].Author?.Name</a></div>
+                                                                <div class="item_meta">@item.News[i].AddDate.ToString("dd MMM yyyy"), by:<a href="/yazar/@item.News[i].AuthorID/@UrlHelpers.FriendlyUrl(item.News[i].Author?.Name)">@item.News[i].Author?.Name</a></div>
                                                             </div><!--item_title_date-->
                                                         </div><!--item_wrapper-->
                                                         <div class="item_content">
