@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SportsNewsProject.Models.ORM.Context;
@@ -10,9 +11,10 @@ using SportsNewsProject.Models.ORM.Context;
 namespace SportsNewsProject.Migrations
 {
     [DbContext(typeof(SportsNewsContext))]
-    partial class SportsNewsContextModelSnapshot : ModelSnapshot
+    [Migration("20210109000029_newvote2")]
+    partial class newvote2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

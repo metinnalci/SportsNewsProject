@@ -21,5 +21,6 @@ namespace SportsNewsProject.Models.ORM.Entities
 
         public int Likes { get; set; } = 0;
         public int Dislikes { get; set; } = 0;
+        public List<string> VoteEmail { get; set; } = new List<string>() {" "};
     }
 }
