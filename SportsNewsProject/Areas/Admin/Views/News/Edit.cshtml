@@ -16,7 +16,88 @@
             <div class="card-body">
                 <form action="/Admin/News/Edit/" method="post" enctype="multipart/form-data">
 
-                    @await Html.PartialAsync("Partial/NewsForm")
+                    <style>
+                        .field-validation-error {
+                            color: red;
+                        }
+                    </style>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.Title, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.Title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.Title)
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.SubTitle, new { @class = "bmd-label-floating" })
+                                @Html.TextBoxFor(q => q.SubTitle, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Categories">Categories</label>
+                                <select class="form-control selectpicker" data-style="btn btn-link" name="categoryid" id="Categories">
+
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        <option value="@item.ID">@item.CategoryName</option>
+                                    }
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Authors">Authors</label>
+                                <select class="form-control selectpicker" data-style="btn btn-link" name="authorid" id="Authors">
+
+                                    @foreach (var item in Model.Authors)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.Content, new { @class = "bmd-label-floating" })
+                                <br>
+                                @Html.TextAreaFor(q => q.Content, new { @id = "editor" })
+                                @Html.ValidationMessageFor(q => q.Content)
+
+                                <script>
+                                    ClassicEditor
+                                        .create(document.querySelector('#editor'))
+                                        .then(editor => {
+                                            console.log(editor);
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Choose an image</label>
+                            <input type="file" name="articleimages" multiple accept="image/x-png,image/gif,image/jpeg" class="form-control-file" style="position:initial; opacity:initial" multiple />
+                        </div>
+
+                    </div>
+
                     @Html.HiddenFor(q => q.ID)
 
                     <button type="submit" class="btn btn-primary pull-right ">Edit Article</button>
